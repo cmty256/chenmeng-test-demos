@@ -10,6 +10,7 @@
 	<description>测试项目父工程</description>
 	<packaging>pom</packaging>
 
+	<!--指定当前项目继承spring-boot-->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -17,6 +18,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
+	<!--项目中依赖版本统一管理-->
 	<properties>
 
 		<java.version>1.8</java.version>
