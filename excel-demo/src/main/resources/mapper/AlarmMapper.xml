@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenmeng.project.mapper.AlarmMapper">
+
+    <resultMap id="BaseResultMap" type="com.chenmeng.project.model.entity.Alarm">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="enterpriseTown" column="enterprise_town" jdbcType="VARCHAR"/>
+            <result property="marketSupervision" column="market_supervision" jdbcType="VARCHAR"/>
+            <result property="deviceName" column="device_name" jdbcType="VARCHAR"/>
+            <result property="alarmType" column="alarm_type" jdbcType="VARCHAR"/>
+            <result property="alarmLevel" column="alarm_level" jdbcType="VARCHAR"/>
+            <result property="alarmTime" column="alarm_time" jdbcType="TIMESTAMP"/>
+            <result property="alarmImage" column="alarm_image" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,enterprise_town,market_supervision,
+        device_name,alarm_type,alarm_level,
+        alarm_time,alarm_image
+    </sql>
+</mapper>
