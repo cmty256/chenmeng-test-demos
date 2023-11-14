@@ -1,13 +1,11 @@
 package com.chenmeng.project.service.impl;
 
-import cn.hutool.core.img.Img;
-import cn.hutool.core.io.FileUtil;
 import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.write.style.column.LongestMatchColumnWidthStyleStrategy;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.chenmeng.project.convert.AlertLevelConvert;
 import com.chenmeng.project.model.entity.Alarm;
 import com.chenmeng.project.model.entity.TblExcel;
+import com.chenmeng.project.model.entity.Test3;
 import com.chenmeng.project.model.vo.AlarmExportVO;
 import com.chenmeng.project.model.vo.ExcelExportVO;
 import com.chenmeng.project.service.AlarmService;
@@ -22,10 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @SpringBootTest
@@ -38,6 +33,11 @@ class TblExcelServiceImplTest {
     @Resource
     private AlarmService alarmService;
 
+    public static final String path = "C:\\Users\\乔\\Desktop\\excel.xls";
+
+    /**
+     * Thumbnails 压缩图片导出
+     */
     @Test
     void export() {
 
@@ -139,6 +139,9 @@ class TblExcelServiceImplTest {
 
     }
 
+    /**
+     * 根据用户传入字段,指定导出的列
+     */
     @Test
     void export2() {
 
@@ -194,6 +197,48 @@ class TblExcelServiceImplTest {
             }
         }
 
+    }
+
+    /**
+     * 动态表头
+     */
+    @Test
+    void export3() {
+
+        String day = "10月28日-11月3日";
+
+        List<List<String>> headList = new ArrayList<>();
+        ArrayList<String> headColumn1 = new ArrayList<>();
+        headColumn1.add("序号");
+        headList.add(headColumn1);
+
+        ArrayList<String> headColumn2 = new ArrayList<>();
+        headColumn2.add("镇街");
+        headList.add(headColumn2);
+
+        ArrayList<String> headColumn3 = new ArrayList<>();
+        headColumn3.add("辖区所");
+        headList.add(headColumn3);
+
+        ArrayList<String> headColumn4 = new ArrayList<>();
+        headColumn4.add(day);
+        headColumn4.add("本周入驻（户）");
+        headList.add(headColumn4);
+
+        ArrayList<Test3> list2 = new ArrayList<>();
+        Test3 test3 = new Test3();
+        test3.setId(1);
+        test3.setTownName("测试测试测试");
+        test3.setCityName("测试测试测试测试测试");
+        test3.setCount(10);
+        list2.add(test3);
+
+        EasyExcel.write(path)
+                .sheet()
+                .head(headList)
+                // 自动列宽
+                .registerWriteHandler(new LongestMatchColumnWidthStyleStrategy())
+                .doWrite(list2);
     }
 
 }
