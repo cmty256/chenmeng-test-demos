@@ -6,11 +6,9 @@ import com.alibaba.excel.annotation.write.style.ColumnWidth;
 import com.alibaba.excel.annotation.write.style.ContentRowHeight;
 import com.alibaba.excel.annotation.write.style.HeadRowHeight;
 import com.chenmeng.project.convert.AlertLevelConvert;
-import com.chenmeng.project.convert.DateConverter;
 import lombok.Data;
 
 import java.net.URL;
-import java.util.Date;
 
 /**
  * 告警消息导出VO
@@ -58,9 +56,10 @@ public class AlarmExportVO {
     /**
      * 告警时间
      */
-    @ExcelProperty(value = "告警时间", index = 5, converter = DateConverter.class)
+    @ExcelProperty(value = "告警时间", index = 5)
+    @DateTimeFormat(value = "yyyy-MM-dd HH:mm:ss")
     @ColumnWidth(25)
-    private Date alarmTime;
+    private String alarmTime;
 
     /**
      * 告警图片路径
