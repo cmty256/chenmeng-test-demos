@@ -35,7 +35,8 @@
 	<!-- 定义子模块 -->
 	<modules>
 		<module>excel-demo</module>
-	</modules>
+        <module>exception-demo</module>
+    </modules>
 
 	<!-- 定义依赖管理 -->
 	<dependencyManagement>
