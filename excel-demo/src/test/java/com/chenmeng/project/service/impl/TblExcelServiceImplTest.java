@@ -1,8 +1,12 @@
 package com.chenmeng.project.service.impl;
 
+import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.util.CharsetUtil;
+import cn.hutool.extra.compress.CompressUtil;
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.write.style.column.LongestMatchColumnWidthStyleStrategy;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.chenmeng.project.common.ZipUtil;
 import com.chenmeng.project.handler.CustomColumnWidthStyleStrategy;
 import com.chenmeng.project.model.entity.Alarm;
 import com.chenmeng.project.model.entity.TblExcel;
@@ -13,19 +17,19 @@ import com.chenmeng.project.service.AlarmService;
 import com.chenmeng.project.service.TblExcelService;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnails;
+import org.apache.commons.compress.archivers.ArchiveStreamFactory;
+import org.apache.poi.util.IOUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
+
+import static org.apache.tomcat.jni.SSLConf.finish;
 
 @SpringBootTest
 @Slf4j
@@ -293,5 +297,117 @@ class TblExcelServiceImplTest {
                 .registerWriteHandler(new CustomColumnWidthStyleStrategy())
                 .doWrite(list2);
     }
+
+    /**
+     * 压缩包导出
+     */
+    @Test
+    void export5() throws IOException {
+        LambdaQueryWrapper<TblExcel> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(TblExcel::getName, "孙子异");
+        List<TblExcel> list = excelService.list(wrapper);
+        List<ExcelExportVO> list2 = list.stream().map(item -> {
+            ExcelExportVO exportVO = new ExcelExportVO();
+            exportVO.setName(item.getName());
+            try {
+                // 1.1 压缩图片并保存到临时文件
+                File compressedFile = File.createTempFile("compressed_image", ".jpg");
+                // 1.2 压缩图片
+                Thumbnails.of(new URL(item.getFile()))
+                        .scale(0.5) // 设置压缩比例
+                        .toFile(compressedFile);
+
+                // 1.3 将临时文件路径设置到ExcelExportVO对象中
+                exportVO.setFile(compressedFile.toURI().toURL());
+            } catch (MalformedURLException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException("压缩图片失败!!!", e);
+            }
+            return exportVO;
+        }).collect(Collectors.toList());
+
+        List<InputStream> ins = new ArrayList<>();
+        OutputStream out1 = new ByteArrayOutputStream();
+        OutputStream out2 = new ByteArrayOutputStream();
+
+        // 2、导出
+        EasyExcel.write(out1)
+                .sheet("第一个")
+                .head(ExcelExportVO.class)
+                .doWrite(list2);
+        ins.add(outputStream2InputStream(out1));
+
+        EasyExcel.write(out2)
+                .sheet("第二个")
+                .head(ExcelExportVO.class)
+                .doWrite(list2);
+        ins.add(outputStream2InputStream(out2));
+
+        File zipFile = new File("C:\\Users\\乔\\Desktop\\noModelWrite.zip");
+
+        // 压缩包内流的文件名
+        List<String> paths = Arrays.asList("1.xlsx", "2.xlsx");
+
+        ZipUtil.zip(zipFile, paths, ins);
+
+        // 3、使用完毕后手动删除临时文件
+        for (ExcelExportVO exportVO : list2) {
+            try {
+                File compressedFile = new File(exportVO.getFile().toURI());
+                if (!compressedFile.delete()) {
+                    // 删除操作失败，记录日志或进行其他错误处理
+                    log.error("删除临时文件失败: " + compressedFile.getAbsolutePath());
+                }
+            } catch (Exception e) {
+                // 处理删除临时文件的异常
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * 压缩包导出 -- hutool
+     */
+    @Test
+    void export6() throws IOException {
+
+        List<TblExcel> list = new ArrayList<>();
+        list.add(new TblExcel("张三", "abc"));
+
+        List<ByteArrayInputStream> ins = new ArrayList<>();
+
+        // 导出第一个Excel
+        ByteArrayOutputStream out1 = new ByteArrayOutputStream();
+        EasyExcel.write(out1, TblExcel.class).sheet("第一个").doWrite(list);
+        ins.add(new ByteArrayInputStream(out1.toByteArray()));
+
+        // 导出第二个Excel
+        ByteArrayOutputStream out2 = new ByteArrayOutputStream();
+        EasyExcel.write(out2, TblExcel.class).sheet("第二个").doWrite(list);
+        ins.add(new ByteArrayInputStream(out2.toByteArray()));
+
+        // 将多个 InputStream 压缩到一个 zip 文件
+        File zipFile = new File("C:\\Users\\乔\\Desktop\\noModelWrite.zip");
+        String[] fileNames = {"1.xlsx", "2.xlsx"};
+        InputStream[] inputStreams = ins.toArray(new InputStream[0]);
+
+        cn.hutool.core.util.ZipUtil.zip(zipFile, fileNames, inputStreams);
+
+    }
+
+    /**
+     * 输出流转输入流；数据量过大请使用其他方法
+     *
+     * @param out
+     * @return
+     */
+    private ByteArrayInputStream outputStream2InputStream(OutputStream out) {
+        Objects.requireNonNull(out);
+        ByteArrayOutputStream bos;
+        bos = (ByteArrayOutputStream) out;
+        return new ByteArrayInputStream(bos.toByteArray());
+    }
+
 
 }
