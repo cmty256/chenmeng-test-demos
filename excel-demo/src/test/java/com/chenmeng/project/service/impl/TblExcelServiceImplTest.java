@@ -3,6 +3,7 @@ package com.chenmeng.project.service.impl;
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.write.style.column.LongestMatchColumnWidthStyleStrategy;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.chenmeng.project.handler.CustomColumnWidthStyleStrategy;
 import com.chenmeng.project.model.entity.Alarm;
 import com.chenmeng.project.model.entity.TblExcel;
 import com.chenmeng.project.model.entity.Test3;
@@ -20,7 +21,10 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @SpringBootTest
@@ -33,7 +37,7 @@ class TblExcelServiceImplTest {
     @Resource
     private AlarmService alarmService;
 
-    public static final String path = "C:\\Users\\乔\\Desktop\\excel.xls";
+    public static final String path = "C:\\Users\\乔\\Desktop\\excel.xlsx";
 
     /**
      * Thumbnails 压缩图片导出
@@ -238,6 +242,55 @@ class TblExcelServiceImplTest {
                 .head(headList)
                 // 自动列宽
                 .registerWriteHandler(new LongestMatchColumnWidthStyleStrategy())
+                .doWrite(list2);
+    }
+
+    /**
+     * 内容表格合并
+     */
+    @Test
+    void export4() {
+
+        String day = "10月28日-11月3日";
+
+        List<List<String>> headList = new ArrayList<>();
+        ArrayList<String> headColumn1 = new ArrayList<>();
+        headColumn1.add("序号");
+        headList.add(headColumn1);
+
+        ArrayList<String> headColumn2 = new ArrayList<>();
+        headColumn2.add("镇街");
+        headList.add(headColumn2);
+
+        ArrayList<String> headColumn3 = new ArrayList<>();
+        headColumn3.add("辖区所");
+        headList.add(headColumn3);
+
+        ArrayList<String> headColumn4 = new ArrayList<>();
+        headColumn4.add(day);
+        headColumn4.add("本周入驻（户）");
+        headList.add(headColumn4);
+
+        ArrayList<Test3> list2 = new ArrayList<>();
+        Test3 test3 = new Test3();
+        test3.setId(1);
+        test3.setTownName("测试测试测试");
+        test3.setCityName("测试测试测试测试测试");
+        test3.setCount(10);
+        list2.add(test3);
+        list2.add(test3);
+        Test3 newTest3 = new Test3();
+        newTest3.setId(2);
+        newTest3.setTownName("测试测试测试2");
+        newTest3.setCityName("测试测试测试测试测试2");
+        newTest3.setCount(100);
+        list2.add(newTest3);
+
+        EasyExcel.write(path)
+                .sheet()
+                .head(headList)
+                // 自定义自动列宽
+                .registerWriteHandler(new CustomColumnWidthStyleStrategy())
                 .doWrite(list2);
     }
 
