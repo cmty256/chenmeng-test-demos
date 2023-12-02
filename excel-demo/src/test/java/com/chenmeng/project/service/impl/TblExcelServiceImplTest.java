@@ -1,8 +1,5 @@
 package com.chenmeng.project.service.impl;
 
-import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.util.CharsetUtil;
-import cn.hutool.extra.compress.CompressUtil;
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.write.style.column.LongestMatchColumnWidthStyleStrategy;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -17,8 +14,6 @@ import com.chenmeng.project.service.AlarmService;
 import com.chenmeng.project.service.TblExcelService;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnails;
-import org.apache.commons.compress.archivers.ArchiveStreamFactory;
-import org.apache.poi.util.IOUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -28,8 +23,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
-
-import static org.apache.tomcat.jni.SSLConf.finish;
 
 @SpringBootTest
 @Slf4j

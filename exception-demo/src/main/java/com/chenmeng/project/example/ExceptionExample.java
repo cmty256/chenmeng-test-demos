@@ -1,7 +1,10 @@
-package com.chenmeng.project;
+package com.chenmeng.project.example;
 
 import lombok.SneakyThrows;
 
+/**
+ * @author 沉梦
+ */
 public class ExceptionExample {
 
     @SneakyThrows({ArrayIndexOutOfBoundsException.class})
