@@ -15,7 +15,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 /**
  * 告警消息表
  *
- * @author wyy
+ * @author 沉梦听雨
  * @TableName alarm
  */
 @TableName(value ="alarm")

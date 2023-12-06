@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 测试3，实体类
  *
- * @author wyy
+ * @author 沉梦听雨
  * @date 2023/11/14 16:34
  **/
 @Data

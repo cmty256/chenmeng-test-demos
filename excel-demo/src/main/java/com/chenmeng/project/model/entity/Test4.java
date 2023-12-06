@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * 测试4，实体类
  *
- * @author wyy
+ * @author 沉梦听雨
  * @date 2023/11/14 17:18
  **/
 @Data
