@@ -36,7 +36,8 @@
 	<modules>
 		<module>excel-demo</module>
         <module>exception-demo</module>
-    </modules>
+		<module>leetcode</module>
+	</modules>
 
 	<!-- 定义依赖管理 -->
 	<dependencyManagement>
