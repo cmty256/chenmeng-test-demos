@@ -37,7 +37,7 @@ class TblExcelServiceImplTest {
     public static final String path = "C:\\Users\\乔\\Desktop\\excel.xlsx";
 
     /**
-     * Thumbnails 压缩图片导出
+     * Thumbnails 压缩图片导出 -- 手动删除资源版
      */
     @Test
     void export() {
@@ -57,8 +57,6 @@ class TblExcelServiceImplTest {
 
                 // 1.3 将临时文件路径设置到ExcelExportVO对象中
                 exportVO.setFile(compressedFile.toURI().toURL());
-            } catch (MalformedURLException e) {
-                throw new RuntimeException(e);
             } catch (IOException e) {
                 throw new RuntimeException("压缩图片失败!!!", e);
             }
@@ -84,7 +82,43 @@ class TblExcelServiceImplTest {
                 e.printStackTrace();
             }
         }
+    }
 
+    /**
+     * Thumbnails 压缩图片导出 -- 使用 try-with-resources 自动关闭资源版
+     * 压缩效果较差
+     */
+    @Test
+    void export11() {
+
+        // 1、获取导出列表
+        List<TblExcel> list = excelService.list();
+        List<ExcelExportVO> list2 = list.stream().map(item -> {
+            ExcelExportVO exportVO = new ExcelExportVO();
+            exportVO.setName(item.getName());
+
+            try {
+                // 压缩图像并保存到临时文件
+                File compressedFile;
+                try (OutputStream outputStream = new FileOutputStream(compressedFile = File.createTempFile("compressed_image", ".jpg"))) {
+                    Thumbnails.of(new URL(item.getFile()))
+                            .scale(0.5) // 设置压缩比例
+                            .toOutputStream(outputStream);
+                }
+                // 将临时文件路径设置到ExcelExportVO对象中
+                exportVO.setFile(compressedFile.toURI().toURL());
+            } catch (IOException e) {
+                throw new RuntimeException("压缩图片失败!!!", e);
+            }
+
+            return exportVO;
+        }).collect(Collectors.toList());
+
+        // 2、导出
+        EasyExcel.write("D:\\TblExcel.xls")
+                .sheet("模板")
+                .head(ExcelExportVO.class)
+                .doWrite(list2);
     }
 
     @Test
