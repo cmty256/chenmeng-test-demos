@@ -1,4 +1,4 @@
-package hot_100;
+package other;
 
 
 import java.util.ArrayList;
