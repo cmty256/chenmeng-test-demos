@@ -20,7 +20,7 @@ public class _42_接雨水 {
      * <p>
      * 空间复杂度为 O(1)
      */
-    static class Solution {
+    class Solution {
         public int trap(int[] height) {
             int res = 0;
             // 定义左指针和右指针
@@ -71,7 +71,7 @@ public class _42_接雨水 {
             right[n - 1] = height[n - 1];
 
             // 遍历数组，计算左侧最大值和右侧最大值
-            for (int i = 1; i < n; ++i) {
+            for (int i = 1; i < n; i++) {
                 // 从左到右
                 left[i] = Math.max(left[i - 1], height[i]);
                 // 从右到左
@@ -89,8 +89,8 @@ public class _42_接雨水 {
         }
     }
 
-    public static void main(String[] args) {
-        int[] height = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
-        System.out.println(new Solution().trap(height));
-    }
+    // public static void main(String[] args) {
+    //     int[] height = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
+    //     System.out.println(new Solution2().trap(height));
+    // }
 }
