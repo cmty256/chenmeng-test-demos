@@ -65,7 +65,7 @@ public class _283_移动零 {
                 arr[j] = 0;
             }
             // 将新数组arr的值拷贝到原数组nums中
-            // nums = Arrays.copyof(arr,arr.length);
+            // nums = Arrays.copyOf(arr,arr.length);
             System.arraycopy(arr, 0, nums, 0, arr.length);
         }
     }
