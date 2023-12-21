@@ -20,4 +20,7 @@
         device_name,alarm_type,alarm_level,
         alarm_time,alarm_image
     </sql>
+    <select id="getPageInfo" resultType="com.chenmeng.project.model.entity.Alarm">
+        select t.*, t.alarm_level le from alarm t
+    </select>
 </mapper>
