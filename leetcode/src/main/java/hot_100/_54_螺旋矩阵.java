@@ -24,10 +24,12 @@ public class _54_螺旋矩阵 {
      */
     class Solution {
         public List<Integer> spiralOrder(int[][] matrix) {
+            // 创建结果集
             List<Integer> result = new ArrayList<>();
-            if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
-                return result;
-            }
+            // 由于题目提示 m,n 一定大于等于 1，所以这里可不写
+            // if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            //     return result;
+            // }
             // 表示当前层的边界
             int top = 0, bottom = matrix.length - 1, left = 0, right = matrix[0].length - 1;
 
