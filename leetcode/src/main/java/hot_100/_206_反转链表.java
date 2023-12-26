@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * 相交链表 -- 数组、二分查找、分治、矩阵
+ * 相交链表 -- 递归、链表
  *
  * @author 沉梦听雨
  **/
