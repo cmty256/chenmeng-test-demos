@@ -1,4 +1,6 @@
-package hot_100;
+package hot_100.链表;
+
+import hot_100.ListNode;
 
 import java.util.HashSet;
 import java.util.Set;

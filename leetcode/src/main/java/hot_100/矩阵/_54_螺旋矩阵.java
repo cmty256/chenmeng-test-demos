@@ -1,4 +1,4 @@
-package hot_100;
+package hot_100.矩阵;
 
 import java.util.ArrayList;
 import java.util.Arrays;

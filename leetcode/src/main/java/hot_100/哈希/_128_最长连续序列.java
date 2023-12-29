@@ -1,4 +1,4 @@
-package hot_100;
+package hot_100.哈希;
 
 
 import java.util.*;

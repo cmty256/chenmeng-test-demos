@@ -1,4 +1,4 @@
-package hot_100;
+package hot_100.普通数组;
 
 import java.util.HashMap;
 
