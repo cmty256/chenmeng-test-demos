@@ -4,7 +4,7 @@ package hot_100.二叉树;
  * 二叉树节点的定义
  * Definition for a binary tree node.
  *
- * @author 沉梦听雨
+ * @author cur
  */
 public class TreeNode {
     int val;

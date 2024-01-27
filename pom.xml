@@ -37,7 +37,8 @@
 		<module>excel-demo</module>
         <module>exception-demo</module>
 		<module>leetcode</module>
-	</modules>
+        <module>base-demo</module>
+    </modules>
 
 	<!-- 定义依赖管理 -->
 	<dependencyManagement>
@@ -48,7 +49,7 @@
 			<dependency>
 				<groupId>cn.hutool</groupId>
 				<artifactId>hutool-all</artifactId>
-				<version>5.8.18</version>
+				<version>5.8.25</version>
 			</dependency>
 			<!-- https://github.com/alibaba/easyexcel -->
 			<dependency>
