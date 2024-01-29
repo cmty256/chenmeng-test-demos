@@ -82,6 +82,13 @@
 				<artifactId>mybatis-plus-boot-starter</artifactId>
 				<version>3.5.2</version>
 			</dependency>
+			<!-- 执行SQL分析打印 -->
+			<!-- 该插件有性能损耗，不建议生产环境使用 -->
+			<dependency>
+				<groupId>p6spy</groupId>
+				<artifactId>p6spy</artifactId>
+				<version>3.9.1</version>
+			</dependency>
 
 			<!-- SpringBoot初始化相关 -->
 			<dependency>

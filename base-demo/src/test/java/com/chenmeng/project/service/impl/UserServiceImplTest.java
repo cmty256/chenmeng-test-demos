@@ -49,4 +49,9 @@ class UserServiceImplTest {
         log.info("page11 = " + page33.getTotal());
         log.info("{}", page33.getRecords());
     }
+
+    @Test
+    void test2() {
+        userService.list();
+    }
 }
