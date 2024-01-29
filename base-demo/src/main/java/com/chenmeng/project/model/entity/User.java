@@ -1,9 +1,7 @@
 package com.chenmeng.project.model.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.io.Serializable;
 import lombok.Data;
 
@@ -35,49 +33,9 @@ public class User implements Serializable {
      */
     private Integer sex;
 
+    @TableLogic
+    private Integer isDelete;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
-
-    @Override
-    public boolean equals(Object that) {
-        if (this == that) {
-            return true;
-        }
-        if (that == null) {
-            return false;
-        }
-        if (getClass() != that.getClass()) {
-            return false;
-        }
-        User other = (User) that;
-        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
-            && (this.getAge() == null ? other.getAge() == null : this.getAge().equals(other.getAge()))
-            && (this.getSex() == null ? other.getSex() == null : this.getSex().equals(other.getSex()));
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
-        result = prime * result + ((getAge() == null) ? 0 : getAge().hashCode());
-        result = prime * result + ((getSex() == null) ? 0 : getSex().hashCode());
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        String sb = getClass().getSimpleName() +
-                " [" +
-                "Hash = " + hashCode() +
-                ", id=" + id +
-                ", name=" + name +
-                ", age=" + age +
-                ", sex=" + sex +
-                ", serialVersionUID=" + serialVersionUID +
-                "]";
-        return sb;
-    }
 }

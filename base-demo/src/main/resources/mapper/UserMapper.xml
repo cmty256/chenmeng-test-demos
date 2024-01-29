@@ -9,11 +9,12 @@
             <result property="name" column="name" jdbcType="VARCHAR"/>
             <result property="age" column="age" jdbcType="INTEGER"/>
             <result property="sex" column="sex" jdbcType="TINYINT"/>
+            <result property="isDelete" column="is_delete" jdbcType="TINYINT"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,name,age,
-        sex
+        sex,is_delete
     </sql>
     <select id="findAll" resultType="com.chenmeng.project.model.entity.User">
         SELECT * FROM tbl_user

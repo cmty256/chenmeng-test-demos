@@ -4,6 +4,8 @@ import cn.hutool.core.util.StrUtil;
 import com.p6spy.engine.spy.appender.MessageFormattingStrategy;
 
 /**
+ * 此插件影响性能，可使用SqlLogInterceptor替换此功能
+ *
  * @author 沉梦听雨
  */
 public class P6SpyLogger implements MessageFormattingStrategy {
