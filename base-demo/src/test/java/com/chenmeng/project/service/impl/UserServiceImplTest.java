@@ -1,6 +1,7 @@
 package com.chenmeng.project.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.chenmeng.project.common.sexEnum;
 import com.chenmeng.project.mapper.UserMapper;
 import com.chenmeng.project.model.entity.User;
 import com.chenmeng.project.service.UserService;
@@ -60,5 +61,10 @@ class UserServiceImplTest {
     void test2() {
         // SELECT  id,name,age,sex,is_delete  FROM tbl_user WHERE  is_delete=0
         userService.list();
+    }
+
+    @Test
+    void test3() {
+        System.out.println("sexEnum.getValueByKey(-1) = " + sexEnum.getValueByKey(-1));
     }
 }

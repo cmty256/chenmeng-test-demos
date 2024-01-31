@@ -21,6 +21,7 @@ public class P6SpyLogger implements MessageFormattingStrategy {
      * category：执行分组
      * prepared：预编译sql语句
      * sql:执行的真实SQL语句，已替换占位
+     * url:数据库连接信息
      */
     @Override
     public String formatMessage(int connectionId, String now, long elapsed, String category, String prepared, String sql, String url) {
