@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author 沉梦听雨
@@ -66,5 +68,30 @@ class UserServiceImplTest {
     @Test
     void test3() {
         System.out.println("sexEnum.getValueByKey(-1) = " + sexEnum.getValueByKey(-1));
+    }
+
+    @Test
+    void test4() {
+        User user1 = new User();
+        user1.setId(1L);
+        user1.setName("1号");
+        user1.setAge(0);
+        user1.setSex(0);
+        user1.setIsDelete(0);
+
+        User user2 = new User();
+        user2.setId(2L);
+        user2.setName("2号");
+        user2.setAge(0);
+        user2.setSex(0);
+        user2.setIsDelete(0);
+
+        List<User> users = new ArrayList<>();
+        users.add(user1);
+        users.add(user2);
+        // boolean b = userService.saveBatch(users, 2);
+        // System.out.println("b = " + b);
+
+        userMapper.batchInsert(users);
     }
 }

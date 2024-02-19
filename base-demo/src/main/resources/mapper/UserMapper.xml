@@ -16,6 +16,14 @@
         id,name,age,
         sex,is_delete
     </sql>
+    <insert id="batchInsert">
+        INSERT INTO tbl_user (id,name,age,sex,is_delete)
+        VALUES
+        <foreach collection="userList" item="item" index="index" open="(" separator="),(" close=")">
+            #{item.id},#{item.name},#{item.age},#{item.sex},#{item.isDelete}
+        </foreach>
+    </insert>
+
     <select id="findAll" resultType="com.chenmeng.project.model.entity.User">
         SELECT * FROM tbl_user
     </select>
