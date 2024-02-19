@@ -1,6 +1,8 @@
 package com.chenmeng.project.model.vo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -10,6 +12,9 @@ import java.io.Serializable;
  */
 @Data
 public class UserVO implements Serializable {
+
+    @JsonSerialize(using = ToStringSerializer.class)
+    private Long id;
 
     /**
      * 名字
