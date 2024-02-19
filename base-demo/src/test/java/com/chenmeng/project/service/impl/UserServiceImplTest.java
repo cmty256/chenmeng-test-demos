@@ -1,5 +1,6 @@
 package com.chenmeng.project.service.impl;
 
+import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.chenmeng.project.common.sexEnum;
 import com.chenmeng.project.mapper.UserMapper;
@@ -73,14 +74,15 @@ class UserServiceImplTest {
     @Test
     void test4() {
         User user1 = new User();
-        user1.setId(1L);
+        // IdWorker 是一个基于zookeeper和snowflake算法的分布式ID生成工具
+        user1.setId(IdWorker.getId());
         user1.setName("1号");
         user1.setAge(0);
         user1.setSex(0);
         user1.setIsDelete(0);
 
         User user2 = new User();
-        user2.setId(2L);
+        // user2.setId(2L);
         user2.setName("2号");
         user2.setAge(0);
         user2.setSex(0);
@@ -89,9 +91,9 @@ class UserServiceImplTest {
         List<User> users = new ArrayList<>();
         users.add(user1);
         users.add(user2);
-        // boolean b = userService.saveBatch(users, 2);
-        // System.out.println("b = " + b);
+        boolean b = userService.saveBatch(users, 2);
+        System.out.println("b = " + b);
 
-        userMapper.batchInsert(users);
+        // userMapper.batchInsert(users);
     }
 }

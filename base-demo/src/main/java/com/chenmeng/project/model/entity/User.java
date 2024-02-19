@@ -13,9 +13,9 @@ import lombok.Data;
 @Data
 public class User implements Serializable {
     /**
-     * 标识
+     * 标识(雪花算法)
      */
-    @TableId(type = IdType.AUTO)
+    @TableId(type = IdType.ASSIGN_ID)
     private Long id;
 
     /**
