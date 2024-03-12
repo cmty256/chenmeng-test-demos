@@ -1,4 +1,4 @@
-package com.chenmeng.project.common;
+package com.chenmeng.test.common.enums;
 
 import java.util.Arrays;
 import java.util.List;
@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 /**
  * 性别枚举
  *
- * @author wyy
+ * @author 沉梦听雨
  */
 public enum sexEnum {
 

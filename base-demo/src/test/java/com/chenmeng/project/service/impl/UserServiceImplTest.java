@@ -2,10 +2,10 @@ package com.chenmeng.project.service.impl;
 
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.chenmeng.project.common.sexEnum;
 import com.chenmeng.project.mapper.UserMapper;
 import com.chenmeng.project.model.entity.User;
 import com.chenmeng.project.service.UserService;
+import com.chenmeng.test.common.enums.sexEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
