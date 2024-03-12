@@ -38,6 +38,7 @@
         <module>exception-demo</module>
 		<module>leetcode</module>
         <module>base-demo</module>
+        <module>jiguang-demo</module>
     </modules>
 
 	<!-- 定义依赖管理 -->
