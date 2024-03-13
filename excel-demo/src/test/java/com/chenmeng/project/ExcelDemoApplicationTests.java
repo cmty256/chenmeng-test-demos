@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.chenmeng.project.mapper.AlarmMapper;
 import com.chenmeng.project.model.dto.AlarmDTO;
 import com.chenmeng.project.model.entity.Alarm;
-import com.chenmeng.project.common.BasicConvert;
+import com.chenmeng.project.constants.BasicConvert;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

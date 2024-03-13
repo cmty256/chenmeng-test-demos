@@ -1,4 +1,4 @@
-package com.chenmeng.test.common.enums;
+package com.chenmeng.common.constants.enums;
 
 import java.util.Arrays;
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
  *
  * @author 沉梦听雨
  */
-public enum sexEnum {
+public enum SexEnum {
 
     /**
      * 性别枚举
@@ -22,7 +22,7 @@ public enum sexEnum {
 
     private final String value;
 
-    sexEnum(Integer key, String value) {
+    SexEnum(Integer key, String value) {
         this.key = key;
         this.value = value;
     }
@@ -34,7 +34,7 @@ public enum sexEnum {
      * @return
      */
     public static String getValueByKey(Integer key) {
-        for (sexEnum value : values()) {
+        for (SexEnum value : values()) {
             if (value.getKey().equals(key)) {
                 return value.value;
             }

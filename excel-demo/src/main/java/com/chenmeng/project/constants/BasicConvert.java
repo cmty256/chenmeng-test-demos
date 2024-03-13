@@ -1,4 +1,4 @@
-package com.chenmeng.project.common;
+package com.chenmeng.project.constants;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.baomidou.mybatisplus.core.metadata.OrderItem;

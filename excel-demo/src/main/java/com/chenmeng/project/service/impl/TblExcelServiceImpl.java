@@ -6,13 +6,9 @@ import com.chenmeng.project.model.entity.TblExcel;
 import com.chenmeng.project.model.vo.ExcelExportVO;
 import com.chenmeng.project.service.TblExcelService;
 import com.chenmeng.project.mapper.TblExcelMapper;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.net.URLEncoder;
 import java.util.List;
 import java.util.stream.Collectors;

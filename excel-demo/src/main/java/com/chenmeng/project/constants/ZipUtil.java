@@ -1,4 +1,4 @@
-package com.chenmeng.project.common;
+package com.chenmeng.project.constants;
 
 import com.baomidou.mybatisplus.core.toolkit.ArrayUtils;
 import org.apache.commons.compress.utils.IOUtils;

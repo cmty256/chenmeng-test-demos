@@ -2,8 +2,6 @@ package com.chenmeng.project.model.entity;
 
 import lombok.Data;
 
-import java.util.List;
-
 /**
  * 测试3，实体类
  *

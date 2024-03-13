@@ -1,4 +1,4 @@
-package com.chenmeng.project.common;
+package com.chenmeng.project.constants;
 
 import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import lombok.Data;
