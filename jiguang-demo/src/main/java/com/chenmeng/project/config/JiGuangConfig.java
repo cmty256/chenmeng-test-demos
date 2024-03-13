@@ -6,15 +6,14 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
 
-/**极光推送配置
+/**
+ * 极光推送配置
  *
- * @email: pengyujun53@163.com
- * @author: peng_YuJun
- * @date: 2022/12/27
- * @time: 9:02
+ * @author 沉梦听雨
  */
 @Configuration
 public class JiGuangConfig {
+
     /**
      * 极光官网-个人管理中心-appkey
      * https://www.jiguang.cn/

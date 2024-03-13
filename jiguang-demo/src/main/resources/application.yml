@@ -10,3 +10,31 @@ jiguang:
     dev-key: 7413be427fd2290f2b62834e
     dev-secret: c471c1655335a693e5f4c745
 
+server:
+  port: 8084
+  servlet:
+    # 将Servlet的上下文路径配置为“/api”，那么应用的根路径就变成了“http://localhost:7529/api/”。
+    context-path: /api
+spring:
+  application:
+    name: jiguang-demo
+  # 数据库配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/chenmeng_test
+    username: root
+    password: 123456
+  mvc:
+    pathmatch:
+      # 指定URL路径匹配的策略--Ant--风格，默认的URL路径匹配的策略是AntPathMatcher
+      # 是为了兼容swagger
+      matching-strategy: ANT_PATH_MATCHER
+mybatis-plus:
+  configuration:
+    # 打印日志信息
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: isDelete # 全局逻辑删除的实体字段名(since 3.3.0,配置后可以忽略不配置步骤2)
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)

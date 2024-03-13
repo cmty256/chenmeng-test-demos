@@ -20,15 +20,15 @@ class JiGuangPushServiceTest {
 
     @Test
     void pushAll() {
-        //定义和赋值推送实体
+        // 定义和赋值推送实体
         PushDTO pushBean = new PushDTO();
-        pushBean.setTitle("titleStr");
-        pushBean.setAlert("alertStr");
-        //额外推送信息
+        pushBean.setTitle("沉梦通知");
+        pushBean.setAlert("消息来了~~");
+        // 额外推送信息
         Map<String, String> map = new HashMap<>();
-        map.put("xxx", "xxx");
+        map.put("key", "value");
         pushBean.setExtras(map);
-        //进行推送，推送到所有使用Android客户端的用户，返回推送结果布尔值
+        // 进行推送，推送到所有使用Android客户端的用户，返回推送结果布尔值
         boolean flag = jiGuangService.pushAndroid(pushBean);
         System.out.println("flag = " + flag);
     }
