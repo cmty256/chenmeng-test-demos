@@ -1,34 +1,24 @@
 package com.chenmeng.common.model.dto;
 
-import com.chenmeng.common.constants.CommonConstants;
 import lombok.Data;
+
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 
 /**
- * 分页请求体
+ * 基础分页DTO
  *
  * @author 沉梦听雨
  */
 @Data
-public class BasePageDTO {
+public class BasePageDTO implements Serializable {
 
-    /**
-     * 当前页号
-     */
-    private long current = 1;
+    @NotNull(message = "【当前页码】不能为空")
+    private Integer current;
 
-    /**
-     * 页面大小
-     */
-    private long pageSize = 10;
+    @NotNull(message = "【每页条数】不能为空")
+    private Integer size;
 
-    /**
-     * 排序字段
-     */
-    private String sortField;
-
-    /**
-     * 排序顺序（默认升序）
-     */
-    private String sortOrder = CommonConstants.SORT_ORDER_ASC;
+    private static final long serialVersionUID = 8916337394266613506L;
 }

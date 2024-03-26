@@ -15,23 +15,23 @@ import java.lang.reflect.Method;
 public class ClassUtil {
 
     /**
-     * 创建一个ParameterNameDiscoverer对象，用于获取参数名
+     * 用于获取方法参数名的参数名称发现器对象
      */
     private static final ParameterNameDiscoverer PARAMETER_NAME_DISCOVERER = new DefaultParameterNameDiscoverer();
 
     /**
-     * 获取方法参数名称
+     * 获取方法指定索引位置的参数对象
      *
-     * @param method
-     * @param parameterIndex
-     * @return
+     * @param method         方法对象
+     * @param parameterIndex 参数索引位置
+     * @return MethodParameter 对象
      */
     public static MethodParameter getMethodParameter(Method method, int parameterIndex) {
-        // 创建一个MethodParameter对象
+        // 创建一个 MethodParameter 对象
         MethodParameter methodParameter = new SynthesizingMethodParameter(method, parameterIndex);
         // 初始化参数名称发现器
         methodParameter.initParameterNameDiscovery(PARAMETER_NAME_DISCOVERER);
-        // 返回MethodParameter对象
+        // 返回 MethodParameter 对象
         return methodParameter;
     }
 }

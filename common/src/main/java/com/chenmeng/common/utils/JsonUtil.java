@@ -32,7 +32,7 @@ public class JsonUtil {
     }
 
     public static boolean canSerialize(@Nullable Object value) {
-        return value == null ? true : getInstance().canSerialize(value.getClass());
+        return value == null || getInstance().canSerialize(value.getClass());
     }
 
     public static ObjectMapper getInstance() {

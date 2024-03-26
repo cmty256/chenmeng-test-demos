@@ -9,7 +9,7 @@ import com.chenmeng.common.constants.enums.ErrorCodeEnum;
  * @author 沉梦听雨
  * @date 2023/06/19
  */
-public class ResultUtils {
+public class ResultUtil {
 
     /**
      * 成功

@@ -11,8 +11,8 @@ import java.util.Date;
  *
  * @author 沉梦听雨
  */
-@TableName(value ="user")
 @Data
+@TableName(value ="user")
 public class User implements Serializable {
 
     /**

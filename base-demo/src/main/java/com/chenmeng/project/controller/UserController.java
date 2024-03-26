@@ -25,9 +25,9 @@ public class UserController {
 
     /**
      * 测试前端接收 Long 类型id，精度丢失问题
-     * 可在视图类加上JsonSerialize这个注解来解决，单靠类实现Serializable接口不行
+     * 可在视图类加上JsonSerialize这个注解来解决，单靠类实现Serializable接口不行（或者用String）
      *
-     * @return
+     * @return List<UserVO>
      */
     @GetMapping
     public List<UserVO> testLong() {
