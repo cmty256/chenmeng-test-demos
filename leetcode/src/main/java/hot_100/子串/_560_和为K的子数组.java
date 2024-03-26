@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * 和为 K 的子数组 -- 数组, 哈希表, 前缀和
  *
- * @author 沉梦听雨
+ * @author cmty256
  **/
 @SuppressWarnings("all")
 public class _560_和为K的子数组 {

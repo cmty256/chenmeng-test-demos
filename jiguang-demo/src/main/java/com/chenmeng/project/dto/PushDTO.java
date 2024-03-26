@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.Map;
 
 /**
- * @author 沉梦听雨
+ * @author cmty256
  */
 @Data
 public class PushDTO {

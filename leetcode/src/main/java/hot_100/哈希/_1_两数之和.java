@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * 两数之和 -- 数组, 哈希表
  *
- * @author 沉梦听雨
+ * @author cmty256
  **/
 @SuppressWarnings("all") // 禁止所有检查
 public class _1_两数之和 {

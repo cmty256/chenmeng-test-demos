@@ -5,7 +5,7 @@ import com.chenmeng.common.constants.enums.ErrorCodeEnum;
 /**
  * 自定义异常类
  *
- * @author 沉梦听雨
+ * @author cmty256
  */
 public class BusinessException extends RuntimeException {
 

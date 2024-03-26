@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @author 沉梦听雨
+ * @author cmty256
  */
 @SpringBootApplication
 @MapperScan("com.chenmeng.project.mapper")

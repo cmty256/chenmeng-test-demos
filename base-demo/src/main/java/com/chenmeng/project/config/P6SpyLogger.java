@@ -6,7 +6,7 @@
 ///**
 // * 此插件影响性能，可使用SqlLogInterceptor替换此功能
 // *
-// * @author 沉梦听雨
+// * @author cmty256
 // */
 //public class P6SpyLogger implements MessageFormattingStrategy {
 //

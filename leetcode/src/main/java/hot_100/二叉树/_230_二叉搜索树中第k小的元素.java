@@ -8,7 +8,7 @@ import java.util.Stack;
 /**
  * 验证二叉搜索树 -- 树、深度优先搜索、二叉搜索树、二叉树
  *
- * @author 沉梦听雨
+ * @author cmty256
  **/
 @SuppressWarnings("all")
 public class _230_二叉搜索树中第k小的元素 {

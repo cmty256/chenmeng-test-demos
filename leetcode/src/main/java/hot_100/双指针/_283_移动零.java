@@ -4,7 +4,7 @@ package hot_100.双指针;
 /**
  * 移动零 -- 数组, 双指针
  *
- * @author 沉梦听雨
+ * @author cmty256
  **/
 @SuppressWarnings("all")
 public class _283_移动零 {

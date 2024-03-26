@@ -3,7 +3,7 @@ package hot_100.普通数组;
 /**
  * 除自身以外数组的乘积 -- 数组、前缀和
  *
- * @author 沉梦听雨
+ * @author cmty256
  **/
 @SuppressWarnings("all")
 public class _238_除自身以外数组的乘积 {

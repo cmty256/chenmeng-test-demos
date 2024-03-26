@@ -7,7 +7,7 @@ import java.util.*;
 /**
  * 排序链表 -- 链表、双指针、分治、排序、归并排序
  *
- * @author 沉梦听雨
+ * @author cmty256
  **/
 @SuppressWarnings("all")
 public class _148_排序链表 {

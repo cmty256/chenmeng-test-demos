@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * mybatis自定义配置
  *
- * @author 沉梦听雨
+ * @author cmty256
  */
 @Configuration
 public class MyBatisConfig {

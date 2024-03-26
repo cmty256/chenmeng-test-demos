@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 旋转图像 -- 数组、数学、矩阵
  *
- * @author 沉梦听雨
+ * @author cmty256
  **/
 @SuppressWarnings("all")
 public class _48_旋转图像 {

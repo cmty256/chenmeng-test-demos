@@ -12,7 +12,7 @@ import java.util.zip.ZipOutputStream;
 /**
  * 压缩工具类
  *
- * @author 沉梦听雨
+ * @author cmty256
  */
 public class ZipUtil {
     

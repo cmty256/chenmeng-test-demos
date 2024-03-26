@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * N字形变换 -- 字符串
  *
- * @author 沉梦听雨
+ * @author cmty256
  **/
 @SuppressWarnings("all")
 public class _6_N字形变换 {

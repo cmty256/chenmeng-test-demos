@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author 沉梦听雨
+ * @author cmty256
  */
 @SpringBootTest
 class JiGuangPushServiceTest {

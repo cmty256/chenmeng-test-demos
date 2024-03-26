@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * 随机链表的复制 -- 哈希表、链表
  *
- * @author 沉梦听雨
+ * @author cmty256
  **/
 @SuppressWarnings("all")
 public class _138_随机链表的复制 {

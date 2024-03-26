@@ -6,7 +6,7 @@ import com.chenmeng.common.constants.enums.ErrorCodeEnum;
 /**
  * 返回结果工具类
  *
- * @author 沉梦听雨
+ * @author cmty256
  * @date 2023/06/19
  */
 public class ResultUtil {

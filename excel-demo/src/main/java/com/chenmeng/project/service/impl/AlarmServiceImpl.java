@@ -7,7 +7,7 @@ import com.chenmeng.project.service.AlarmService;
 import org.springframework.stereotype.Service;
 
 /**
-* @author 沉梦听雨
+* @author cmty256
 * @description 针对表【alarm(告警消息表)】的数据库操作Service实现
 * @createDate 2023-11-10 11:40:55
 */

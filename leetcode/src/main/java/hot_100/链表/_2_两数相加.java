@@ -6,7 +6,7 @@ import hot_100.ListNode;
 /**
  * 两数相加 -- 递归、链表、数学
  *
- * @author 沉梦听雨
+ * @author cmty256
  **/
 @SuppressWarnings("all")
 public class _2_两数相加 {

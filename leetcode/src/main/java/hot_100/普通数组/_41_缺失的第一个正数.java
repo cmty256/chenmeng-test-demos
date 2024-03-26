@@ -6,7 +6,7 @@ import java.util.HashSet;
 /**
  * 缺失的第一个正数 -- 数组、哈希表
  *
- * @author 沉梦听雨
+ * @author cmty256
  **/
 @SuppressWarnings("all")
 public class _41_缺失的第一个正数 {

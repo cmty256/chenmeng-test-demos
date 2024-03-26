@@ -3,7 +3,7 @@ package hot_100.二叉树;
 /**
  * 二叉树展开为链表 -- 栈、树、深度优先搜索、链表、二叉树
  *
- * @author 沉梦听雨
+ * @author cmty256
  **/
 @SuppressWarnings("all")
 public class _114_二叉树展开为链表 {

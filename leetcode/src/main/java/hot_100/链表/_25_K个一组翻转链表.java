@@ -5,7 +5,7 @@ import hot_100.ListNode;
 /**
  * K个一组翻转链表 -- 递归、链表
  *
- * @author 沉梦听雨
+ * @author cmty256
  **/
 @SuppressWarnings("all")
 public class _25_K个一组翻转链表 {

@@ -10,7 +10,7 @@ import java.util.Set;
 /**
  * 回文链表 -- 栈、递归、链表、双指针
  *
- * @author 沉梦听雨
+ * @author cmty256
  **/
 @SuppressWarnings("all")
 public class _234_回文链表 {

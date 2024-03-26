@@ -9,7 +9,7 @@ import javax.annotation.PostConstruct;
 /**
  * 极光推送配置
  *
- * @author 沉梦听雨
+ * @author cmty256
  */
 @Configuration
 public class JiGuangConfig {

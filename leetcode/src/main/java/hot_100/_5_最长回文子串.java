@@ -4,7 +4,7 @@ package hot_100;
 /**
  * 最长回文子串 -- 字符串, 动态规划
  *
- * @author 沉梦听雨
+ * @author cmty256
  **/
 @SuppressWarnings("all")
 public class _5_最长回文子串 {

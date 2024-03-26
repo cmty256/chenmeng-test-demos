@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author 沉梦听雨
+ * @author cmty256
  */
 @Configuration
 public class JiguangApiConfig {

@@ -5,7 +5,7 @@ import hot_100.ListNode;
 /**
  * 合并两个有序链表 -- 递归、链表
  *
- * @author 沉梦听雨
+ * @author cmty256
  **/
 @SuppressWarnings("all")
 public class _21_合并两个有序链表 {

@@ -8,7 +8,7 @@ import java.util.Set;
 /**
  * 环形链表 -- 哈希表、链表、双指针
  *
- * @author 沉梦听雨
+ * @author cmty256
  **/
 @SuppressWarnings("all")
 public class _141_环形链表 {

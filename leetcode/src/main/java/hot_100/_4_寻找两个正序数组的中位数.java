@@ -3,7 +3,7 @@ package hot_100;
 /**
  * 寻找两个正序数组的中位数 -- 数组, 二分查找, 分治
  *
- * @author 沉梦听雨
+ * @author cmty256
  **/
 @SuppressWarnings("all")
 public class _4_寻找两个正序数组的中位数 {

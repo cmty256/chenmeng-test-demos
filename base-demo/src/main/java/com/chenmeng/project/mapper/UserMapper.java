@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
-* @author 沉梦听雨
+* @author cmty256
 */
 public interface UserMapper extends BaseMapper<User> {
 

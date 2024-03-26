@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 合并区间 -- 数组、排序
  *
- * @author 沉梦听雨
+ * @author cmty256
  **/
 @SuppressWarnings("all")
 public class _56_合并区间 {
