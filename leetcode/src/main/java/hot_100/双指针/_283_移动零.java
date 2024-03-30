@@ -4,7 +4,7 @@ package hot_100.双指针;
 /**
  * 移动零 -- 数组, 双指针
  *
- * @author cmty256
+ * @author chenmeng
  **/
 @SuppressWarnings("all")
 public class _283_移动零 {

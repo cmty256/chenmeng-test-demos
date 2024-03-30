@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 /**
  * 性别枚举
  *
- * @author cmty256
+ * @author chenmeng
  */
 public enum SexEnum {
 

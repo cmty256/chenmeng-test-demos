@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * 三数之和 -- 数组, 双指针, 排序
  *
- * @author cmty256
+ * @author chenmeng
  **/
 @SuppressWarnings("all")
 public class _15_三数之和 {

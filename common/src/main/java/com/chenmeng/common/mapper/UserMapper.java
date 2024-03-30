@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.chenmeng.common.model.entity.User;
 
 /**
- * @author cmty256
+ * @author chenmeng
  */
 public interface UserMapper extends BaseMapper<User> {
 

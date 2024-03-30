@@ -3,7 +3,7 @@ package com.chenmeng.common.constants.enums;
 /**
  * 统一错误码
  *
- * @author cmty256
+ * @author chenmeng
  */
 public enum ErrorCodeEnum {
 

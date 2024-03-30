@@ -6,7 +6,7 @@ import java.util.*;
 /**
  * 字母异位词分组 -- 数组, 哈希表, 字符串, 排序
  *
- * @author cmty256
+ * @author chenmeng
  **/
 @SuppressWarnings("all")
 public class _49_字母异位词分组 {

@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 /**
  * 自定义注解 - 权限校验
  *
- * @author cmty256
+ * @author chenmeng
  */
 @Target(ElementType.METHOD) // 表示该注解只能添加在方法上
 @Retention(RetentionPolicy.RUNTIME) // 表示该注解在运行时可用

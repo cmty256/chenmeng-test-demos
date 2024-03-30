@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * 二叉树的最大深度 -- 树、深度优先搜索、广度优先搜索、二叉树
  *
- * @author cmty256
+ * @author chenmeng
  **/
 @SuppressWarnings("all")
 public class _104_二叉树的最大深度 {

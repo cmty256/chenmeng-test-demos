@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * 从前序与中序遍历序列构造二叉树 -- 树、数组、哈希表、分治、二叉树
  *
- * @author cmty256
+ * @author chenmeng
  **/
 @SuppressWarnings("all")
 public class _105_从前序与中序遍历序列构造二叉树 {

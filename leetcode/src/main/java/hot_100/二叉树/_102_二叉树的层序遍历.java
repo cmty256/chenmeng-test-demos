@@ -8,7 +8,7 @@ import java.util.Queue;
 /**
  * 二叉树的层序遍历 -- 树、广度优先搜索、二叉树
  *
- * @author cmty256
+ * @author chenmeng
  **/
 @SuppressWarnings("all")
 public class _102_二叉树的层序遍历 {

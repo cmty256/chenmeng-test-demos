@@ -7,7 +7,7 @@ import com.chenmeng.project.service.UserService;
 import org.springframework.stereotype.Service;
 
 /**
-* @author cmty256
+* @author chenmeng
 */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User>

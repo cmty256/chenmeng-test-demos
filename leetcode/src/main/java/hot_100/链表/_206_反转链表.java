@@ -8,7 +8,7 @@ import java.util.Set;
 /**
  * 相交链表 -- 递归、链表
  *
- * @author cmty256
+ * @author chenmeng
  **/
 @SuppressWarnings("all")
 public class _206_反转链表 {

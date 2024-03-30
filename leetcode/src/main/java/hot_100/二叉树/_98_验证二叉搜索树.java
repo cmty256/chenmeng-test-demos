@@ -3,7 +3,7 @@ package hot_100.二叉树;
 /**
  * 验证二叉搜索树 -- 树、深度优先搜索、二叉搜索树、二叉树
  *
- * @author cmty256
+ * @author chenmeng
  **/
 @SuppressWarnings("all")
 public class _98_验证二叉搜索树 {

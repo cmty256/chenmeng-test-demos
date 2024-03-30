@@ -24,7 +24,7 @@ import java.util.regex.Matcher;
  * mybatis自定义拦截器-格式SQL打印
  * 参考：https://blog.csdn.net/weixin_46263596/article/details/126285264?spm=1001.2101.3001.6650.8&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-8-126285264-blog-122199354.235%5Ev43%5Epc_blog_bottom_relevance_base2&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-8-126285264-blog-122199354.235%5Ev43%5Epc_blog_bottom_relevance_base2&utm_relevant_index=15
  *
- * @author cmty256
+ * @author chenmeng
  */
 @Intercepts({@Signature(type = Executor.class, method = "query",
         args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class})})

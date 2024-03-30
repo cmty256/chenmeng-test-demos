@@ -5,7 +5,7 @@ import hot_100.ListNode;
 /**
  * 两两交换链表中的节点 -- 递归、链表
  *
- * @author cmty256
+ * @author chenmeng
  **/
 @SuppressWarnings("all")
 public class _24_两两交换链表中的节点 {

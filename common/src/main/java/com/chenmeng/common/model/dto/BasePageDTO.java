@@ -9,7 +9,7 @@ import java.io.Serializable;
 /**
  * 基础分页DTO
  *
- * @author cmty256
+ * @author chenmeng
  */
 @Data
 public class BasePageDTO implements Serializable {

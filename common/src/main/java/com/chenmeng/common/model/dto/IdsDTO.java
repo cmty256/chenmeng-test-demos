@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * id列表DTO
  *
- * @author cmty256
+ * @author chenmeng
  */
 @Data
 public class IdsDTO {

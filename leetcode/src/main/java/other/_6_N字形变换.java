@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * N字形变换 -- 字符串
  *
- * @author cmty256
+ * @author chenmeng
  **/
 @SuppressWarnings("all")
 public class _6_N字形变换 {

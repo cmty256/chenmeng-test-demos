@@ -9,7 +9,7 @@ import java.io.Serializable;
 /**
  * idDTO
  *
- * @author cmty256
+ * @author chenmeng
  */
 @Data
 public class IdDTO implements Serializable {

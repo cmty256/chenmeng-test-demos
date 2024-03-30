@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author cmty256
+ * @author chenmeng
  */
 @Configuration
 @MapperScan("com.chenmeng.project.mapper")

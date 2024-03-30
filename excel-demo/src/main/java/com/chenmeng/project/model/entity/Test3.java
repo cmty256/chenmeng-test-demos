@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * 测试3，实体类
  *
- * @author cmty256
+ * @author chenmeng
  * @date 2023/11/14 16:34
  **/
 @Data

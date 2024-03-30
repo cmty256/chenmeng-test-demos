@@ -16,7 +16,7 @@ import java.util.Date;
 /**
  * 告警消息表
  *
- * @author cmty256
+ * @author chenmeng
  * @TableName alarm
  */
 @TableName(value ="alarm")

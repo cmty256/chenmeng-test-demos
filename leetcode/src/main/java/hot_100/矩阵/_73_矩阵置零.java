@@ -3,7 +3,7 @@ package hot_100.矩阵;
 /**
  * 矩阵置零 -- 数组、哈希表、矩阵
  *
- * @author cmty256
+ * @author chenmeng
  **/
 @SuppressWarnings("all")
 public class _73_矩阵置零 {

@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * 滑动窗口最大值 -- 队列, 数组, 滑动窗口, 单调队列, 堆（优先队列）
  *
- * @author cmty256
+ * @author chenmeng
  **/
 @SuppressWarnings("all")
 public class _239_滑动窗口最大值 {

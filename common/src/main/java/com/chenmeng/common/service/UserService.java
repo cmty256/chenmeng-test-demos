@@ -6,7 +6,7 @@ import com.chenmeng.common.model.entity.User;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @author cmty256
+ * @author chenmeng
  */
 public interface UserService extends IService<User> {
 

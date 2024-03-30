@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * 自定义自适应列宽处理策略
  *
- * @author cmty256
+ * @author chenmeng
  * @date 2023/11/15 16:54
  **/
 public class CustomColumnWidthStyleStrategy extends AbstractColumnWidthStyleStrategy {

@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 正则表达式匹配 -- 递归, 字符串, 动态规划
  *
- * @author cmty256
+ * @author chenmeng
  **/
 @SuppressWarnings("all")
 public class _10_正则表达式匹配 {

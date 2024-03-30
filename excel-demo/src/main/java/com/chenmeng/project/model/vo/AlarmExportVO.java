@@ -13,7 +13,7 @@ import java.net.URL;
 /**
  * 告警消息导出VO
  *
- * @author cmty256
+ * @author chenmeng
  * @date 2023/11/10 11:43
  **/
 @Data

@@ -6,7 +6,7 @@ import java.util.Queue;
 /**
  * 二叉树的直径 -- 树、深度优先搜索、二叉树
  *
- * @author cmty256
+ * @author chenmeng
  **/
 @SuppressWarnings("all")
 public class _543_二叉树的直径 {

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Web工具类
  *
- * @author cmty256
+ * @author chenmeng
  */
 public class WebUtil {
 

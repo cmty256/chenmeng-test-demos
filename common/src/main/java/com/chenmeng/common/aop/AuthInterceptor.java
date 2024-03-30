@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 /**
  * 权限校验拦截器 AOP
  *
- * @author cmty256
+ * @author chenmeng
  */
 @Aspect
 @Component

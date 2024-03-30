@@ -3,7 +3,7 @@ package hot_100;
 /**
  * Definition for singly-linked list.
  *
- * @author cmty256
+ * @author chenmeng
  */
 public class ListNode {
     public int val;

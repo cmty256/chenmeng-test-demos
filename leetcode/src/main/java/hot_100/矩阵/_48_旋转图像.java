@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 旋转图像 -- 数组、数学、矩阵
  *
- * @author cmty256
+ * @author chenmeng
  **/
 @SuppressWarnings("all")
 public class _48_旋转图像 {

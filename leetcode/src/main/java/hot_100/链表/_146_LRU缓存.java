@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * LRU缓存 -- 设计、哈希表、链表、双向链表
  *
- * @author cmty256
+ * @author chenmeng
  **/
 @SuppressWarnings("all")
 public class _146_LRU缓存 {

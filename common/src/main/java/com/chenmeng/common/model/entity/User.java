@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * 用户表实体类
  *
- * @author cmty256
+ * @author chenmeng
  */
 @Data
 @TableName(value ="user")

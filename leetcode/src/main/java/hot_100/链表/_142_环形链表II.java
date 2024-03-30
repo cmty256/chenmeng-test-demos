@@ -5,7 +5,7 @@ import hot_100.ListNode;
 /**
  * 环形链表 II -- 哈希表、链表、双指针
  *
- * @author cmty256
+ * @author chenmeng
  **/
 @SuppressWarnings("all")
 public class _142_环形链表II {

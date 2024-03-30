@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.chenmeng.project.model.entity.User;
 
 /**
-* @author cmty256
+* @author chenmeng
 */
 public interface UserService extends IService<User> {
 

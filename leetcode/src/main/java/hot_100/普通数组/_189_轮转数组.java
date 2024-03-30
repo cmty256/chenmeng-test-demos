@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 轮转数组 -- 数组、数学、双指针
  *
- * @author cmty256
+ * @author chenmeng
  **/
 @SuppressWarnings("all")
 public class _189_轮转数组 {

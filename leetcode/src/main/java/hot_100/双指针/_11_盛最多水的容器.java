@@ -4,7 +4,7 @@ package hot_100.双指针;
 /**
  * 盛最多水的容器 -- 贪心, 数组, 双指针
  *
- * @author cmty256
+ * @author chenmeng
  **/
 @SuppressWarnings("all")
 public class _11_盛最多水的容器 {

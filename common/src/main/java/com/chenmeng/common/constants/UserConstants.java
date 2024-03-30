@@ -3,7 +3,7 @@ package com.chenmeng.common.constants;
 /**
  * 用户常量
  *
- * @author cmty256
+ * @author chenmeng
  * @date 2023/06/19
  */
 public interface UserConstants {

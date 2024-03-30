@@ -4,7 +4,7 @@ package hot_100.双指针;
 /**
  * 接雨水 -- 栈, 数组, 双指针, 动态规划, 单调栈
  *
- * @author cmty256
+ * @author chenmeng
  **/
 @SuppressWarnings("all")
 public class _42_接雨水 {

@@ -7,7 +7,7 @@ import java.util.Set;
 /**
  * 最小覆盖子串 -- 哈希表、字符串、滑动窗口
  *
- * @author cmty256
+ * @author chenmeng
  **/
 @SuppressWarnings("all")
 public class _76_最小覆盖子串 {

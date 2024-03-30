@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * 删除链表的倒数第N个结点 -- 链表、双指针
  *
- * @author cmty256
+ * @author chenmeng
  **/
 @SuppressWarnings("all")
 public class _19_删除链表的倒数第N个结点 {

@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * 搜索二维矩阵 II -- 数组、二分查找、分治、矩阵
  *
- * @author cmty256
+ * @author chenmeng
  **/
 @SuppressWarnings("all")
 public class _240_搜索二维矩阵II {

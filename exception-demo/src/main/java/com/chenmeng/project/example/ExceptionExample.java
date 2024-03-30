@@ -3,7 +3,7 @@ package com.chenmeng.project.example;
 import lombok.SneakyThrows;
 
 /**
- * @author cmty256
+ * @author chenmeng
  */
 public class ExceptionExample {
 

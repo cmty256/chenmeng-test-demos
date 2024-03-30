@@ -3,7 +3,7 @@ package com.chenmeng.common.constants;
 /**
  * 通用常量
  *
- * @author cmty256
+ * @author chenmeng
  */
 public interface CommonConstants {
 

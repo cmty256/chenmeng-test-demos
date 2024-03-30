@@ -7,7 +7,7 @@ import java.util.*;
 /**
  * 排序链表 -- 链表、双指针、分治、排序、归并排序
  *
- * @author cmty256
+ * @author chenmeng
  **/
 @SuppressWarnings("all")
 public class _148_排序链表 {

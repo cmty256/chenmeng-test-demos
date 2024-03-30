@@ -5,7 +5,7 @@ import hot_100.ListNode;
 /**
  * 合并两个有序链表 -- 递归、链表
  *
- * @author cmty256
+ * @author chenmeng
  **/
 @SuppressWarnings("all")
 public class _21_合并两个有序链表 {

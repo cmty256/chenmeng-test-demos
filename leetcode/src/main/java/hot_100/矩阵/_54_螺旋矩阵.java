@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 螺旋矩阵 -- 数组、矩阵、模拟
  *
- * @author cmty256
+ * @author chenmeng
  **/
 @SuppressWarnings("all")
 public class _54_螺旋矩阵 {

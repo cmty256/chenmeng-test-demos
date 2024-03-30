@@ -8,7 +8,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * @author cmty256
+ * @author chenmeng
  */
 @Data
 public class UserVO implements Serializable {

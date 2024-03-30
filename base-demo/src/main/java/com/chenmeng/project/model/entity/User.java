@@ -6,7 +6,7 @@ import java.io.Serializable;
 import lombok.Data;
 
 /**
- * @author cmty256
+ * @author chenmeng
  * @TableName tbl_user
  */
 @TableName(value ="tbl_user")

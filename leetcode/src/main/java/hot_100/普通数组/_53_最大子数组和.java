@@ -5,7 +5,7 @@ import java.util.HashMap;
 /**
  * 最大子数组和 -- 数组、分治、动态规划
  *
- * @author cmty256
+ * @author chenmeng
  **/
 @SuppressWarnings("all")
 public class _53_最大子数组和 {

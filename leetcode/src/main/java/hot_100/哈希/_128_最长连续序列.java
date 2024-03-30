@@ -6,7 +6,7 @@ import java.util.*;
 /**
  * 最长连续序列 -- 并查集, 数组, 哈希表
  *
- * @author cmty256
+ * @author chenmeng
  **/
 @SuppressWarnings("all")
 public class _128_最长连续序列 {

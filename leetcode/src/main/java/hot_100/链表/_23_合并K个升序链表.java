@@ -9,7 +9,7 @@ import java.util.PriorityQueue;
 /**
  * 合并 K 个升序链表 -- 链表、分治、堆（优先队列）、归并排序
  *
- * @author cmty256
+ * @author chenmeng
  **/
 @SuppressWarnings("all")
 public class _23_合并K个升序链表 {

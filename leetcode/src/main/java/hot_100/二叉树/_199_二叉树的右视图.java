@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * 二叉树的右视图 -- 树、深度优先搜索、广度优先搜索、二叉树
  *
- * @author cmty256
+ * @author chenmeng
  **/
 @SuppressWarnings("all")
 public class _199_二叉树的右视图 {
