@@ -29,6 +29,7 @@
 		<projectlombok.version>1.18.26</projectlombok.version>
 
 		<springboot.version>2.7.17</springboot.version>
+		<okhttp.version>4.12.0</okhttp.version>
 
 	</properties>
 
@@ -47,6 +48,12 @@
 		<!-- 定义共享的依赖项和版本 -->
 		<dependencies>
 
+			<!--okhttp网络请求-->
+			<dependency>
+				<groupId>com.squareup.okhttp3</groupId>
+				<artifactId>okhttp</artifactId>
+				<version>${okhttp.version}</version>
+			</dependency>
 			<!--commons-lang3工具类-->
 			<dependency>
 				<groupId>org.apache.commons</groupId>
