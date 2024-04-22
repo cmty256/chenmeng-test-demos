@@ -229,6 +229,9 @@ public class OkHttpUtil {
 
     public static void printRequestLog(
             String url, String contentType, String data, Long time, String result) {
+        // if (StrUtil.isNotBlank(result) && result.length() > 200) {
+        //     result = result.substring(0, 200) + "...";
+        // }
         String log =
                 "\n================== Remote Request info ==================\n"
                         + String.format("Request URL: %s \n", url)
