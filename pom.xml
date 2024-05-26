@@ -41,6 +41,7 @@
         <module>base-demo</module>
         <module>jiguang-demo</module>
 		<module>common</module>
+		<module>minio-demo</module>
 	</modules>
 
 	<!-- 定义依赖管理 -->
@@ -48,6 +49,12 @@
 		<!-- 定义共享的依赖项和版本 -->
 		<dependencies>
 
+			<!-- minio -->
+			<dependency>
+				<groupId>io.minio</groupId>
+				<artifactId>minio</artifactId>
+				<version>8.5.9</version>
+			</dependency>
 			<!--okhttp网络请求-->
 			<dependency>
 				<groupId>com.squareup.okhttp3</groupId>
