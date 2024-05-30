@@ -3,6 +3,7 @@ package com.chenmeng.project;
 import cn.hutool.core.io.IoUtil;
 import com.chenmeng.project.service.MinioService;
 import io.minio.*;
+import io.minio.errors.MinioException;
 import io.minio.http.Method;
 import io.minio.messages.Bucket;
 import io.minio.messages.Item;
@@ -10,10 +11,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
-import java.io.File;
+import java.io.ByteArrayInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.nio.file.Files;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -26,6 +26,9 @@ class MinioApplicationTests {
     @Resource
     private MinioClient minioClient;
 
+    public static final String BUCKET_NAME = "my-file";
+    public static final String YOUR_OBJECT_KEY = "your-object-key";
+
     @Test
     void contextLoads() {
         minioService.testMinioClient();
@@ -33,6 +36,9 @@ class MinioApplicationTests {
 
     //-----------------------------------Bucket(文件夹)----------------------------------------
 
+    /**
+     * 判断桶是否存在
+     */
     @Test
     void test01() throws Exception {
         boolean isBucketExists = minioClient.bucketExists(BucketExistsArgs.builder()
@@ -42,9 +48,12 @@ class MinioApplicationTests {
         System.out.println("myfile目录是否存在：" + isBucketExists);
     }
 
+    /**
+     * 判断桶是否存在，不存在则创建桶，并且配置桶的访问策略
+     */
     @Test
     void test02() throws Exception {
-        String bucketName = "myfile2";
+        String bucketName = "my-file";
         // 判断桶是否存在
         boolean isBucketExists = minioClient.bucketExists(BucketExistsArgs.builder()
                 .bucket(bucketName)
@@ -71,6 +80,9 @@ class MinioApplicationTests {
         );
     }
 
+    /**
+     * 列出所有桶
+     */
     @Test
     void test03() throws Exception {
         List<Bucket> bucketList = minioClient.listBuckets();
@@ -79,10 +91,13 @@ class MinioApplicationTests {
         });
     }
 
+    /**
+     * 删除桶
+     */
     @Test
     void test04() throws Exception {
         minioClient.removeBucket(RemoveBucketArgs.builder()
-                .bucket("myfile2")
+                .bucket("my-file")
                 .build()
         );
     }
@@ -94,26 +109,28 @@ class MinioApplicationTests {
      */
     @Test
     void test05() throws Exception {
-        File file = new File("D:\\MinIO\\MinioClient.jpg");
-        ObjectWriteResponse objectWriteResponse = minioClient.putObject(PutObjectArgs.builder()
-                .bucket("my-file")
-                .object("test.jpg")
-                // .stream(new FileInputStream(file), file.length(), -1)
-                .stream(Files.newInputStream(file.toPath()), file.length(), -1)
-                .build()
-        );
-        System.out.println(objectWriteResponse);
+        String fileName = "D:\\IDEA-code\\ok\\chenmeng-test-demos\\minio-demo\\src\\main\\resources\\file\\test2.jpg";
 
+        // 方法一
+        // File file = new File(fileName);
+        // ObjectWriteResponse objectWriteResponse = minioClient.putObject(PutObjectArgs.builder()
+        //         .bucket("my-file")
+        //         .object("test.jpg")
+        //         // .stream(new FileInputStream(file), file.length(), -1)
+        //         .stream(Files.newInputStream(file.toPath()), file.length(), -1)
+        //         .build()
+        // );
+        // System.out.println(objectWriteResponse);
+
+        // 方法二
         ObjectWriteResponse objectWriteResponse2 = minioClient.uploadObject(UploadObjectArgs.builder()
                 .bucket("my-file")
                 .object("test2.jpg")
-                .filename("D:\\MinIO\\MinioClient.jpg")
+                .filename(fileName)
                 .build()
         );
         System.out.println(objectWriteResponse2);
-
     }
-
 
     /**
      * 检查指定文件状态
@@ -164,7 +181,7 @@ class MinioApplicationTests {
      * 下载文件到指定目录下
      */
     @Test
-    void test081() throws Exception {
+    void test08_1() throws Exception {
         // 将数据传输到指定的文件输出流中
         try (InputStream stream = minioClient.getObject(GetObjectArgs.builder()
                 .bucket("my-file")
@@ -205,5 +222,61 @@ class MinioApplicationTests {
                 .object("test.jpg")
                 .build()
         );
+    }
+
+    /**
+     * 上传字符串
+     */
+    @Test
+    void test11() throws Exception {
+        String stringData = "This is a string data to be uploaded.";
+        byte[] bytes = stringData.getBytes();
+
+        try {
+            // 创建一个字节数组输入流
+            InputStream inputStream = new ByteArrayInputStream(bytes);
+
+            // 上传对象
+            PutObjectArgs objectArgs = PutObjectArgs.builder()
+                    .bucket(BUCKET_NAME)
+                    .object(YOUR_OBJECT_KEY)
+                    .contentType("application/json")
+                    .stream(inputStream, bytes.length, -1)
+                    .build();
+
+            minioClient.putObject(objectArgs);
+        } catch (MinioException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 读取字符串文件数据
+     */
+    @Test
+    void test12() {
+        try {
+            // 获取对象
+            InputStream object = minioClient.getObject(GetObjectArgs.builder()
+                    .bucket(BUCKET_NAME)
+                    .object(YOUR_OBJECT_KEY)
+                    .build());
+
+            // 读取数据
+            StringBuilder stringBuilder = new StringBuilder();
+            int bytesRead;
+            byte[] buffer = new byte[1024];
+            while ((bytesRead = object.read(buffer)) != -1) {
+                stringBuilder.append(new String(buffer, 0, bytesRead));
+            }
+
+            // 关闭流
+            object.close();
+
+            // 输出字符串数据
+            System.out.println(stringBuilder);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
