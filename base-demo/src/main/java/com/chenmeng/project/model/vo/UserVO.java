@@ -1,6 +1,7 @@
 package com.chenmeng.project.model.vo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
@@ -19,6 +20,7 @@ public class UserVO implements Serializable {
     /**
      * 名字
      */
+    @JsonProperty("userName")
     private String name;
 
     /**

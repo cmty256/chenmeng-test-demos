@@ -3,6 +3,8 @@ package com.chenmeng.project.model.entity;
 import com.baomidou.mybatisplus.annotation.*;
 
 import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 /**
@@ -21,6 +23,7 @@ public class User implements Serializable {
     /**
      * 名字
      */
+    @JsonProperty("userName")
     private String name;
 
     /**
