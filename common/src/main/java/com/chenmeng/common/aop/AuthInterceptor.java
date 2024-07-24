@@ -3,9 +3,9 @@ package com.chenmeng.common.aop;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.chenmeng.common.annotaiion.AuthCheck;
-import com.chenmeng.common.constants.enums.ErrorCodeEnum;
 import com.chenmeng.common.exception.BusinessException;
 import com.chenmeng.common.model.entity.User;
+import com.chenmeng.common.result.RespCodeEnum;
 import com.chenmeng.common.service.UserService;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -56,14 +56,14 @@ public class AuthInterceptor {
         if (CollectionUtils.isNotEmpty(anyRole)) {
             String userRole = user.getUserRole();
             if (!anyRole.contains(userRole)) {
-                throw new BusinessException(ErrorCodeEnum.NO_AUTH_ERROR);
+                throw new BusinessException(RespCodeEnum.NO_AUTH_ERROR);
             }
         }
         // 必须拥有所有权限才可通过（判断 mustRole 列表是否非空）
         if (StringUtils.isNotBlank(mustRole)) {
             String userRole = user.getUserRole();
             if (!mustRole.equals(userRole)) {
-                throw new BusinessException(ErrorCodeEnum.NO_AUTH_ERROR);
+                throw new BusinessException(RespCodeEnum.NO_AUTH_ERROR);
             }
         }
         // 通过权限校验，放行

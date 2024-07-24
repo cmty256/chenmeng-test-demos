@@ -20,8 +20,8 @@ import java.util.UUID;
  *
  * @author chenmeng
  */
- @Aspect
- @Component
+@Aspect
+@Component
 @Slf4j
 public class LogInterceptor {
 
@@ -32,7 +32,7 @@ public class LogInterceptor {
      * @return {@code Object}
      * @throws Throwable throwable
      */
-    @Around("execution(* com.chenmeng.project.controller.*.*(..))")
+    @Around("execution(* com.chenmeng.*.controller.*.*(..))")
     public Object doInterceptor(ProceedingJoinPoint point) throws Throwable {
         // 计时
         StopWatch stopWatch = new StopWatch();

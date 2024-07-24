@@ -1,6 +1,6 @@
 package com.chenmeng.common.exception;
 
-import com.chenmeng.common.constants.enums.ErrorCodeEnum;
+import com.chenmeng.common.result.RespCodeEnum;
 
 /**
  * 自定义异常类
@@ -16,14 +16,14 @@ public class BusinessException extends RuntimeException {
         this.code = code;
     }
 
-    public BusinessException(ErrorCodeEnum errorCodeEnum) {
-        super((errorCodeEnum.getMessage()));
-        this.code = errorCodeEnum.getCode();
+    public BusinessException(RespCodeEnum respCodeEnum) {
+        super((respCodeEnum.getMsg()));
+        this.code = respCodeEnum.getCode();
     }
 
-    public BusinessException(ErrorCodeEnum errorCodeEnum, String message) {
+    public BusinessException(RespCodeEnum respCodeEnum, String message) {
         super(message);
-        this.code = errorCodeEnum.getCode();
+        this.code = respCodeEnum.getCode();
     }
 
     public int getCode() {

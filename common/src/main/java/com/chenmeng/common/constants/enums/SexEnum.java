@@ -1,20 +1,29 @@
 package com.chenmeng.common.constants.enums;
 
+import lombok.Getter;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.chenmeng.common.constants.Constants.NULL;
 
 /**
  * 性别枚举
  *
  * @author chenmeng
  */
+@Getter
 public enum SexEnum {
 
     /**
-     * 性别枚举
+     * 男
      */
     MAN(0, "男"),
+
+    /**
+     * 女
+     */
     WOMAN(1, "女"),
     ;
 
@@ -30,8 +39,8 @@ public enum SexEnum {
     /**
      * 通过key获取value，默认字符串"null"
      *
-     * @param key
-     * @return
+     * @param key key
+     * @return value
      */
     public static String getValueByKey(Integer key) {
         for (SexEnum value : values()) {
@@ -39,7 +48,7 @@ public enum SexEnum {
                 return value.value;
             }
         }
-        return "null";
+        return NULL;
     }
 
     /**
@@ -51,13 +60,5 @@ public enum SexEnum {
         return Arrays.stream(values())
                 .map(item -> item.value)
                 .collect(Collectors.toList());
-    }
-
-    public Integer getKey() {
-        return key;
-    }
-
-    public String getValue() {
-        return value;
     }
 }

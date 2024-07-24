@@ -1,10 +1,10 @@
 package com.chenmeng.common.model.entity;
 
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.chenmeng.common.model.base.BaseEntity;
 import lombok.Data;
-
-import java.io.Serializable;
-import java.util.Date;
+import lombok.EqualsAndHashCode;
 
 /**
  * 用户表实体类
@@ -12,14 +12,9 @@ import java.util.Date;
  * @author chenmeng
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 @TableName(value ="user")
-public class User implements Serializable {
-
-    /**
-     * id
-     */
-    @TableId(type = IdType.AUTO)
-    private Long id;
+public class User extends BaseEntity {
 
     /**
      * 登录账号
@@ -60,29 +55,6 @@ public class User implements Serializable {
      * 用户角色：user - 普通用户；admin - 管理员
      */
     private String userRole;
-
-    /**
-     * 用户状态：0 - 正常；1 - 禁用
-     */
-    private String userStatus;
-
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-
-    /**
-     * 更新时间
-     */
-    private Date updateTime;
-
-    /**
-     * 是否删除：0 - 未删；1 - 已删
-     * <p>
-     * 注解：逻辑删除
-     */
-    @TableLogic
-    private Integer isDelete;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
