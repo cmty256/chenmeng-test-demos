@@ -7,6 +7,7 @@ import com.alibaba.excel.util.MapUtils;
 import com.alibaba.excel.write.style.column.LongestMatchColumnWidthStyleStrategy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -64,7 +65,7 @@ public class EasyExcelUtil {
     }
 
     /**
-     * 将列表以 Excel 响应给前端
+     * Excel 写入
      *
      * @param response  响应
      * @param filename  文件名
@@ -89,6 +90,29 @@ public class EasyExcelUtil {
                 .doWrite(data);
     }
 
+    /**
+     * Excel 同步读取所有数据
+     *
+     * @param file 文件
+     * @param head Excel head 头
+     * @param <T>  泛型，保证 head 和 data 类型的一致性
+     * @return 数据列表
+     * @throws IOException 读取失败的情况
+     */
+    public static <T> List<T> doReadAllSync(MultipartFile file, Class<T> head) throws IOException {
+        return EasyExcel.read(file.getInputStream(), head, null)
+                // 不要自动关闭，交给 Servlet 自己处理
+                .autoCloseStream(false)
+                // 同步读取所有数据
+                .doReadAllSync();
+    }
+
+    /**
+     * 设置响应头信息
+     *
+     * @param response 响应
+     * @param title    文件名
+     */
     public static void setResponseInfo(HttpServletResponse response, String title) {
         // 设置内容类型为 Excel 文件类型
         response.setContentType(EXCEL_CONTENT_TYPE);
