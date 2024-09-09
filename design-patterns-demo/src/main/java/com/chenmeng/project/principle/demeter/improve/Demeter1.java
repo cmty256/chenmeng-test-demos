@@ -3,7 +3,11 @@ package com.chenmeng.project.principle.demeter.improve;
 import java.util.ArrayList;
 import java.util.List;
 
-// 客户端
+/**
+ * 遵循 最少知道原则，即迪米特法则
+ * 核心：降低类之间的耦合，每个类都减少不必要的依赖
+ * 注意：只是要求降低类之间（对象间）耦合关系，并不是完全没有依赖关系
+ */
 public class Demeter1 {
 
     public static void main(String[] args) {
@@ -48,11 +52,12 @@ class CollegeEmployee {
 
 
 // 管理学院员工的管理类
+@SuppressWarnings("all")
 class CollegeManager {
 
     // 返回学院的所有员工
     public List<CollegeEmployee> getAllEmployee() {
-        List<CollegeEmployee> list = new ArrayList<CollegeEmployee>();
+        List<CollegeEmployee> list = new ArrayList<>();
         for (int i = 0; i < 10; i++) { // 这里我们增加了10个员工到 list
             CollegeEmployee emp = new CollegeEmployee();
             emp.setId("学院员工id= " + i);
@@ -73,9 +78,8 @@ class CollegeManager {
 }
 
 // 学校管理类
-
-// 分析 SchoolManager 类的直接朋友类有哪些 Employee、CollegeManager
-// CollegeEmployee 不是 直接朋友 而是一个陌生类，这样违背了 迪米特法则
+// 将输出学院的员工方法，封装到CollegeManager。从而没有违背 迪米特法则
+@SuppressWarnings("all")
 class SchoolManager {
 
     // 返回学校总部的员工
