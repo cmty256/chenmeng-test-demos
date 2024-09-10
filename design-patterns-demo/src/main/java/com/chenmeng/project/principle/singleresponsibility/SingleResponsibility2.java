@@ -11,7 +11,6 @@ public class SingleResponsibility2 {
         roadVehicle.run("汽车");
 
         AirVehicle airVehicle = new AirVehicle();
-
         airVehicle.run("飞机");
     }
 
