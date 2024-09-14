@@ -1,7 +1,7 @@
 spring:
   application:
     name:
-      task-demo
+      task-spring
   task:
     # Spring Task 调度任务的配置，对应 TaskSchedulingProperties 配置类
     scheduling:
