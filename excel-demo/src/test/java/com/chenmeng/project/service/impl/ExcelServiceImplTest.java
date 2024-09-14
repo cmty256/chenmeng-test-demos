@@ -6,12 +6,12 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.chenmeng.project.constants.ZipUtil;
 import com.chenmeng.project.handler.CustomColumnWidthStyleStrategy;
 import com.chenmeng.project.model.entity.Alarm;
-import com.chenmeng.project.model.entity.TblExcel;
+import com.chenmeng.project.model.entity.ExcelDO;
 import com.chenmeng.project.model.entity.Test3;
 import com.chenmeng.project.model.vo.AlarmExportVO;
 import com.chenmeng.project.model.vo.ExcelExportVO;
 import com.chenmeng.project.service.AlarmService;
-import com.chenmeng.project.service.TblExcelService;
+import com.chenmeng.project.service.ExcelService;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnails;
 import org.junit.jupiter.api.Test;
@@ -21,15 +21,16 @@ import javax.annotation.Resource;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @SpringBootTest
 @Slf4j
-class TblExcelServiceImplTest {
+class ExcelServiceImplTest {
 
     @Resource
-    private TblExcelService excelService;
+    private ExcelService excelService;
 
     @Resource
     private AlarmService alarmService;
@@ -43,7 +44,7 @@ class TblExcelServiceImplTest {
     void export() {
 
         // 1、获取导出列表
-        List<TblExcel> list = excelService.list();
+        List<ExcelDO> list = excelService.list();
         List<ExcelExportVO> list2 = list.stream().map(item -> {
             ExcelExportVO exportVO = new ExcelExportVO();
             exportVO.setName(item.getName());
@@ -92,7 +93,7 @@ class TblExcelServiceImplTest {
     void export11() {
 
         // 1、获取导出列表
-        List<TblExcel> list = excelService.list();
+        List<ExcelDO> list = excelService.list();
         List<ExcelExportVO> list2 = list.stream().map(item -> {
             ExcelExportVO exportVO = new ExcelExportVO();
             exportVO.setName(item.getName());
@@ -100,7 +101,7 @@ class TblExcelServiceImplTest {
             try {
                 // 压缩图像并保存到临时文件
                 File compressedFile;
-                try (OutputStream outputStream = new FileOutputStream(compressedFile = File.createTempFile("compressed_image", ".jpg"))) {
+                try (OutputStream outputStream = Files.newOutputStream((compressedFile = File.createTempFile("compressed_image", ".jpg")).toPath())) {
                     Thumbnails.of(new URL(item.getFile()))
                             .scale(0.5) // 设置压缩比例
                             .toOutputStream(outputStream);
@@ -122,7 +123,7 @@ class TblExcelServiceImplTest {
     }
 
     @Test
-    void exportAlarm() throws InstantiationException, IllegalAccessException {
+    void exportAlarm() {
 
         // 1、获取导出列表
         List<Alarm> list = alarmService.list();
@@ -180,11 +181,11 @@ class TblExcelServiceImplTest {
     @Test
     void export2() {
 
-        LambdaQueryWrapper<TblExcel> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(TblExcel::getName, "孙子异");
+        LambdaQueryWrapper<ExcelDO> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(ExcelDO::getName, "孙子异");
 
         // 1、获取导出列表
-        List<TblExcel> list = excelService.list(wrapper);
+        List<ExcelDO> list = excelService.list(wrapper);
         List<ExcelExportVO> list2 = list.stream().map(item -> {
             ExcelExportVO exportVO = new ExcelExportVO();
             exportVO.setName(item.getName());
@@ -207,7 +208,7 @@ class TblExcelServiceImplTest {
         }).collect(Collectors.toList());
 
         // 根据用户传入字段 假设我们只要导出 file
-        Set<String> includeColumnFiledNames = new HashSet<String>();
+        Set<String> includeColumnFiledNames = new HashSet<>();
         includeColumnFiledNames.add("file");
 
         // 2、导出
@@ -330,9 +331,9 @@ class TblExcelServiceImplTest {
      */
     @Test
     void export5() throws IOException {
-        LambdaQueryWrapper<TblExcel> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(TblExcel::getName, "孙子异");
-        List<TblExcel> list = excelService.list(wrapper);
+        LambdaQueryWrapper<ExcelDO> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(ExcelDO::getName, "孙子异");
+        List<ExcelDO> list = excelService.list(wrapper);
         List<ExcelExportVO> list2 = list.stream().map(item -> {
             ExcelExportVO exportVO = new ExcelExportVO();
             exportVO.setName(item.getName());
@@ -397,21 +398,21 @@ class TblExcelServiceImplTest {
      * 压缩包导出 -- hutool
      */
     @Test
-    void export6() throws IOException {
+    void export6() {
 
-        List<TblExcel> list = new ArrayList<>();
-        list.add(new TblExcel("张三", "abc"));
+        List<ExcelDO> list = new ArrayList<>();
+        list.add(new ExcelDO("张三", "abc"));
 
         List<ByteArrayInputStream> ins = new ArrayList<>();
 
         // 导出第一个Excel
         ByteArrayOutputStream out1 = new ByteArrayOutputStream();
-        EasyExcel.write(out1, TblExcel.class).sheet("第一个").doWrite(list);
+        EasyExcel.write(out1, ExcelDO.class).sheet("第一个").doWrite(list);
         ins.add(new ByteArrayInputStream(out1.toByteArray()));
 
         // 导出第二个Excel
         ByteArrayOutputStream out2 = new ByteArrayOutputStream();
-        EasyExcel.write(out2, TblExcel.class).sheet("第二个").doWrite(list);
+        EasyExcel.write(out2, ExcelDO.class).sheet("第二个").doWrite(list);
         ins.add(new ByteArrayInputStream(out2.toByteArray()));
 
         // 将多个 InputStream 压缩到一个 zip 文件

@@ -18,7 +18,7 @@ import lombok.Data;
 @Data
 @TableName(value ="tbl_excel")
 @AllArgsConstructor
-public class TblExcel implements Serializable {
+public class ExcelDO implements Serializable {
     /**
      * 名字
      */

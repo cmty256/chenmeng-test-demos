@@ -1,11 +1,16 @@
 package com.chenmeng.project.service.impl;
 
+import cn.hutool.core.bean.BeanUtil;
 import com.alibaba.excel.EasyExcel;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.chenmeng.project.model.entity.TblExcel;
+import com.chenmeng.common.exception.BusinessException;
+import com.chenmeng.common.utils.EasyExcelUtil;
+import com.chenmeng.project.model.dto.EnterpriseImportDTO;
+import com.chenmeng.project.model.dto.FileDTO;
+import com.chenmeng.project.model.entity.ExcelDO;
 import com.chenmeng.project.model.vo.ExcelExportVO;
-import com.chenmeng.project.service.TblExcelService;
-import com.chenmeng.project.mapper.TblExcelMapper;
+import com.chenmeng.project.service.ExcelService;
+import com.chenmeng.project.mapper.ExcelMapper;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
@@ -19,14 +24,14 @@ import java.util.stream.Collectors;
 * @createDate 2023-11-09 15:20:40
 */
 @Service
-public class TblExcelServiceImpl extends ServiceImpl<TblExcelMapper, TblExcel>
-    implements TblExcelService {
+public class ExcelServiceImpl extends ServiceImpl<ExcelMapper, ExcelDO>
+    implements ExcelService {
 
     @Override
     public void export(HttpServletResponse response) {
 
         // TODO 图片压缩
-        List<TblExcel> list = this.list();
+        List<ExcelDO> list = this.list();
         List<ExcelExportVO> list2 = list.stream().map(item -> {
             ExcelExportVO exportVO = new ExcelExportVO();
             exportVO.setName(item.getName());
@@ -62,6 +67,16 @@ public class TblExcelServiceImpl extends ServiceImpl<TblExcelMapper, TblExcel>
             System.out.println("errorMessage = " + errorMessage);
         }
 
+    }
+
+    @Override
+    public boolean importInfo(FileDTO dto) {
+        List<EnterpriseImportDTO> list = EasyExcelUtil.doReadAllSync(dto.getFile(), EnterpriseImportDTO.class);
+        if (list.isEmpty()) {
+            throw new BusinessException(1, "导入数据有误");
+        }
+        System.out.println("list = " + list);
+        return true;
     }
 }
 
