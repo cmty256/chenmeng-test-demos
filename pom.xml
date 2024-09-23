@@ -39,7 +39,7 @@
         <module>demo2-exception</module>
 		<module>demo3-leetcode</module>
         <module>demo1-base</module>
-        <module>jiguang-demo</module>
+        <module>demo5-jiguang</module>
 		<module>common</module>
 		<module>minio-demo</module>
 		<module>design-patterns-demo</module>
