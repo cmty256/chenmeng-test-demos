@@ -27,7 +27,7 @@ public class CacheConfig {
 
     /**
      * 配置RedisCacheManager bean，用于管理缓存。
-     *
+     * <p>
      * 该方法通过RedisCacheConfiguration的默认配置，禁用缓存空值，并使用GenericJackson2JsonRedisSerializer对值进行序列化。
      * 然后，利用redisConnectionFactory()返回的RedisConnectionFactory构建RedisCacheManager。
      *
