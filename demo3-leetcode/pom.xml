@@ -9,7 +9,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>leetcode</artifactId>
+    <artifactId>demo3-leetcode</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

@@ -37,7 +37,7 @@
 	<modules>
 		<module>excel-demo</module>
         <module>demo2-exception</module>
-		<module>leetcode</module>
+		<module>demo3-leetcode</module>
         <module>demo1-base</module>
         <module>jiguang-demo</module>
 		<module>common</module>
