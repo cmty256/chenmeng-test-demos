@@ -9,7 +9,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>design-patterns-demo</artifactId>
+    <artifactId>demo7-design-patterns</artifactId>
     <description>设计模式测试模块</description>
 
     <properties>
