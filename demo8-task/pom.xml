@@ -11,7 +11,7 @@
 
     <packaging>pom</packaging>
 
-    <artifactId>task-demo</artifactId>
+    <artifactId>demo8-task</artifactId>
     <name>task-demo</name>
     <description>定时任务测试工程</description>
 

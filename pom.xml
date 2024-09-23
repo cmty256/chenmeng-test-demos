@@ -43,7 +43,7 @@
 		<module>common</module>
 		<module>demo6-minio</module>
 		<module>demo7-design-patterns</module>
-        <module>task-demo</module>
+        <module>demo8-task</module>
     </modules>
 
 	<!-- 定义依赖管理 -->
