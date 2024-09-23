@@ -35,12 +35,12 @@
 
 	<!-- 定义子模块 -->
 	<modules>
-		<module>demo4-excel</module>
+		<module>common</module>
+		<module>demo1-base</module>
         <module>demo2-exception</module>
 		<module>demo3-leetcode</module>
-        <module>demo1-base</module>
+		<module>demo4-excel</module>
         <module>demo5-jiguang</module>
-		<module>common</module>
 		<module>demo6-minio</module>
 		<module>demo7-design-patterns</module>
         <module>demo8-task</module>
