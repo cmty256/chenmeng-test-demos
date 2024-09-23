@@ -35,7 +35,7 @@
 
 	<!-- 定义子模块 -->
 	<modules>
-		<module>excel-demo</module>
+		<module>demo4-excel</module>
         <module>demo2-exception</module>
 		<module>demo3-leetcode</module>
         <module>demo1-base</module>

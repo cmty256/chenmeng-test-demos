@@ -11,7 +11,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>excel-demo</artifactId>
+    <artifactId>demo4-excel</artifactId>
     <name>${project.artifactId}</name>
     <version>0.0.1-SNAPSHOT</version>
     <description>EasyExcel测试项目</description>
