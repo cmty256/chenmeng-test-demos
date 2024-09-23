@@ -9,7 +9,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>exception-demo</artifactId>
+    <artifactId>demo2-exception</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
