@@ -41,7 +41,7 @@
         <module>demo1-base</module>
         <module>demo5-jiguang</module>
 		<module>common</module>
-		<module>minio-demo</module>
+		<module>demo6-minio</module>
 		<module>design-patterns-demo</module>
         <module>task-demo</module>
     </modules>
