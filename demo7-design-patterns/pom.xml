@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>demo7-design-patterns</artifactId>
-    <description>设计模式测试模块</description>
+    <description>设计模式测试工程</description>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>

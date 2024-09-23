@@ -12,7 +12,6 @@
     <packaging>pom</packaging>
 
     <artifactId>demo8-task</artifactId>
-    <name>task-demo</name>
     <description>定时任务测试工程</description>
 
     <properties>

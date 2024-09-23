@@ -2,20 +2,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
+    <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.chenmeng</groupId>
         <artifactId>chenmeng-test-demos</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <modelVersion>4.0.0</modelVersion>
-
     <artifactId>demo4-excel</artifactId>
-    <name>${project.artifactId}</name>
-    <version>0.0.1-SNAPSHOT</version>
-    <description>EasyExcel测试项目</description>
-    <packaging>jar</packaging>
+    <description>excel测试项目</description>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

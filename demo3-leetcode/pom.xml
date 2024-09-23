@@ -10,6 +10,7 @@
     </parent>
 
     <artifactId>demo3-leetcode</artifactId>
+    <description>力扣题目相关工程</description>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

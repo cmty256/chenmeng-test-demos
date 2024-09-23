@@ -8,7 +8,7 @@
     </parent>
 
     <artifactId>demo9-multithreading</artifactId>
-    <description>多线程测试demo</description>
+    <description>多线程测试工程</description>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>

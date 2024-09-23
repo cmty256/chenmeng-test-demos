@@ -113,6 +113,7 @@
 				<groupId>p6spy</groupId>
 				<artifactId>p6spy</artifactId>
 				<version>3.9.1</version>
+				<scope>runtime</scope>
 			</dependency>
 
 			<!-- SpringBoot初始化相关 -->

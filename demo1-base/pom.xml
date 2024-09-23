@@ -10,6 +10,7 @@
     </parent>
 
     <artifactId>demo1-base</artifactId>
+    <description>简单基础测试工程</description>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
