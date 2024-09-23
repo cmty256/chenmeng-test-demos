@@ -1,12 +1,8 @@
 package com.chenmeng.project.course;
 
 import com.alibaba.excel.EasyExcel;
-import com.alibaba.excel.util.DateUtils;
 import com.alibaba.excel.write.style.column.LongestMatchColumnWidthStyleStrategy;
-import com.chenmeng.project.excel.model.OrderInfoModel;
-import com.chenmeng.project.excel.model.UserInfoModel;
-import com.chenmeng.project.excel.model.UserInfoModel3;
-import com.chenmeng.project.excel.model.UserInfoModel4;
+import com.chenmeng.project.course.model.UserInfoModel4;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;

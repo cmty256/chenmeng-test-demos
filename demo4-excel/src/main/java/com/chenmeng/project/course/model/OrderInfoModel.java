@@ -1,4 +1,4 @@
-package com.chenmeng.project.excel.model;
+package com.chenmeng.project.course.model;
 
 import lombok.Data;
 

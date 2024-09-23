@@ -1,12 +1,12 @@
-package com.chenmeng.project.excel.listener;
+package com.chenmeng.project.course.listener;
 
 import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.exception.ExcelAnalysisStopException;
 import com.alibaba.excel.exception.ExcelDataConvertException;
 import com.alibaba.excel.read.listener.ReadListener;
 import com.chenmeng.common.model.dto.ReadErrorModel;
-import com.chenmeng.project.excel.constant.ExcelConstant;
-import com.chenmeng.project.excel.model.UserInfoModel;
+import com.chenmeng.project.course.constant.ExcelConstant;
+import com.chenmeng.project.course.model.UserInfoModel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 

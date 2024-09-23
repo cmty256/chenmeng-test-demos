@@ -1,8 +1,8 @@
 package com.chenmeng.project.course;
 
 import com.alibaba.excel.EasyExcel;
-import com.chenmeng.project.excel.listener.UserInfoReadListener;
-import com.chenmeng.project.excel.model.UserInfoModel;
+import com.chenmeng.project.course.listener.UserInfoReadListener;
+import com.chenmeng.project.course.model.UserInfoModel;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 

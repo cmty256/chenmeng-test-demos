@@ -44,6 +44,7 @@
 		<module>demo6-minio</module>
 		<module>demo7-design-patterns</module>
         <module>demo8-task</module>
+        <module>demo9-multithreading</module>
     </modules>
 
 	<!-- 定义依赖管理 -->

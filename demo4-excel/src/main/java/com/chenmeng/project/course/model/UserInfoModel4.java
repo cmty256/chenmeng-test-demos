@@ -1,9 +1,9 @@
-package com.chenmeng.project.excel.model;
+package com.chenmeng.project.course.model;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.annotation.format.DateTimeFormat;
 import com.alibaba.excel.annotation.format.NumberFormat;
-import com.chenmeng.project.excel.converter.UserInfoGenderConverter;
+import com.chenmeng.project.course.converter.UserInfoGenderConverter;
 import lombok.Data;
 
 import java.io.Serializable;

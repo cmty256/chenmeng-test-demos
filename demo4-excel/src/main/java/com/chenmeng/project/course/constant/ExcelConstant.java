@@ -1,4 +1,4 @@
-package com.chenmeng.project.excel.constant;
+package com.chenmeng.project.course.constant;
 
 /**
  * Excel 常量。

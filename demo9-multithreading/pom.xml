@@ -7,7 +7,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>multithreading-demo</artifactId>
+    <artifactId>demo9-multithreading</artifactId>
     <description>多线程测试demo</description>
 
     <properties>
