@@ -1,12 +1,12 @@
 server:
-  port: 9105
+  port: 9109
   servlet:
     # 将Servlet的上下文路径配置为“/api”，那么应用的根路径就变成了“http://localhost:[端口]/api”。
     context-path: /api
 
 spring:
   application:
-    name: demo5-jiguang
+    name: demo9-multithreading
   # 启动环境配置
   profiles:
     active: dev
@@ -55,15 +55,3 @@ mybatis-plus:
     map-underscore-to-camel-case: true
     # 是否启用缓存
     cache-enabled: false
-
-jpush:
-  appkey: 45ee85eb28a6d0a3e1e196b9 #极光官网-个人管理中心-appkey
-  secret: 0539bec8433b9c6880096c22 #极光官网-个人管理中心-点击查看-secret
-
-jiguang:
-  api:
-    # 此为演示数据，请替换成真实数据
-    app-key: 45ee85eb28a6d0a3e1e196b9
-    master-secret: 0539bec8433b9c6880096c22
-    dev-key: 7413be427fd2290f2b62834e
-    dev-secret: c471c1655335a693e5f4c745

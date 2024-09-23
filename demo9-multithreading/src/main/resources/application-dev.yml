@@ -1,5 +1,3 @@
-server:
-  port: 9103
 # mybatis-plus配置
 mybatis-plus:
   configuration:

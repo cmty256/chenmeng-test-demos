@@ -11,6 +11,7 @@ import com.chenmeng.project.model.entity.ExcelDO;
 import com.chenmeng.project.model.vo.ExcelExportVO;
 import com.chenmeng.project.service.ExcelService;
 import com.chenmeng.project.mapper.ExcelMapper;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
@@ -69,6 +70,7 @@ public class ExcelServiceImpl extends ServiceImpl<ExcelMapper, ExcelDO>
 
     }
 
+    @SneakyThrows
     @Override
     public boolean importInfo(FileDTO dto) {
         List<EnterpriseImportDTO> list = EasyExcelUtil.doReadAllSync(dto.getFile(), EnterpriseImportDTO.class);
