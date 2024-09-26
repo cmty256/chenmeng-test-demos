@@ -35,15 +35,16 @@
 
 	<!-- 定义子模块 -->
 	<modules>
-		<module>excel-demo</module>
-        <module>exception-demo</module>
-		<module>leetcode</module>
-        <module>base-demo</module>
-        <module>jiguang-demo</module>
 		<module>common</module>
-		<module>minio-demo</module>
-		<module>design-patterns-demo</module>
-        <module>multithreading-demo</module>
+		<module>demo1-base</module>
+        <module>demo2-exception</module>
+		<module>demo3-leetcode</module>
+		<module>demo4-excel</module>
+        <module>demo5-jiguang</module>
+		<module>demo6-minio</module>
+		<module>demo7-design-patterns</module>
+        <module>demo8-task</module>
+        <module>demo9-multithreading</module>
     </modules>
 
 	<!-- 定义依赖管理 -->
@@ -112,6 +113,7 @@
 				<groupId>p6spy</groupId>
 				<artifactId>p6spy</artifactId>
 				<version>3.9.1</version>
+				<scope>runtime</scope>
 			</dependency>
 
 			<!-- SpringBoot初始化相关 -->
