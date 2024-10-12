@@ -148,6 +148,37 @@ public class BigDecimalTest {
         System.out.println("Formatted Number2: " + formattedNumber2);
     }
 
+    /**
+     * 不同写法对比
+     * <p>
+     * 浮点数（如 float 和 double）在计算机中是以二进制形式存储的。某些十进制小数无法精确地表示为二进制小数，这会导致精度丢失
+     * </p>
+     * 使用 float 和 double：适用于对精度要求不是特别高的情况，但要注意它们的精度限制
+     * 使用 BigDecimal：适用于需要高精度计算的情况，尤其是金融计算等对精度要求很高的场景
+     */
+    @Test
+    void test() {
+        int total = 10 + 21 + 31;
+
+        // 用 float 类型会丢失精度，不推荐
+        String format1 = String.format("%.1f", (float) 10 / total * 100);
+        System.out.println(format1);
+
+        // 用 double 类型也会丢失精度，比 float 更加安全，但还是不推荐
+        String format2 = String.format("%.1f", (double) 10 / total * 100);
+        System.out.println(format2);
+
+        // 推荐使用 BigDecimal
+        BigDecimal numerator = new BigDecimal(10);
+        BigDecimal denominator = new BigDecimal(total);
+        BigDecimal oneHundred = new BigDecimal(100);
+        BigDecimal percentage = numerator
+                .divide(denominator, 4, RoundingMode.HALF_UP)
+                .multiply(oneHundred);
+        String format3 = String.format("%.1f", percentage.doubleValue());
+        System.out.println(format3);
+    }
+
     public static void main(String[] args) {
 
     }
