@@ -1,6 +1,8 @@
 package com.chenmeng.project.singleton.type2;
 
 /**
+ * 饿汉式(静态变量) -- 常用（也可能会造成内存浪费）
+ *
  * @author chenmeng
  */
 public class SingletonTest02 {
@@ -17,10 +19,9 @@ public class SingletonTest02 {
 }
 
 // 饿汉式(静态变量)
-
 class Singleton {
 
-    // 1. 构造器私有化, 外部能new
+    // 1. 构造器私有化, 防止直接new
     private Singleton() {
 
     }

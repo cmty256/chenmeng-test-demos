@@ -1,6 +1,8 @@
 package com.chenmeng.project.singleton.type1;
 
 /**
+ * 饿汉式(静态变量) -- 常用（需保证实例会使用到，否则会造成内存浪费）
+ *
  * @author chenmeng
  */
 public class SingletonTest01 {
@@ -16,10 +18,12 @@ public class SingletonTest01 {
 
 }
 
-// 饿汉式(静态变量)
+// 饿汉式(静态变量) -- 常用（需保证实例会使用到，否则会造成内存浪费）
+// 优点：简单且线程安全。
+// 缺点：即使不需要也会立即加载实例，可能会浪费资源。
 class Singleton {
 
-    // 1. 构造器私有化, 外部能new
+    // 1. 构造器私有化, 防止直接new
     private Singleton() {
 
     }

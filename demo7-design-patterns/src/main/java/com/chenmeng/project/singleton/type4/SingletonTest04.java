@@ -1,12 +1,14 @@
 package com.chenmeng.project.singleton.type4;
 
 /**
+ * 懒汉式(线程安全，同步方法) -- 不推荐
+ *
  * @author chenmeng
  */
 public class SingletonTest04 {
 
     public static void main(String[] args) {
-        System.out.println("懒汉式2 ， 线程安全~");
+        System.out.println("懒汉式 2，线程安全，同步方法~");
         Singleton instance = Singleton.getInstance();
         Singleton instance2 = Singleton.getInstance();
         System.out.println(instance == instance2); // true
@@ -23,7 +25,7 @@ class Singleton {
     private Singleton() {
     }
 
-    // 提供一个静态的公有方法，加入同步处理的代码，解决线程安全问题
+    // 提供一个静态的公有方法，加入 同步处理 的代码，解决线程安全问题
     // 即懒汉式
     public static synchronized Singleton getInstance() {
         if (instance == null) {

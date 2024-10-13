@@ -1,6 +1,8 @@
 package com.chenmeng.project.singleton.type8;
 
 /**
+ * 枚举 -- 推荐使用
+ *
  * @author chenmeng
  */
 public class SingletonTest08 {
@@ -17,6 +19,7 @@ public class SingletonTest08 {
 }
 
 // 使用枚举，可以实现单例, 推荐
+// 枚举类只会装载一次，而且只会装载一次，枚举类是单例的
 enum Singleton {
     INSTANCE; // 属性
 
