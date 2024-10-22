@@ -41,7 +41,7 @@ class ChangHong1 implements ITV1 {
 
 	@Override
 	public void play() {
-		// TODO Auto-generated method stub
+		
 		System.out.println("长虹电视机1，打开");
 	}
 
@@ -86,7 +86,7 @@ class ChangHong2 implements ITV2 {
 
 	@Override
 	public void play() {
-		// TODO Auto-generated method stub
+		
 		System.out.println("长虹电视机2，打开");
 	}
 }
@@ -122,7 +122,7 @@ class ChangHong3 implements ITV3 {
 
 	@Override
 	public void play() {
-		// TODO Auto-generated method stub
+		
 		System.out.println("长虹电视机3，打开");
 	}
 }
