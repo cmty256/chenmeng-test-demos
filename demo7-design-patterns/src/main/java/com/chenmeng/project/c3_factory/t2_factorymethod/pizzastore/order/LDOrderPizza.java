@@ -10,9 +10,9 @@ public class LDOrderPizza extends OrderPizza {
     Pizza createPizza(String orderType) {
 
         Pizza pizza = null;
-        if (orderType.equals("cheese")) {
+        if ("cheese".equals(orderType)) {
             pizza = new LDCheesePizza();
-        } else if (orderType.equals("pepper")) {
+        } else if ("pepper".equals(orderType)) {
             pizza = new LDPepperPizza();
         }
         return pizza;
