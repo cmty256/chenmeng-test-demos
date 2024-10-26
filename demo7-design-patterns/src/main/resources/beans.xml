@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 这里我们的 scope="prototype" 即 原型模式来创建 -->
+    <bean id="id01" class="com.chenmeng.project.spring.protoType.Monster"
+          scope="prototype"/>
+
+</beans>
