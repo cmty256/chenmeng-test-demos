@@ -2,6 +2,9 @@ package com.chenmeng.project.jdk;
 
 import java.util.Calendar;
 
+/**
+ * jdk 静态工厂模式示例
+ */
 public class Factory {
 
     public static void main(String[] args) {
