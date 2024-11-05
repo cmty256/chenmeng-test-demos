@@ -3,11 +3,11 @@ package com.chenmeng.project.c5_builder.improve;
 public class Client {
 	public static void main(String[] args) {
 		
-		// 盖普通房子
+		// 1、指定产品的【具体建造者】 -- 盖普通房子
 		CommonHouse commonHouse = new CommonHouse();
-		// 准备创建房子的指挥者
+		// 2、将具体建造者传给【指挥者】 -- 准备创建房子的指挥者
 		HouseDirector houseDirector = new HouseDirector(commonHouse);
-		// 完成盖房子，返回产品(普通房子)
+		// 3、指挥者调用方法执行构建流程，最终返回产品 -- 完成盖房子，返回产品(普通房子)
 		House house = houseDirector.constructHouse();
 		
 		// System.out.println("输出流程");
