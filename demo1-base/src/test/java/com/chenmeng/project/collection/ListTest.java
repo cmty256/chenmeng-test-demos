@@ -15,6 +15,17 @@ import java.util.List;
 public class ListTest {
 
     /**
+     * 封装字符串为列表
+     */
+    @Test
+    void test2() {
+        String str = "156, 446, 344, 158";
+        System.out.println("ListUtil.toList(str) = " + ListUtil.toList(str));
+
+        System.out.println("ListUtil.toLinkedList = " + ListUtil.toLinkedList("156", "446", "344", "158"));
+    }
+
+    /**
      * 获取满足指定规则所有的元素的位置
      */
     @Test
