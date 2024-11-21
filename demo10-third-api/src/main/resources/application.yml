@@ -6,7 +6,7 @@ server:
 
 spring:
   application:
-    name: demo10-open-api
+    name: demo10-third-api
   # 启动环境配置
   profiles:
     active: dev

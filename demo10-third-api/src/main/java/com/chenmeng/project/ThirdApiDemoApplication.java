@@ -10,10 +10,10 @@ import org.springframework.core.env.Environment;
  */
 @Slf4j
 @SpringBootApplication
-public class OpenApiDemoApplication {
+public class ThirdApiDemoApplication {
 
     public static void main(String[] args) {
-        SpringApplication app = new SpringApplication(OpenApiDemoApplication.class);
+        SpringApplication app = new SpringApplication(ThirdApiDemoApplication.class);
         Environment env = app.run(args).getEnvironment();
         // 获取服务器的Scheme（HTTP或HTTPS）
         String scheme = "true".equals(env.getProperty("server.ssl.enabled", "false")) ? "https" : "http";

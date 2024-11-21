@@ -9,8 +9,8 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>demo10-open-api</artifactId>
-    <description>开放api测试工程</description>
+    <artifactId>demo10-third-api</artifactId>
+    <description>第三方api测试工程</description>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
