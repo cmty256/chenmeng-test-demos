@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- 这里我们的 scope="prototype" 即 原型模式来创建 -->
-    <bean id="id01" class="com.chenmeng.project.spring.protoType.Monster"
+    <bean id="id01" class="com.chenmeng.project.spring.bean.Monster"
           scope="prototype"/>
 
 </beans>

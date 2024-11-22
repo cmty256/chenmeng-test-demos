@@ -1,8 +1,13 @@
-package com.chenmeng.project.spring.protoType;
+package com.chenmeng.project.spring.test;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+/**
+ * Spring 原型模式示例
+ *
+ * @author chenmeng
+ */
 public class ProtoType {
 
     public static void main(String[] args) {

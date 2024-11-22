@@ -1,4 +1,4 @@
-package com.chenmeng.project.spring.protoType;
+package com.chenmeng.project.spring.bean;
 
 public class Monster {
 
