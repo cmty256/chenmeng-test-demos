@@ -1,6 +1,6 @@
 package com.chenmeng.project.spring.test;
 
-import com.chenmeng.project.spring.springmvc.DispatchServlet;
+import org.springframework.web.servlet.DispatcherServlet;
 
 /**
  * Spring 适配器模式示例
@@ -10,8 +10,9 @@ import com.chenmeng.project.spring.springmvc.DispatchServlet;
 public class Adapter {
 
     public static void main(String[] args) {
-        // DispatcherServlet
-		new DispatchServlet();
+        // 调度类：DispatcherServlet
+		// 适配接口：HandlerAdapter
+		new DispatcherServlet();
 	}
 
 }

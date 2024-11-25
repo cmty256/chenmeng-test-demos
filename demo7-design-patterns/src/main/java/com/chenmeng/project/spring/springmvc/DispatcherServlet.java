@@ -8,11 +8,11 @@ import java.util.List;
  *
  * @author chenmeng
  */
-public class DispatchServlet {
+public class DispatcherServlet {
 
 	public static List<HandlerAdapter> handlerAdapters = new ArrayList<>();
 
-	public DispatchServlet() {
+	public DispatcherServlet() {
 		handlerAdapters.add(new AnnotationHandlerAdapter());
 		handlerAdapters.add(new HttpHandlerAdapter());
 		handlerAdapters.add(new SimpleHandlerAdapter());
@@ -42,7 +42,7 @@ public class DispatchServlet {
 	}
 
 	public static void main(String[] args) {
-		new DispatchServlet().doDispatch(); // http...
+		new DispatcherServlet().doDispatch(); // http...
 	}
 
 }
