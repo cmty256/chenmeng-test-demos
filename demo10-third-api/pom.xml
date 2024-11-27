@@ -19,6 +19,11 @@
     </properties>
 
     <dependencies>
+        <!-- 集成gson -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.chenmeng</groupId>
             <artifactId>common</artifactId>
