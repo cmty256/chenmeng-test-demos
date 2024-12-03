@@ -3,6 +3,7 @@ package com.chenmeng.project.xfyun.image_recognition.service;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import com.chenmeng.project.constants.XfyunUrlConstant;
+import com.chenmeng.project.xfyun.image_recognition.utils.FileUtil;
 import com.google.gson.Gson;
 
 import javax.crypto.Mac;
@@ -38,16 +39,7 @@ public class Place {
     private String apiKey = XfyunUrlConstant.PLACE_RECOGNITION_API_KEY;
     // 图片存放位置
     private static String IMAGE_PATH = "D:\\codes\\ok\\chenmeng-test-demos\\demo10-third-api\\src\\main\\resources\\image\\教室.jpg";
-    // Base64.getEncoder().encodeToString(read(IMAGE_PATH))
-
-    // private static final String IMAGE_PATH;
-    // static {
-    //     try {
-    //         IMAGE_PATH = FileUtil.fileToBase64("http://scj.yuexiu.gov.cn:8082/monitoring-platform/a8fa255fe4ce37d9f0dc6f07fd99ecb61d517c68a9efbe117f3020336ad67ccc.jpg");
-    //     } catch (Exception e) {
-    //         throw new RuntimeException(e);
-    //     }
-    // }
+    private static String IMAGE_URL = "http://scj.yuexiu.gov.cn:8082/monitoring-platform/dcda1429c1b45367f8d1d1de035c60bd33a60e2c01465b32ff83dfb8e37955ec.jpg";
 
 
     // 解析Json
@@ -179,6 +171,8 @@ public class Place {
      * @return 参数字符串
      */
     private String buildParam() throws Exception {
+        // String base64 = Base64.getEncoder().encodeToString(read(IMAGE_PATH));
+        String base64 = FileUtil.fileToBase64(IMAGE_URL);
         String param = "{" +
                 "    \"header\": {" +
                 "        \"app_id\": \"" + appid + "\"," +
@@ -196,8 +190,8 @@ public class Place {
                 "    }," +
                 "    \"payload\": {" +
                 "        \"data1\": {" +
-                "            \"encoding\": \"jpg\"," +
-                "            \"image\": \"" + Base64.getEncoder().encodeToString(read(IMAGE_PATH)) + "\"," +
+                // "            \"encoding\": \"jpg\"," +
+                "            \"image\": \"" + base64 + "\"," +
                 "            \"status\": 3" +
                 "        }" +
                 "    }" +

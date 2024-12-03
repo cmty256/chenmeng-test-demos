@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 /**
@@ -17,7 +18,7 @@ import java.util.Base64;
 public class FileUtil {
 	/**
 	 * 读取文件内容为二进制数组
-	 * 
+	 *
 	 * @param filePath
 	 * @return
 	 * @throws IOException
@@ -33,7 +34,7 @@ public class FileUtil {
 
 	/**
 	 * 流转二进制数组
-	 * 
+	 *
 	 * @param in
 	 * @return
 	 * @throws IOException
@@ -51,7 +52,7 @@ public class FileUtil {
 
 	/**
 	 * 保存文件
-	 * 
+	 *
 	 * @param filePath
 	 * @param fileName
 	 * @param content
@@ -75,16 +76,11 @@ public class FileUtil {
 	}
 
 	public static String fileToBase64(String fileUrl) throws Exception {
-		URL url = new URL(fileUrl);
-		try (InputStream in = url.openStream();
-			 ByteArrayOutputStream out = new ByteArrayOutputStream()) {
-			byte[] buffer = new byte[1024];
-			int length;
-			while ((length = in.read(buffer)) != -1) {
-				out.write(buffer, 0, length);
-			}
-			byte[] fileBytes = out.toByteArray();
-			return Base64.getEncoder().encodeToString(fileBytes);
-		}
+	    // 使用 Java 8 引入的 Base64 类获取编码器，并将 URL 对象转换为字节数组后进行编码
+        String res = Base64.getEncoder().encodeToString(new URL(fileUrl).getFile().getBytes(StandardCharsets.UTF_8));
+        if (res.length() > 1024 * 1024 * 4) {
+            System.out.println("图片过大，请使用图片压缩工具压缩后重新上传：" + res.length());
+        }
+        return res;
 	}
 }
