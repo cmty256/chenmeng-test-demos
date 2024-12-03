@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 场景识别
+ * 场景识别（根据图片二进制数据）
  * <p>
  * 图片数据可以通过两种方式上传，第一种在请求头设置image_url参数，第二种将图片二进制数据写入请求体中。若同时设置，以第一种为准。
  * 1.使用二进制数据写入请求体时，不需要在header中传递image_url参数
@@ -24,13 +24,11 @@ import java.util.Map;
  *
  * @author chenmeng
  */
-public class Scene {
+public class SceneByPath {
 
     // 图片名称
     private static final String IMAGE_NAME = "img.jpg";
-    // 图片url
-    // private static final String IMAGE_URL = " ";
-    // 图片地址
+    // 本地图片地址
     private static final String PATH = "D:\\codes\\ok\\chenmeng-test-demos\\demo10-third-api\\src\\main\\resources\\image\\测试图片.jpg";
 
     /**
