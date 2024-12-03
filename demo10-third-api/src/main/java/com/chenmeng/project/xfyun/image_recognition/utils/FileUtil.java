@@ -8,6 +8,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URL;
+import java.util.Base64;
 
 /**
  * 文件操作工具类
@@ -69,6 +71,20 @@ public class FileUtil {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+
+	public static String fileToBase64(String fileUrl) throws Exception {
+		URL url = new URL(fileUrl);
+		try (InputStream in = url.openStream();
+			 ByteArrayOutputStream out = new ByteArrayOutputStream()) {
+			byte[] buffer = new byte[1024];
+			int length;
+			while ((length = in.read(buffer)) != -1) {
+				out.write(buffer, 0, length);
+			}
+			byte[] fileBytes = out.toByteArray();
+			return Base64.getEncoder().encodeToString(fileBytes);
 		}
 	}
 }
