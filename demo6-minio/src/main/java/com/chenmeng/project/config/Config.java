@@ -20,7 +20,8 @@ public class Config {
         //链式编程，构建MinioClient对象
         return MinioClient.builder()
                 // 9000端口是API，9001端口是WebUI
-                .endpoint("http://192.168.2.129:9000")
+                // .endpoint("http://192.168.2.129:9000")
+                .endpoint("http://192.168.239.130:9000")
                 // 访问密钥和秘密密钥
                 .credentials("ROOTNAME", "CHANGEME123")
                 .build();

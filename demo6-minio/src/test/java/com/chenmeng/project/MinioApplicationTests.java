@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import java.io.ByteArrayInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.Base64;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -27,7 +28,7 @@ class MinioApplicationTests {
     private MinioClient minioClient;
 
     public static final String BUCKET_NAME = "my-file";
-    public static final String YOUR_OBJECT_KEY = "your-object-key";
+    public static final String YOUR_OBJECT_KEY = "test2.jpg"; // "your-object-key"
 
     @Test
     void contextLoads() {
@@ -109,7 +110,8 @@ class MinioApplicationTests {
      */
     @Test
     void test05() throws Exception {
-        String fileName = "D:\\IDEA-code\\ok\\chenmeng-test-demos\\minio-demo\\src\\main\\resources\\file\\test2.jpg";
+        // String fileName = "D:\\IDEA-code\\ok\\chenmeng-test-demos\\demo6-minio\\src\\main\\resources\\file\\test2.jpg";
+        String fileName = System.getProperty("user.dir") + "\\src\\main\\resources\\file\\test2.jpg";
 
         // 方法一
         // File file = new File(fileName);
@@ -152,9 +154,9 @@ class MinioApplicationTests {
     void test07() throws Exception {
         String presignedObjectUrl = minioClient.getPresignedObjectUrl(GetPresignedObjectUrlArgs.builder()
                 .bucket("my-file")
-                .object("test.jpg")
-                // 设置过期时间为3分钟
-                .expiry(3, TimeUnit.MINUTES)
+                .object("test2.jpg")
+                // 设置过期时间为10分钟
+                .expiry(10, TimeUnit.MINUTES)
                 .method(Method.GET)
                 .build()
         );
@@ -275,6 +277,28 @@ class MinioApplicationTests {
 
             // 输出字符串数据
             System.out.println(stringBuilder);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 读取文件 base64 数据
+     */
+    @Test
+    void test13() {
+        try {
+            // 获取对象
+            InputStream object = minioClient.getObject(GetObjectArgs.builder()
+                    .bucket(BUCKET_NAME)
+                    .object(YOUR_OBJECT_KEY)
+                    .build());
+
+            byte[] bytes = IoUtil.readBytes(object);
+            String res = Base64.getEncoder().encodeToString(bytes);
+
+            System.out.println(res);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
