@@ -14,6 +14,8 @@ import java.util.Base64;
 
 /**
  * 文件操作工具类
+ *
+ * @author chenmeng
  */
 public class FileUtil {
 	/**
@@ -77,10 +79,23 @@ public class FileUtil {
 
 	public static String fileToBase64(String fileUrl) throws Exception {
 	    // 使用 Java 8 引入的 Base64 类获取编码器，并将 URL 对象转换为字节数组后进行编码
-        String res = Base64.getEncoder().encodeToString(new URL(fileUrl).getFile().getBytes(StandardCharsets.UTF_8));
+		String url = new URL(fileUrl).getFile();
+		String res = Base64.getEncoder().encodeToString(url.getBytes(StandardCharsets.UTF_8));
+		System.out.println("res = " + res);
+		System.out.println("图片大小：" + res.length());
         if (res.length() > 1024 * 1024 * 4) {
             System.out.println("图片过大，请使用图片压缩工具压缩后重新上传：" + res.length());
         }
         return res;
+	}
+
+	public static void main(String[] args) {
+		try {
+			// 示例：将文件 URL 转换为 Base64 字符串
+			String base64EncodedFile = fileToBase64("http://192.168.239.130:9000/my-file/test2.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ROOTNAME%2F20241205%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20241205T091105Z&X-Amz-Expires=600&X-Amz-SignedHeaders=host&X-Amz-Signature=3486d698f9d297071158730472245c05970d1a7cb836e6f8b2b8fda4a6c91110");
+			System.out.println(base64EncodedFile);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

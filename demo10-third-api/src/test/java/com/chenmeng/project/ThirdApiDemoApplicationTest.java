@@ -1,15 +1,16 @@
-package com.chenmeng.project.xfyun.image_recognition.service;
+package com.chenmeng.project;
+
 
 import cn.hutool.core.io.IoUtil;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import com.chenmeng.common.utils.OkHttpUtil;
 import com.chenmeng.project.constants.XfyunUrlConstant;
-import com.chenmeng.project.xfyun.image_recognition.utils.FileUtil;
-import com.google.gson.Gson;
+import com.chenmeng.project.xfyun.image_recognition.service.Place;
 import io.minio.GetObjectArgs;
 import io.minio.MinioClient;
-import org.springframework.stereotype.Service;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
 import javax.crypto.Mac;
@@ -28,73 +29,35 @@ import java.util.TimeZone;
 import java.util.stream.Collectors;
 
 /**
- * 场所识别（根据 URL）
- * <p>
- * 场所识别接口地址 http(s)://api.xf-yun.com/v1/private/s5833e7f6；
- * appid、apiSecret、apiKey请到讯飞开放平台控制台获取；
- * 图像数据,base64编码后最不得大于4M；
- * </p>
- *
  * @author chenmeng
  */
-@Service
-public class Place {
+@SpringBootTest(classes = ThirdApiDemoApplication.class)
+class ThirdApiDemoApplicationTest {
 
     @Resource
-    private MinioClient minioClient;
+    private MinioClient minioClient2;
 
     private static String requestUrl = XfyunUrlConstant.PLACE_RECOGNITION_URL;
-    // 控制台获取以下信息
     private static String appid = XfyunUrlConstant.APPID;
     private String apiSecret = XfyunUrlConstant.PLACE_RECOGNITION_API_SECRET;
     private String apiKey = XfyunUrlConstant.PLACE_RECOGNITION_API_KEY;
-    // 图片存放位置
-    private static String IMAGE_PATH = "D:\\codes\\ok\\chenmeng-test-demos\\demo10-third-api\\src\\main\\resources\\image\\教室.jpg";
-    // 斑马图片url
-    private static String IMAGE_URL = "http://scj.yuexiu.gov.cn:8082/monitoring-platform/a8fa255fe4ce37d9f0dc6f07fd99ecb61d517c68a9efbe117f3020336ad67ccc.jpg";
 
+    public static final String BUCKET_NAME = "my-file";
+    public static final String YOUR_OBJECT_KEY = "test2.jpg"; // "your-object-key"
 
-    // 解析Json
-    private static Gson json = new Gson();
+    /**
+     * 读取文件 base64 数据
+     */
+    @Test
+    void test1() {
+        System.out.println("getBase64() = " + getBase64());
+    }
 
-    public static void main(String[] args) throws Exception {
-        Place demo = new Place();
+    @Test
+    void test2() {
         try {
-
-            // String param = "{" +
-            //         "    \"header\": {" +
-            //         "        \"app_id\": \"" + appid + "\"," +
-            //         "        \"status\": 3" +
-            //         "    }," +
-            //         "    \"parameter\": {" +
-            //         "        \"s5833e7f6\": {" +
-            //         "            \"func\": \"image/place\"," +
-            //         "            \"result\": {" +
-            //         "                \"encoding\": \"utf8\"," +
-            //         "                \"compress\": \"raw\"," +
-            //         "                \"format\": \"json\"" +
-            //         "            }" +
-            //         "        }" +
-            //         "    }," +
-            //         "    \"payload\": {" +
-            //         "        \"data1\": {" +
-            //         "            \"encoding\": \"jpg\"," +
-            //         "            \"image\": \"" + base64 + "\"," +
-            //         "            \"status\": 3" +
-            //         "        }" +
-            //         "    }" +
-            //         "}";
-            //
-            // String string = OkHttpUtil.sendPostJson(requestUrl, param);
-            // System.out.println("string=>" + string);
-
-
-            String resp = demo.doRequest();
+            String resp = doRequest();
             System.out.println("resp=>" + resp);
-            JsonParse myJsonParse = json.fromJson(resp, JsonParse.class);
-            String textBase64Decode = new String(Base64.getDecoder().decode(myJsonParse.payload.result.text), "UTF-8");
-            JSONObject jsonObject = JSON.parseObject(textBase64Decode);
-            System.out.println("text字段Base64解码后=>" + jsonObject.toJSONString());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -104,7 +67,7 @@ public class Place {
     //   "header":{
     //     "code":0,
     //     "message":"success",
-    //     "sid":"ase000f1da9@hu1938bafe74e05c2882"
+    //     "sid":"ase000d7ec7@hu193963c765a0427882"
     //   },
     //   "payload":{
     //     "result":{
@@ -114,22 +77,6 @@ public class Place {
     //       "text":"eyJwbGFjZSI6W3siZW50aXR5IjpbeyJpZCI6NTIsIm5hbWUiOiJjbGFzc3Jvb20iLCJzY29yZSI6MC45OTg4ODc3MTc3MjM4NDY0NH1dLCJmcmFtZUlEIjowLCJzdGFydFRpbWVPZmZzZXQiOjAuMH1dfQ=="
     //     }
     //   }
-    // }
-
-    // {
-    //   "place":[
-    //     {
-    //       "entity":[
-    //         {
-    //           "id":52,
-    //           "name":"classroom",
-    //           "score":0.9988877177238464
-    //         }
-    //       ],
-    //       "frameID":0,
-    //       "startTimeOffset":0.0
-    //     }
-    //   ]
     // }
 
     /**
@@ -160,6 +107,11 @@ public class Place {
             throw new Exception("make request error:" + "code is " + httpURLConnection.getResponseMessage() + readAllBytes(is));
         }
         return readAllBytes(is);
+    }
+
+    private String readAllBytes(InputStream is) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+        return br.lines().collect(Collectors.joining(System.lineSeparator()));
     }
 
     /**
@@ -204,16 +156,12 @@ public class Place {
         }
     }
 
-    /**
-     * 组装请求参数
-     * 直接使用示例参数，
-     * 替换部分值
-     *
-     * @return 参数字符串
-     */
     private String buildParam() throws Exception {
         // String base64 = Base64.getEncoder().encodeToString(read(IMAGE_PATH));
-        String base64 = FileUtil.fileToBase64(IMAGE_URL);
+        // String base64 = FileUtil.fileToBase64(IMAGE_URL);
+        String base64 = getBase64();
+
+
         String param = "{" +
                 "    \"header\": {" +
                 "        \"app_id\": \"" + appid + "\"," +
@@ -237,62 +185,61 @@ public class Place {
                 "        }" +
                 "    }" +
                 "}";
-        System.out.println("base64: " + base64);
         return param;
     }
 
+    public static void main(String[] args) throws Exception {
+        Place demo = new Place();
+        try {
 
-    /**
-     * 读取流数据
-     *
-     * @param is 流
-     * @return 字符串
-     * @throws IOException 异常
-     */
-    private String readAllBytes(InputStream is) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(is));
-        return br.lines().collect(Collectors.joining(System.lineSeparator()));
-    }
+            // String param = "{" +
+            //         "    \"header\": {" +
+            //         "        \"app_id\": \"" + appid + "\"," +
+            //         "        \"status\": 3" +
+            //         "    }," +
+            //         "    \"parameter\": {" +
+            //         "        \"s5833e7f6\": {" +
+            //         "            \"func\": \"image/place\"," +
+            //         "            \"result\": {" +
+            //         "                \"encoding\": \"utf8\"," +
+            //         "                \"compress\": \"raw\"," +
+            //         "                \"format\": \"json\"" +
+            //         "            }" +
+            //         "        }" +
+            //         "    }," +
+            //         "    \"payload\": {" +
+            //         "        \"data1\": {" +
+            //         "            \"encoding\": \"jpg\"," +
+            //         "            \"image\": \"" + base64 + "\"," +
+            //         "            \"status\": 3" +
+            //         "        }" +
+            //         "    }" +
+            //         "}";
+            //
+            // String string = OkHttpUtil.sendPostJson(requestUrl, param);
+            // System.out.println("string=>" + string);
 
-    public static byte[] read(String filePath) throws IOException {
-        InputStream in = new FileInputStream(filePath);
-        byte[] data = inputStream2ByteArray(in);
-        in.close();
-        return data;
-    }
 
-    private static byte[] inputStream2ByteArray(InputStream in) throws IOException {
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        byte[] buffer = new byte[1024 * 4];
-        int n = 0;
-        while ((n = in.read(buffer)) != -1) {
-            out.write(buffer, 0, n);
+            String resp = demo.doRequest();
+            System.out.println("resp=>" + resp);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return out.toByteArray();
     }
 
-    // Json解析
-    class JsonParse {
-        public Header header;
-        public Payload payload;
-    }
+    public String getBase64() {
+        try {
+            // 获取对象
+            InputStream object = minioClient2.getObject(GetObjectArgs.builder()
+                    .bucket("my-file")
+                    .object("test2.jpg")
+                    .build());
 
-    class Header {
-        public int code;
-        public String message;
-        public String sid;
-    }
-
-    class Payload {
-        public Result result;
-    }
-
-    class Result {
-        public String compress;
-        public String encoding;
-        public String format;
-        public String text;
+            byte[] bytes = IoUtil.readBytes(object);
+            return Base64.getEncoder().encodeToString(bytes);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
-
-
