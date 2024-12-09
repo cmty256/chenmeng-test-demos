@@ -1,0 +1,28 @@
+{
+  "header":{
+    "code":0,
+    "message":"success",
+    "sid":"ase000f1da9@hu1938bafe74e05c2882"
+  },
+  "payload":{
+    "result":{
+      "compress":"raw",
+      "encoding":"utf8",
+      "format":"json",
+      "text":"eyJwbGFjZSI6W3siZW50aXR5IjpbeyJpZCI6NTIsIm5hbWUiOiJjbGFzc3Jvb20iLCJzY29yZSI6MC45OTg4ODc3MTc3MjM4NDY0NH1dLCJmcmFtZUlEIjowLCJzdGFydFRpbWVPZmZzZXQiOjAuMH1dfQ=="
+    }
+  },
+  "place":[
+    {
+      "entity":[
+        {
+          "id":52,
+          "name":"classroom",
+          "score":0.9988877177238464
+        }
+      ],
+      "frameID":0,
+      "startTimeOffset":0.0
+    }
+  ]
+}

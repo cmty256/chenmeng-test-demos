@@ -1,0 +1,39 @@
+{
+  "code":0,
+  "data":{
+    "fileList":[
+      {
+        "code":0,
+        "file_name":"/cloud-api/storage-weed233/2024-12-03/16-7/5ba9e2178906cca4027dddf5/17332140357930.4248849296330288.jpeg",
+        "label":15765,
+        "labels":[
+          15765,
+          19896,
+          4,
+          11797,
+          3923
+        ],
+        "name":"http://scj.yuexiu.gov.cn:8082/monitoring-platform/dcda1429c1b45367f8d1d1de035c60bd33a60e2c01465b32ff83dfb8e37955ec.jpg",
+        "rate":0.32277753949165344,
+        "rates":[
+          0.32277753949165344,
+          0.28426995873451233,
+          0.17071975767612457,
+          0.1364746242761612,
+          0.02689996175467968
+        ],
+        "review":true,
+        "tag":"Using url"
+      }
+    ],
+    "reviewCount":1,
+    "topNStatistic":[
+      {
+        "count":1,
+        "label":15765
+      }
+    ]
+  },
+  "desc":"success",
+  "sid":"tup00017c17@dx435f1aaa0b53a00100"
+}
