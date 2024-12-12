@@ -5,12 +5,9 @@ import com.alibaba.excel.write.style.column.LongestMatchColumnWidthStyleStrategy
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.chenmeng.project.utils.ZipUtil;
 import com.chenmeng.project.handler.CustomColumnWidthStyleStrategy;
-import com.chenmeng.project.model.entity.Alarm;
 import com.chenmeng.project.model.entity.ExcelDO;
 import com.chenmeng.project.model.entity.Test3;
-import com.chenmeng.project.model.vo.AlarmExportVO;
 import com.chenmeng.project.model.vo.ExcelExportVO;
-import com.chenmeng.project.service.AlarmService;
 import com.chenmeng.project.service.ExcelService;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnails;
@@ -31,9 +28,6 @@ class ExcelServiceImplTest {
 
     @Resource
     private ExcelService excelService;
-
-    @Resource
-    private AlarmService alarmService;
 
     public static final String path = "C:\\Users\\乔\\Desktop\\excel.xlsx";
 
@@ -120,59 +114,6 @@ class ExcelServiceImplTest {
                 .sheet("模板")
                 .head(ExcelExportVO.class)
                 .doWrite(list2);
-    }
-
-    @Test
-    void exportAlarm() {
-
-        // 1、获取导出列表
-        List<Alarm> list = alarmService.list();
-        List<AlarmExportVO> list2 = list.stream().map(item -> {
-            AlarmExportVO exportVO = new AlarmExportVO();
-            exportVO.setEnterpriseTown(item.getEnterpriseTown());
-            exportVO.setMarketSupervision(item.getMarketSupervision());
-            exportVO.setDeviceName(item.getDeviceName());
-            exportVO.setAlarmType(item.getAlarmType());
-            exportVO.setAlarmLevel(item.getAlarmLevel());
-            exportVO.setAlarmTime(item.getAlarmTime());
-
-            try {
-                // 1.1 压缩图片并保存到临时文件
-                File compressedFile = File.createTempFile("compressed_image", ".jpg");
-                // 1.2 压缩图片
-                Thumbnails.of(new URL(item.getAlarmImage()))
-                        .scale(0.5) // 设置压缩比例
-                        .toFile(compressedFile);
-
-                // 1.3 将临时文件路径设置到ExcelExportVO对象中
-                exportVO.setAlarmImage(compressedFile.toURI().toURL());
-            } catch (MalformedURLException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
-                throw new RuntimeException("压缩图片失败!!!", e);
-            }
-            return exportVO;
-        }).collect(Collectors.toList());
-
-        // 2、导出
-        EasyExcel.write("D:\\AlarmExcel.xls", AlarmExportVO.class)
-                .sheet("模板")
-                .doWrite(list2);
-
-        // 3、使用完毕后手动删除临时文件
-        for (AlarmExportVO exportVO : list2) {
-            try {
-                File compressedFile = new File(exportVO.getAlarmImage().toURI());
-                if (!compressedFile.delete()) {
-                    // 删除操作失败，记录日志或进行其他错误处理
-                    log.error("删除临时文件失败: " + compressedFile.getAbsolutePath());
-                }
-            } catch (Exception e) {
-                // 处理删除临时文件的异常
-                e.printStackTrace();
-            }
-        }
-
     }
 
     /**
