@@ -213,7 +213,7 @@ public class Place {
      */
     private String buildParam() throws Exception {
         // String base64 = Base64.getEncoder().encodeToString(read(IMAGE_PATH));
-        String base64 = FileUtil.fileToBase64(IMAGE_URL);
+        String base64 = FileUtil.fileUrlToBase64(IMAGE_URL);
         String param = "{" +
                 "    \"header\": {" +
                 "        \"app_id\": \"" + appid + "\"," +

@@ -106,7 +106,7 @@ public class FileUtil {
     public static void main(String[] args) {
         try {
             // 示例：将文件 URL 转换为 Base64 字符串
-            // String base64EncodedFile = fileToBase64("http://192.168.239.130:9000/my-file/test2.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ROOTNAME%2F20241205%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20241205T091105Z&X-Amz-Expires=600&X-Amz-SignedHeaders=host&X-Amz-Signature=3486d698f9d297071158730472245c05970d1a7cb836e6f8b2b8fda4a6c91110");
+            // String base64EncodedFile = fileUrlToBase64("http://192.168.239.130:9000/my-file/test2.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ROOTNAME%2F20241205%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20241205T091105Z&X-Amz-Expires=600&X-Amz-SignedHeaders=host&X-Amz-Signature=3486d698f9d297071158730472245c05970d1a7cb836e6f8b2b8fda4a6c91110");
             String base64EncodedFile = fileUrlToBase64("http://scj.yuexiu.gov.cn:8082/monitoring-platform/a8fa255fe4ce37d9f0dc6f07fd99ecb61d517c68a9efbe117f3020336ad67ccc.jpg");
             System.out.println(base64EncodedFile);
         } catch (Exception e) {
