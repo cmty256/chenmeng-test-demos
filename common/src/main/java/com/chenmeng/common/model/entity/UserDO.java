@@ -2,7 +2,7 @@ package com.chenmeng.common.model.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.chenmeng.common.model.base.BaseEntity;
+import com.chenmeng.common.model.base.BaseDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -13,8 +13,8 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-@TableName(value ="user")
-public class User extends BaseEntity {
+@TableName(value = "user")
+public class UserDO extends BaseDO {
 
     /**
      * 登录账号

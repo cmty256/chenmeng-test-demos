@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.chenmeng.common.annotaiion.AuthCheck;
 import com.chenmeng.common.exception.BusinessException;
-import com.chenmeng.common.model.entity.User;
+import com.chenmeng.common.model.entity.UserDO;
 import com.chenmeng.common.result.RespCodeEnum;
 import com.chenmeng.common.service.UserService;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -51,17 +51,17 @@ public class AuthInterceptor {
         // 获取当前请求对象
         HttpServletRequest request = ((ServletRequestAttributes) requestAttributes).getRequest();
         // 获取当前登录用户
-        User user = userService.getLoginUser(request);
+        UserDO userDO = userService.getLoginUser(request);
         // 拥有任意权限即可通过（判断 anyRole 列表是否非空）
         if (CollectionUtils.isNotEmpty(anyRole)) {
-            String userRole = user.getUserRole();
+            String userRole = userDO.getUserRole();
             if (!anyRole.contains(userRole)) {
                 throw new BusinessException(RespCodeEnum.NO_AUTH_ERROR);
             }
         }
         // 必须拥有所有权限才可通过（判断 mustRole 列表是否非空）
         if (StringUtils.isNotBlank(mustRole)) {
-            String userRole = user.getUserRole();
+            String userRole = userDO.getUserRole();
             if (!mustRole.equals(userRole)) {
                 throw new BusinessException(RespCodeEnum.NO_AUTH_ERROR);
             }
