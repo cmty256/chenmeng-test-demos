@@ -18,20 +18,45 @@ public class UserVO implements Serializable {
     private Long id;
 
     /**
-     * 名字
+     * 登录账号
      */
-    @JsonProperty("userName")
-    private String name;
+    private String userAccount;
 
     /**
-     * 年龄
+     * 密码
      */
-    private Integer age;
+    private String userPassword;
 
     /**
-     * 性别：0=男，1=女
+     * 用户昵称
      */
-    private Integer sex;
+    @JsonProperty("name")
+    private String userName;
+
+    /**
+     * 用户头像
+     */
+    private String userAvatar;
+
+    /**
+     * 性别：0 - 未知；1 - 男；2 -女
+     */
+    private Integer gender;
+
+    /**
+     * 手机号码
+     */
+    private String phone;
+
+    /**
+     * 电子邮件
+     */
+    private String email;
+
+    /**
+     * 用户角色：user - 普通用户；admin - 管理员
+     */
+    private String userRole;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

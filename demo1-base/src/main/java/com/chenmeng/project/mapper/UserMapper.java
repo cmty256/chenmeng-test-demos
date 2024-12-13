@@ -2,7 +2,7 @@ package com.chenmeng.project.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.chenmeng.project.model.entity.User;
+import com.chenmeng.common.model.entity.UserDO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -10,11 +10,11 @@ import java.util.List;
 /**
 * @author chenmeng
 */
-public interface UserMapper extends BaseMapper<User> {
+public interface UserMapper extends BaseMapper<UserDO> {
 
-    Page<User> findAll(Page<User> page);
+    Page<UserDO> findAll(Page<UserDO> page);
 
-    void batchInsert(@Param("userList") List<User> userList);
+    void batchInsert(@Param("userList") List<UserDO> userList);
 }
 
 

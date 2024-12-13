@@ -1,7 +1,7 @@
 package com.chenmeng.project.controller;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.chenmeng.project.model.entity.User;
+import com.chenmeng.common.model.entity.UserDO;
 import com.chenmeng.project.model.vo.UserVO;
 import com.chenmeng.project.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +31,7 @@ public class UserController {
      */
     @GetMapping
     public List<UserVO> testLong() {
-        List<User> list = userService.list();
+        List<UserDO> list = userService.list();
         System.out.println("list = " + list);
 
         List<UserVO> voList = BeanUtil.copyToList(list, UserVO.class);

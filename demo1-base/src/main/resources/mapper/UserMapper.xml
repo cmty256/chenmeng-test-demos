@@ -4,27 +4,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chenmeng.project.mapper.UserMapper">
 
-    <resultMap id="BaseResultMap" type="com.chenmeng.project.model.entity.User">
-            <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="name" column="name" jdbcType="VARCHAR"/>
-            <result property="age" column="age" jdbcType="INTEGER"/>
-            <result property="sex" column="sex" jdbcType="TINYINT"/>
-            <result property="isDelete" column="is_delete" jdbcType="TINYINT"/>
-    </resultMap>
-
-    <sql id="Base_Column_List">
-        id,name,age,
-        sex,is_delete
-    </sql>
     <insert id="batchInsert">
-        INSERT INTO tbl_user (id,name,age,sex,is_delete)
+        INSERT INTO user (id,user_name,gender,is_delete)
         VALUES
         <foreach collection="userList" item="item" index="index" open="(" separator="),(" close=")">
-            #{item.id},#{item.name},#{item.age},#{item.sex},#{item.isDelete}
+            #{item.id},#{item.userName},#{item.gender},#{item.isDelete}
         </foreach>
     </insert>
 
-    <select id="findAll" resultType="com.chenmeng.project.model.entity.User">
-        SELECT * FROM tbl_user
+    <select id="findAll" resultType="com.chenmeng.common.model.entity.UserDO">
+        SELECT * FROM user
     </select>
+
 </mapper>
