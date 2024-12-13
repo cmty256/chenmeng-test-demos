@@ -52,6 +52,11 @@ public class UserDO extends BaseDO {
     private String email;
 
     /**
+     * 用户简介
+     */
+    private String userProfile;
+
+    /**
      * 用户角色：user - 普通用户；admin - 管理员
      */
     private String userRole;

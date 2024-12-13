@@ -26,6 +26,9 @@ create table if not exists chenmeng_test.user
     user_password varchar(512)                           not null comment '密码',
     user_name     varchar(256)                           null comment '用户昵称',
     user_avatar   varchar(1024)                          null comment '用户头像',
+    gender        tinyint                                null comment '性别：0 - 未知；1 - 男；2 -女',
+    phone         varchar(128)                           null comment '手机号',
+    email         varchar(256)                           null comment '邮箱',
     user_profile  varchar(512)                           null comment '用户简介',
     user_role     varchar(256) default 'user'            not null comment '用户角色：user/admin',
 
@@ -37,7 +40,7 @@ create table if not exists chenmeng_test.user
     tenant_id     bigint       default 0                 not null comment '租户编号',
     UNIQUE KEY uk_userAccount (user_account),
     INDEX idx_userName (user_name)
-) comment '用户' collate = utf8mb4_unicode_ci;
+) comment '用户表' collate = utf8mb4_unicode_ci;
 
 -- 接口信息
 create table if not exists chenmeng_test.`interface_info`
