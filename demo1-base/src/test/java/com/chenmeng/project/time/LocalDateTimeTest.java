@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,9 @@ public class LocalDateTimeTest {
         // 减三年
         LocalDate minusYears = LocalDate.parse(startYearStr).minusYears(3);
         System.out.println("minusYears = " + minusYears);
+
+        // 获取当前小时
+        System.out.println("LocalDateTime.now().getHour() = " + LocalDateTime.now().getHour());
     }
 
     /**

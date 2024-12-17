@@ -29,6 +29,7 @@ import java.util.regex.Matcher;
         args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class})})
 public class MyBatisPrintInterceptor implements Interceptor {
 
+    // todo: 拦截器功能修复
     private static final Logger logger = LoggerFactory.getLogger(MyBatisPrintInterceptor.class);
 
     /**

@@ -1,5 +1,9 @@
 # mybatis-plus配置
-mybatis-plus:
-  configuration:
-    # 打印日志信息
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#mybatis-plus:
+#  configuration:
+#    # 打印日志信息
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+logging:
+  level:
+    com.chenmeng.project.mapper: debug
