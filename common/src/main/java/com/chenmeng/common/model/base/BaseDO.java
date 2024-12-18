@@ -3,6 +3,7 @@ package com.chenmeng.common.model.base;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -51,6 +52,7 @@ public class BaseDO implements Serializable {
     /**
      * 是否已删除 0=否，1=是（删除）
      */
+    @TableLogic
     private Integer isDeleted;
 
     /**

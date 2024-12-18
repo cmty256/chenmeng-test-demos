@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * Excel读取错误，模型。
  *
- * @author wyy
+ * @author chenmeng
  */
 @Data
 @AllArgsConstructor
