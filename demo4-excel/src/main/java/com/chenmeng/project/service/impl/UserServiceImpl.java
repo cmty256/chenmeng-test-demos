@@ -4,6 +4,7 @@ import cn.hutool.core.collection.ListUtil;
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.write.metadata.WriteSheet;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.chenmeng.common.model.base.BasePageDTO;
@@ -176,36 +177,33 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
      */
     @SneakyThrows
     private void exportByRepeat5(BasePageDTO pageReqVO, HttpServletResponse response) {
-        List<UserDO> exportList = new LinkedList<>();
-        Long id;
+        LambdaQueryWrapper<UserDO> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.last("limit 100000");
+
         EasyExcelUtil.setResponseInfo(response, "用户信息");
         try (ExcelWriter excelWriter = EasyExcel.write(response.getOutputStream(), UserDO.class).build()) {
             // 创建一个 WriteSheet 对象
             WriteSheet writeSheet = EasyExcel.writerSheet("sheet1").build();
 
-            List<UserDO> list = this.lambdaQuery()
-                    .last("limit 100000")
-                    .list();
-            if (!list.isEmpty()) {
-                exportList.addAll(list);
-                excelWriter.write(exportList, writeSheet);
-                exportList.clear();
+            boolean hasMoreData = true;
+            Long lastId = null;
 
-                id = list.get(list.size() - 1).getId();
-                while (true) {
-                    List<UserDO> list1 = this.lambdaQuery()
-                            .gt(UserDO::getId, id)
-                            .last("limit 100000")
-                            .list();
-                    if (list1.isEmpty()) {
-                        break;
-                    }
-                    exportList.addAll(list1);
-                    excelWriter.write(exportList, writeSheet);
-                    exportList.clear();
-
-                    id = list1.get(list1.size() - 1).getId();
+            while (hasMoreData) {
+                if (lastId != null) {
+                    // 设置分页条件
+                    queryWrapper.lt(UserDO::getId, lastId);
                 }
+
+                List<UserDO> list = this.list(queryWrapper);
+                if (list.isEmpty()) {
+                    hasMoreData = false;
+                    continue;
+                }
+
+                excelWriter.write(list, writeSheet);
+
+                // 更新最后一条记录的ID
+                lastId = list.get(list.size() - 1).getId();
             }
         }
     }
