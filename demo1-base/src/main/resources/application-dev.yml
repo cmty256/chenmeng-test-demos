@@ -4,14 +4,14 @@
 #    # 打印日志信息
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
-#logging:
-#  level:
-#    com.chenmeng.project.mapper: debug
+logging:
+  level:
+    com.chenmeng.project.mapper: debug
 
-spring:
-  # 数据库配置
-  datasource:
-    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
-    url: jdbc:p6spy:mysql://localhost:3306/chenmeng_test
-    username: root
-    password: 123456
+#spring:
+#  # 数据库配置
+#  datasource:
+#    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+#    url: jdbc:p6spy:mysql://localhost:3306/chenmeng_test
+#    username: root
+#    password: 123456
