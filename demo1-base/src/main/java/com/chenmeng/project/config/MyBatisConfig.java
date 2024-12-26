@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author chenmeng
  */
-@Configuration
+// @Configuration
 public class MyBatisConfig {
 
     @Resource
