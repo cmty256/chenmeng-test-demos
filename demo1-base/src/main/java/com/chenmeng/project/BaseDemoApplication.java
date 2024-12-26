@@ -11,7 +11,6 @@ import org.springframework.core.env.Environment;
  */
 @Slf4j
 @SpringBootApplication
-@MapperScan("com.chenmeng.project.mapper")
 public class BaseDemoApplication {
 
     public static void main(String[] args) {
