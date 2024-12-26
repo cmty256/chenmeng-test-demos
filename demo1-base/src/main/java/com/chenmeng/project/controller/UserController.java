@@ -1,6 +1,8 @@
 package com.chenmeng.project.controller;
 
 import cn.hutool.core.bean.BeanUtil;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.chenmeng.common.model.entity.UserDO;
 import com.chenmeng.project.model.vo.UserVO;
 import com.chenmeng.project.service.UserService;
@@ -31,11 +33,20 @@ public class UserController {
      */
     @GetMapping
     public List<UserVO> testLong() {
+        long begin = System.currentTimeMillis();
+        Page<UserDO> objectPage = new Page<>(1, 10);
+        Page<UserDO> page = userService.page(objectPage, Wrappers.<UserDO>lambdaQuery()
+                .select(UserDO::getId, UserDO::getUserAccount));
+        System.out.println("耗时：" + (System.currentTimeMillis() - begin));
+        System.out.println(page.getCurrent());
+
         List<UserDO> list = userService.list();
         System.out.println("list = " + list);
 
         List<UserVO> voList = BeanUtil.copyToList(list, UserVO.class);
         System.out.println("userVOS = " + voList);
         return voList;
+
+
     }
 }

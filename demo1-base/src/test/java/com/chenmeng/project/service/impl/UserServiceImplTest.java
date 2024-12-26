@@ -1,7 +1,7 @@
 package com.chenmeng.project.service.impl;
 
-import cn.hutool.core.util.RandomUtil;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.chenmeng.common.model.entity.UserDO;
 import com.chenmeng.project.service.UserService;
@@ -13,7 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -97,25 +96,13 @@ class UserServiceImplTest {
         // userMapper.batchInsert(users);
     }
 
-    /**
-     * 批量插入数据
-     */
     @Test
-    void saveData() {
-        LinkedList<UserDO> list = new LinkedList<>();
-        for (int i = 0; i < 10_0000; i++) {
-            UserDO userDO = new UserDO();
-            userDO.setUserAccount(RandomUtil.randomString(8));
-            userDO.setUserPassword("12345678");
-            userDO.setUserName("张三");
-            userDO.setUserAvatar("头像");
-            userDO.setGender(1);
-            userDO.setPhone("13112345678");
-            userDO.setEmail("邮箱");
-            userDO.setUserProfile("简介");
-            userDO.setUserRole("user");
-            list.add(userDO);
-        }
-        System.out.println("userService.saveBatch(list) = " + userService.saveBatch(list));
+    void testGetPage() {
+        long begin = System.currentTimeMillis();
+        Page<UserDO> objectPage = new Page<>(3, 10);
+        Page<UserDO> page = userService.page(objectPage, Wrappers.<UserDO>lambdaQuery()
+                .select(UserDO::getId, UserDO::getUserAccount));
+        System.out.println("耗时：" + (System.currentTimeMillis() - begin));
+        System.out.println(page.getCurrent());
     }
 }
