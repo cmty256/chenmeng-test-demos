@@ -16,8 +16,6 @@ import org.springframework.data.redis.serializer.RedisSerializationContext;
  *
  * @author chenmeng
  */
-@Configuration
-@EnableCaching
 public class CacheConfig {
 
     @Bean

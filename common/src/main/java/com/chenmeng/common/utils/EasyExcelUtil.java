@@ -22,7 +22,6 @@ import java.util.Map;
  * @author chenmeng
  */
 @Slf4j
-@Component
 public class EasyExcelUtil {
 
     /**

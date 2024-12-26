@@ -19,7 +19,6 @@ import java.util.concurrent.TimeUnit;
  * @author chenmeng
  */
 @SuppressWarnings(value = {"unchecked", "rawtypes"})
-@Component
 @RequiredArgsConstructor
 public class RedisUtil {
 
