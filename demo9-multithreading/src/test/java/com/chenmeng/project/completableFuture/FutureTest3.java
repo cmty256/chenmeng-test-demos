@@ -2,6 +2,8 @@ package com.chenmeng.project.completableFuture;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -82,11 +84,40 @@ public class FutureTest3 {
         // 为 null
         allOfFuture.get();
 
-        // 输出
+        // 输出（顺序不固定）
         /*
         我也执行完了
         我执行完了
         finish
+        */
+    }
+
+    @Test
+    void testAllOf2() {
+        List<CompletableFuture<?>> futures = Arrays.asList(
+                CompletableFuture.runAsync(() -> System.out.println("Task 1")),
+                CompletableFuture.runAsync(() -> {
+                    // try {
+                    //     Thread.sleep(500); // 模拟较长时间的任务
+                    // } catch (InterruptedException e) {
+                    //     Thread.currentThread().interrupt();
+                    // }
+                    System.out.println("Task 2");
+                })
+        );
+
+        // 等待所有任务完成
+        CompletableFuture
+                // 这里使用了 List 的 toArray(T[] a) 方法将 List<CompletableFuture<?>> 转换为 CompletableFuture<?>[] 数组。
+                // 之所以传递一个空的 CompletableFuture[0] 是因为 toArray(T[] a) 方法需要一个与列表元素类型相同的数组作为参数，以确定返回数组的类型和大小。
+                // 如果不提供任何数组作为参数，toArray() 方法将返回 Object[]，这在调用 allOf() 时会导致编译错误，因为它期望的是 CompletableFuture<?>[]
+                .allOf(futures.toArray(new CompletableFuture[0]))
+                .join();
+
+        // 输出（顺序不固定）
+        /*
+        Task 2
+        Task 1
         */
     }
 
