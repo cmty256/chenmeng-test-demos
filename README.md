@@ -11,3 +11,4 @@
 - demo8-task：定时任务测试模块
 - demo9-multithreading：多线程测试模块
 - demo10-third-api：第三方接口调用测试模块
+- demo11-message：消息队列测试工程

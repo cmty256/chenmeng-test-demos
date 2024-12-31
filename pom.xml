@@ -46,6 +46,7 @@
         <module>demo8-task</module>
         <module>demo9-multithreading</module>
         <module>demo10-third-api</module>
+        <module>demo11-message</module>
     </modules>
 
 	<!-- 定义依赖管理 -->

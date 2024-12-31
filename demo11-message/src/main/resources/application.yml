@@ -1,0 +1,57 @@
+server:
+  port: 9111
+  servlet:
+    # 将Servlet的上下文路径配置为“/api”，那么应用的根路径就变成了“http://localhost:[端口]/api”。
+    context-path: /api
+
+spring:
+  application:
+    name: demo11-message
+  # 启动环境配置
+  profiles:
+    active: dev
+  # Servlet 配置
+  servlet:
+    # 文件上传相关配置项
+    multipart:
+      max-file-size: 16MB # 单个文件大小
+      max-request-size: 32MB # 设置总上传的文件大小
+  # 数据库配置
+  datasource:
+    #    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    #    url: jdbc:p6spy:mysql://localhost:3306/chenmeng_test
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/chenmeng_test
+    username: root
+    password: 123456
+  mvc:
+    pathmatch:
+      # 指定URL路径匹配的策略--Ant--风格，默认的URL路径匹配的策略是AntPathMatcher
+      # 是为了兼容swagger（springBoot 2.6版本以上需要设置）
+      matching-strategy: ANT_PATH_MATCHER
+
+# mybatis-plus配置
+mybatis-plus:
+  global-config:
+    # 关闭MP3.0自带的banner
+    banner: false
+    db-config:
+      # 主键类型
+      # AUTO-0: "数据库ID自增", NONE-1: "不操作",
+      # INPUT-2: "用户输入ID", ASSIGN_ID-3: "数字型snowflake",
+      # ASSIGN_UUID-4:"全局唯一ID UUID";
+      id-type: ASSIGN_ID
+      # 字段策略 -- 例如利用updateWrapper更新时，会做null判断，如果传参数为null，就不会更新
+      insert-strategy: not_null
+      update-strategy: not_null
+      # 是否将驼峰命名转换为下划线命名
+      table-underline: true
+      # 逻辑删除配置
+      logic-delete-field: isDeleted # 全局逻辑删除的实体字段名(since 3.3.0,配置后可以忽略不配置步骤2)
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+  configuration:
+    # 是否将下划线命名转换为驼峰命名
+    map-underscore-to-camel-case: true
+    # 是否启用缓存
+    cache-enabled: false
