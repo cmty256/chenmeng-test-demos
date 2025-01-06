@@ -18,6 +18,7 @@
     <modules>
         <module>task-spring</module>
         <module>task-quartz-memory</module>
+        <module>task-quartz-jdbc</module>
     </modules>
 
     <properties>
