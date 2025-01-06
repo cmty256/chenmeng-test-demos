@@ -6,11 +6,19 @@ import org.quartz.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * @author chenmeng
+ */
 @Configuration
 public class ScheduleConfiguration {
 
     public static class DemoJob01Configuration {
 
+        /**
+         * 创建 DemoJob01 的 JobDetail Bean 对象
+         *
+         * @return JobDetail
+         */
         @Bean
         public JobDetail demoJob01() {
             return JobBuilder.newJob(DemoJob01.class)
@@ -19,12 +27,18 @@ public class ScheduleConfiguration {
                     .build();
         }
 
+        /**
+         * 创建 DemoJob01 的 Trigger Bean 对象。
+         * 其中，我们使用 SimpleScheduleBuilder 简单的调度计划的构造器，创建了每 5 秒执行一次，无限重复的调度计划
+         *
+         * @return Trigger
+         */
         @Bean
         public Trigger demoJob01Trigger() {
             // 简单的调度计划的构造器
             SimpleScheduleBuilder scheduleBuilder = SimpleScheduleBuilder.simpleSchedule()
-                    .withIntervalInSeconds(5) // 频率。
-                    .repeatForever(); // 次数。
+                    .withIntervalInSeconds(5) // 频率 - 每 5 秒。
+                    .repeatForever(); // 次数 - 无限重复。
             // Trigger 构造器
             return TriggerBuilder.newTrigger()
                     .forJob(demoJob01()) // 对应 Job 为 demoJob01
@@ -37,6 +51,11 @@ public class ScheduleConfiguration {
 
     public static class DemoJob02Configuration {
 
+        /**
+         * 创建 DemoJob02 的 JobDetail Bean 对象
+         *
+         * @return JobDetail
+         */
         @Bean
         public JobDetail demoJob02() {
             return JobBuilder.newJob(DemoJob02.class)
@@ -45,6 +64,13 @@ public class ScheduleConfiguration {
                     .build();
         }
 
+        /**
+         * 创建 DemoJob02 的 Trigger Bean 对象。
+         * 其中，我们使用 CronScheduleBuilder 基于 Quartz Cron 表达式的调度计划的构造器，
+         * 创建了每第 10 秒执行一次的调度计划。
+         *
+         * @return Trigger
+         */
         @Bean
         public Trigger demoJob02Trigger() {
             //  基于 Quartz Cron 表达式的调度计划的构造器

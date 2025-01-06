@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author chenmeng
  */
 @SpringBootApplication
-public class QuartzApplication {
+public class QuartzMemoryApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(QuartzApplication.class, args);
+        SpringApplication.run(QuartzMemoryApplication.class, args);
     }
 
 }

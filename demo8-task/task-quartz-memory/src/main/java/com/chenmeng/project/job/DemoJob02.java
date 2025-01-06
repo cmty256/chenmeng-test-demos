@@ -6,13 +6,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
+/**
+ * @author chenmeng
+ */
 public class DemoJob02 extends QuartzJobBean {
 
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
-        logger.info("[executeInternal][我开始的执行了]");
+        logger.info("[DemoJob02-executeInternal][我每第10秒执行一次]");
     }
 
 }

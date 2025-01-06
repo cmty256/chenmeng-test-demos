@@ -9,7 +9,8 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>task-quartz</artifactId>
+    <artifactId>task-quartz-memory</artifactId>
+    <description>Quartz 单机示例</description>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>

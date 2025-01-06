@@ -1,7 +1,7 @@
 spring:
   application:
     name:
-      task-quartz
+      task-quartz-memory
   # Quartz 的配置，对应 QuartzProperties 配置类
   quartz:
     job-store-type: memory # Job 存储器类型。默认为 memory 表示内存，可选 jdbc 使用数据库。

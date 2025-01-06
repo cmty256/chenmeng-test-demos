@@ -17,7 +17,7 @@
     <!-- 定义子模块 -->
     <modules>
         <module>task-spring</module>
-        <module>task-quartz</module>
+        <module>task-quartz-memory</module>
     </modules>
 
     <properties>
