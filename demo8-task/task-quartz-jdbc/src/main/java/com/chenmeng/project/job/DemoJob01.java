@@ -9,12 +9,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
 import javax.annotation.Resource;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author chenmeng
  */
-@DisallowConcurrentExecution
+@DisallowConcurrentExecution // 保证相同 JobDetail 在多个 JVM 进程中，有且仅有一个节点在执行
 public class DemoJob01 extends QuartzJobBean {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());

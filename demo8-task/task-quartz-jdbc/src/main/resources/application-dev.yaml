@@ -1,16 +1,16 @@
 spring:
   application:
     name:
-      task-quartz-jdbc # quartz
+      task-quartz-jdbc
 
   datasource:
-    user:
+    user: # 这里主要目的是，为了模拟我们一般项目，使用到的业务数据库。
       url: jdbc:mysql://127.0.0.1:3306/chenmeng_test?useSSL=false&useUnicode=true&characterEncoding=UTF-8
       driver-class-name: com.mysql.cj.jdbc.Driver
       username: root
       password: 123456
-    quartz:
-      url: jdbc:mysql://127.0.0.1:3306/chenmeng_test?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    quartz: # 这里主要目的是，Quartz 会使用单独的数据库。如果我们有多个项目需要使用到 Quartz 数据库的话，可以统一使用一个，但是要注意配置 spring.quartz.scheduler-name 设置不同的 Scheduler 名字，形成不同的 Quartz 集群。
+      url: jdbc:mysql://127.0.0.1:3306/chenmeng_quartz?useSSL=false&useUnicode=true&characterEncoding=UTF-8
       driver-class-name: com.mysql.cj.jdbc.Driver
       username: root
       password: 123456
@@ -30,7 +30,9 @@ spring:
           jobStore:
             # 数据源名称
             dataSource: quartzDataSource # 使用的数据源
-            class: org.quartz.impl.jdbcjobstore.JobStoreTX # JobStore 实现类
+            # Spring Boot 2.6.0+ 中，job-store-type: jdbc 会自动选择 JobStoreTX，无需显式指定 org.quartz.jobStore.class。
+            # 如果指定了，项目运行会报错。
+#            class: org.quartz.impl.jdbcjobstore.JobStoreTX # JobStore 实现类
             driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
             tablePrefix: QRTZ_ # Quartz 表前缀
             isClustered: true # 是集群模式

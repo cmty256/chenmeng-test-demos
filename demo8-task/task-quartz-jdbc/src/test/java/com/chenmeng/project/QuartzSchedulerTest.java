@@ -10,10 +10,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 /**
  * Scheduler 手动设置
+ * 执行之前，需要确保项目中只有一个 @SpringBootApplication 注解 或者 指定扫描范围
  *
  * @author chenmeng
  */
-@SpringBootTest
+@SpringBootTest(classes = QuartzJdbcApplication.class)
 public class QuartzSchedulerTest {
 
     @Autowired

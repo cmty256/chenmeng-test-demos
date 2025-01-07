@@ -76,7 +76,7 @@ public class ScheduleConfiguration {
         @Bean
         public Trigger demoJob02Trigger() {
             //  基于 Quartz Cron 表达式的调度计划的构造器
-            CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule("0/10 * * * * ? *");
+            CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule("0/3 * * * * ? *");
             // Trigger 构造器
             return TriggerBuilder.newTrigger()
                     .forJob(demoJob02()) // 对应 Job 为 demoJob02
