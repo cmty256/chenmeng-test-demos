@@ -20,6 +20,7 @@
         <module>task-quartz-memory</module>
         <module>task-quartz-jdbc</module>
         <module>task-xxl-job</module>
+        <module>xxl-job-admin</module>
     </modules>
 
     <properties>
