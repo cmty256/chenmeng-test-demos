@@ -73,15 +73,17 @@ public class SSHClient {
         String[] commands = {
                 "top -bn1 | grep 'Cpu(s)' | awk '{print $2 + $4}'", // CPU 使用率
                 "free | grep Mem | awk '{print $3/$2 * 100.0}'",    // 内存使用率
-                "iostat -x",                                        // 磁盘 IO 队列长度
+                "iostat -x | awk '/^Device/,0 {if ($1 ~ /^sd/) print $1, $NF}'", // 磁盘 IO 队列长度
                 "df -h | grep '/$' | awk '{print $5}'",             // 磁盘使用率
                 "iostat -d | awk 'NR==4 {print $2}'"                // 磁盘吞吐量
         };
 
         for (String command : commands) {
             System.out.println("Executing command: " + command);
-            String result = executeCommand(host, port, user, password, command);
-            System.out.println(result);
+            String result = SSHClient.executeCommand(host, port, user, password, command);
+            if (result != null) {
+                System.out.println(result.replace("\n", ","));
+            }
         }
 
         String res = executeCommand(host, port, user, password, "ls -l");
