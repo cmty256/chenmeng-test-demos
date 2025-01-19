@@ -63,4 +63,18 @@ public class ServerTest {
         // result = SSHClient.executeCommand(host, port, user, password, s3);
         System.out.println("result = " + result);
     }
+
+
+    /**
+     * 测试设备校时功能
+     */
+    @Test
+    void testEquipmentTiming() {
+        // String command = "ntpdate ntp.aliyun.com";
+        String command = "date +%Y-%m-%d\\\\ %H:%M:%S";
+        String result = SSHClient.executeCommand(host, port, user, password, command);
+        if (result != null) {
+            System.out.println(result.replace("\n", ","));
+        }
+    }
 }
