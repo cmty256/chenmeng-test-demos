@@ -3,6 +3,10 @@ package com.chenmeng.project.server;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Objects;
+
 /**
  * 服务器相关测试
  *
@@ -70,11 +74,23 @@ public class ServerTest {
      */
     @Test
     void testEquipmentTiming() {
-        // String command = "ntpdate ntp.aliyun.com";
-        String command = "date +%Y-%m-%d\\\\ %H:%M:%S";
+        // 当前时间
+        LocalDateTime now = LocalDateTime.now();
+        String currentTime = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        System.out.println(currentTime);
+        // 设备时间
+        String command = "date \"+%Y-%m-%d %H:%M\"";
         String result = SSHClient.executeCommand(host, port, user, password, command);
-        if (result != null) {
-            System.out.println(result.replace("\n", ","));
+        String equTime = Objects.requireNonNull(result).replace("\n", "");
+        System.out.println(equTime);
+
+        // 校验时间是否一致
+        if (!currentTime.equals(equTime)) {
+            System.out.println("设备时间与当前时间不一致，需要校时");
+            // 校时
+            // String s = "date -s \"" + currentTime + "\"";
+            // result = SSHClient.executeCommand(host, port, user, password, s);
+            // System.out.println("result = " + result);
         }
     }
 }
