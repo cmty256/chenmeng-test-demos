@@ -24,6 +24,20 @@
             <artifactId>common</artifactId>
         </dependency>
 
+        <!-- 集成javacv -->
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>javacv-platform</artifactId>
+            <version>1.5.9</version>
+        </dependency>
+
+        <!-- 集成opencv：https://mvnrepository.com/artifact/org.bytedeco/opencv -->
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>opencv</artifactId>
+            <version>4.7.0-1.5.9</version>
+        </dependency>
+
         <!-- 用于获取服务器的信息 -->
         <dependency>
             <groupId>com.jcraft</groupId>
