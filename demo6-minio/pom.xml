@@ -19,6 +19,13 @@
     </properties>
 
     <dependencies>
+        <!--根据扩展名取mimetype-->
+        <dependency>
+            <groupId>com.j256.simplemagic</groupId>
+            <artifactId>simplemagic</artifactId>
+            <version>1.17</version>
+        </dependency>
+
         <dependency>
             <groupId>net.coobird</groupId>
             <artifactId>thumbnailator</artifactId>
