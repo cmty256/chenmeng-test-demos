@@ -1,4 +1,4 @@
-package com.chenmeng.project.controller;
+package com.chenmeng.project.qualityEstimate;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;

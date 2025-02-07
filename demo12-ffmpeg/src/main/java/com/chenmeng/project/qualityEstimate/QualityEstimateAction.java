@@ -1,4 +1,4 @@
-package com.chenmeng.project.controller;
+package com.chenmeng.project.qualityEstimate;
 
 import org.bytedeco.javacv.Java2DFrameConverter;
 import org.bytedeco.javacv.OpenCVFrameConverter;

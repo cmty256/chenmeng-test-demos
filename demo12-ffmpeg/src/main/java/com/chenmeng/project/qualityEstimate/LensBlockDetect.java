@@ -1,4 +1,4 @@
-package com.chenmeng.project.controller;
+package com.chenmeng.project.qualityEstimate;
 
 import org.bytedeco.opencv.global.opencv_core;
 import org.bytedeco.opencv.global.opencv_imgproc;
