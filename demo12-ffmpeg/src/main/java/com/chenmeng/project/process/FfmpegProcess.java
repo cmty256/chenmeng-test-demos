@@ -1,9 +1,11 @@
 package com.chenmeng.project.process;
 
+import cn.hutool.core.date.DateUtil;
 import com.chenmeng.common.constants.enums.VideoConstant;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
+import java.time.LocalDateTime;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -22,10 +24,14 @@ public class FfmpegProcess {
     static String startTime = "00:00:10";
     static int durationSecond = 10;
 
+    static String rtspUrl = VideoConstant.RTSP_URL_1;
+    static String streamOutputFile = VideoConstant.FRAME_FILE_PREFIX + File.separator + DateUtil.format(DateUtil.date(), "yyyyMMddHHmmss") + ".jpg";
+
     public static void main(String[] args) throws Exception {
 
-        String command = getVideoClipCommand(inputFile, outputFile, startTime, durationSecond);
+        // String command = getVideoClipCommand(inputFile, outputFile, startTime, durationSecond);
         // String command = getVideoTranscodeCommand(inputFile2, transcodeFile);
+        String command = getStreamFrameExtractionCommand(rtspUrl, streamOutputFile);
 
         System.out.println("执行命令: " + command);
         // 创建操作系统进程
@@ -47,6 +53,17 @@ public class FfmpegProcess {
         } else {
             System.err.println("执行过程中出现错误，退出代码：" + exitCode);
         }
+    }
+
+    /**
+     * 获取实时视频流抽帧的命令（只抓取一张图片）
+     *
+     * @param url        视频流 url，例如 rtsp 流地址
+     * @param outputFile 输出文件路径
+     * @return 实时视频流抽帧的命令
+     */
+    private static String getStreamFrameExtractionCommand(String url, String outputFile) {
+        return String.format("%s -y -i %s -ss 1 -frames:v 1 %s", VideoConstant.FFMPEG_PATH, url, outputFile);
     }
 
     /**
