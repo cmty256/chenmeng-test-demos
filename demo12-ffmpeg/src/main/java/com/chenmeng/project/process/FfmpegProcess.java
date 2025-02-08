@@ -1,12 +1,15 @@
 package com.chenmeng.project.process;
 
 import com.chenmeng.common.constants.enums.VideoConstant;
+import lombok.extern.slf4j.Slf4j;
 
-import java.io.File;
+import java.io.*;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * @author chenmeng
  */
+@Slf4j
 public class FfmpegProcess {
 
     static String inputFile = VideoConstant.VIDEO_FILE_PATH1;
@@ -21,21 +24,23 @@ public class FfmpegProcess {
 
     public static void main(String[] args) throws Exception {
 
-        // String command = getVideoClipCommand(inputFile, outputFile, startTime, durationSecond);
-        String command = getVideoTranscodeCommand(inputFile2, transcodeFile);
+        String command = getVideoClipCommand(inputFile, outputFile, startTime, durationSecond);
+        // String command = getVideoTranscodeCommand(inputFile2, transcodeFile);
 
         System.out.println("执行命令: " + command);
+        // 创建操作系统进程
         ProcessBuilder builder = new ProcessBuilder();
 
-        // Linux/macOS
-        // builder.command("bash", "-c", command);
+        // 执行命令
+        executeCommand(builder, command, "windows");
 
-        // Windows
-        builder.command("cmd", "/c", command);
-
+        // 合并标准输出和标准错误输出流
+        builder.redirectErrorStream(true);
         Process process = builder.start();
 
-        // todo 解决缓冲区填满，进程阻塞的情况
+        // 异步读取输出流，避免阻塞
+        CompletableFuture<Void> future = readOutputAsync(process.getInputStream());
+
         int exitCode = process.waitFor();
         if (exitCode == 0) {
             System.out.println("执行成功");
@@ -79,6 +84,43 @@ public class FfmpegProcess {
             if (!file.delete()) {
                 System.err.println("无法删除文件: " + filePath);
             }
+        }
+    }
+
+    /**
+     * 异步读取 ffmpeg 输出流
+     */
+    private static CompletableFuture<Void> readOutputAsync(InputStream inputStream) {
+        return CompletableFuture.runAsync(() -> {
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    System.out.println(line);
+                }
+            } catch (IOException e) {
+                log.error("读取 ffmpeg 输出流异常", e);
+            }
+        });
+    }
+
+    /**
+     * 执行命令
+     *
+     * @param builder 进程构建器
+     * @param command 命令
+     * @param osType  操作系统类型
+     */
+    private static void executeCommand(ProcessBuilder builder, String command, String osType) {
+        switch (osType) {
+            case "windows":
+                builder.command("cmd", "/c", command);
+                break;
+            case "Linux":
+            case "macOS":
+                builder.command("bash", "-c", command);
+                break;
+            default:
+                throw new RuntimeException("不支持的操作系统类型");
         }
     }
 }
