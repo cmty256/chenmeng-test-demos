@@ -13,3 +13,4 @@
 - demo10-third-api：第三方接口调用测试模块
 - demo11-message：消息队列测试工程
 - demo12-ffmpeg：ffmpeg测试模块
+- demo13-spring-security: SpringSecurity测试模块

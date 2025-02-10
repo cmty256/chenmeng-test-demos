@@ -48,6 +48,7 @@
         <module>demo10-third-api</module>
         <module>demo11-message</module>
         <module>demo12-ffmpeg</module>
+        <module>demo13-spring-security</module>
     </modules>
 
 	<!-- 定义依赖管理 -->
