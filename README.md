@@ -14,3 +14,4 @@
 - demo11-message：消息队列测试工程
 - demo12-ffmpeg：ffmpeg测试模块
 - demo13-spring-security: SpringSecurity测试模块
+- demo14-spring-security-oauth: SpringSecurity+OAuth2测试模块
