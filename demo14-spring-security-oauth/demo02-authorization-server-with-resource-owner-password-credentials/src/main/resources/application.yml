@@ -1,0 +1,9 @@
+server:
+  port: 8080
+  servlet:
+    # 将Servlet的上下文路径配置为“/api”，那么应用的根路径就变成了“http://localhost:[端口]/api”。
+    context-path: /api
+
+spring:
+  application:
+    name: AuthorizationServer
