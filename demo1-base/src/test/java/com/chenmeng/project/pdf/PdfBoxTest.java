@@ -1,4 +1,4 @@
-package com.chenmeng.project;
+package com.chenmeng.project.pdf;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentInformation;
@@ -9,7 +9,6 @@ import org.apache.pdfbox.pdmodel.font.PDType0Font;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,7 +19,6 @@ import java.util.Calendar;
  *
  * @author chenmeng
  */
-@SpringBootTest
 public class PdfBoxTest {
 
     private static final String content = "超兽武装\r\n" +
@@ -227,7 +225,7 @@ public class PdfBoxTest {
         }
     }
 
-    private static PDFont getDefaultFont(PDDocument doc) {
+    public static PDFont getDefaultFont(PDDocument doc) {
         PDFont font;
         try {
             File file = new File("src/main/resources/pdf/font.ttf");
