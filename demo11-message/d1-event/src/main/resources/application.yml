@@ -6,7 +6,7 @@ server:
 
 spring:
   application:
-    name: demo11-message
+    name: demo11-message-event
   # 启动环境配置
   profiles:
     active: dev

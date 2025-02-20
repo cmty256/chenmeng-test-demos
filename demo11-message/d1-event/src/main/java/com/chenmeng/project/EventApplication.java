@@ -12,12 +12,12 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @Slf4j
 @SpringBootApplication
 @EnableAsync // 开启 Spring 异步的功能
-public class MessageDemoApplication {
+public class EventApplication {
 
     public static void main(String[] args) {
         // SpringApplication.run(MessageDemoApplication.class, args);
 
-        SpringApplication app = new SpringApplication(MessageDemoApplication.class);
+        SpringApplication app = new SpringApplication(EventApplication.class);
         Environment env = app.run(args).getEnvironment();
         // 获取服务器的Scheme（HTTP或HTTPS）
         String scheme = "true".equals(env.getProperty("server.ssl.enabled", "false")) ? "https" : "http";
