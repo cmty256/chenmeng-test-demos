@@ -21,6 +21,7 @@ public class Demo04Producer {
         // 创建 Demo04Message 消息
         Demo04Message message = new Demo04Message();
         message.setId(id);
+        message.setMark("说明");
         // 同步发送消息
         return kafkaTemplate.send(Demo04Message.TOPIC, message).get();
     }

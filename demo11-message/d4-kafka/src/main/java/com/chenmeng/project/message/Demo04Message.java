@@ -16,4 +16,6 @@ public class Demo04Message {
      * 编号
      */
     private Integer id;
+
+    private String mark;
 }
