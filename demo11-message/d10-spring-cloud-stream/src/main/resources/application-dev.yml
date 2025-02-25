@@ -1,0 +1,31 @@
+# mybatis-plus配置
+mybatis-plus:
+  configuration:
+    # 打印日志信息
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+spring:
+  cloud:
+    stream:
+      # stream + kafka 配置
+      kafka:
+        binder:
+          brokers: 127.0.0.1:9092 #Kafka的消息中间件服务器
+          auto-create-topics: true #设置自动创建Topic
+      bindings:
+        output:
+          destination: demo_topic
+          content-type: text/plain  #消息发送的格式，这里使用 text。接收端不用指定格式，但是发送端要
+        input:
+          destination: demo_topic
+          group: demo_consumer_group
+        # 自定义output - 生产
+        face_output:
+          destination: face_topic #消息发往的目的地
+          content-type: application/json
+        human_output:
+          destination: human_topic
+          content-type: application/json
+        vehicle_output:
+          destination: vehicle_topic
+          content-type: application/json
