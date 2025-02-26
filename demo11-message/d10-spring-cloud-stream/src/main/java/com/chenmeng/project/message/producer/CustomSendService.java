@@ -1,6 +1,8 @@
 package com.chenmeng.project.message.producer;
 
 import com.chenmeng.project.message.channel.CustomSourceChannel;
+import com.chenmeng.project.message.dto.HumanDTO;
+import com.chenmeng.project.message.dto.VehicleDTO;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.messaging.support.MessageBuilder;
 
@@ -24,14 +26,14 @@ public class CustomSendService {
                         .build());
     }
 
-    public void sendHumanMsg(String msg) {
+    public void sendHumanMsg(HumanDTO msg) {
         sourceChannel.humanOutput()
                 .send(MessageBuilder
                         .withPayload(msg)
                         .build());
     }
 
-    public void sendVehicleMsg(String msg) {
+    public void sendVehicleMsg(VehicleDTO msg) {
         sourceChannel.vehicleOutput()
                 .send(MessageBuilder
                         .withPayload(msg)

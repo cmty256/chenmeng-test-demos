@@ -1,22 +1,22 @@
 package com.chenmeng.project.controller;
 
+import com.chenmeng.project.message.dto.HumanDTO;
+import com.chenmeng.project.message.dto.VehicleDTO;
+import com.chenmeng.project.message.producer.CustomSendService;
 import com.chenmeng.project.message.producer.SendService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import javax.annotation.Resource;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author chenmeng
  */
 @RestController
 @RequestMapping("/send")
+@RequiredArgsConstructor
 public class StreamController {
 
-    @Resource
-    private SendService sendService;
+    private final SendService sendService;
+    private final CustomSendService customSendService;
 
     /**
      * 普通字符串消息发送
@@ -30,4 +30,21 @@ public class StreamController {
         return "发送成功";
     }
 
+    @GetMapping("/face/{msg}")
+    public String sendFaceMsg(@PathVariable("msg") String msg){
+        customSendService.sendFaceMsg(msg);
+        return "发送成功-Face";
+    }
+
+    @PostMapping("/human")
+    public String sendHumanMsg(@RequestBody HumanDTO dto){
+        customSendService.sendHumanMsg(dto);
+        return "发送成功-Human";
+    }
+
+    @PostMapping("/vehicle")
+    public String sendVehicleMsg(@RequestBody VehicleDTO dto){
+        customSendService.sendVehicleMsg(dto);
+        return "发送成功-vehicle";
+    }
 }

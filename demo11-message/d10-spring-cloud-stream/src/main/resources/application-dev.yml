@@ -14,18 +14,27 @@ spring:
           auto-create-topics: true #设置自动创建Topic
       bindings:
         output:
-          destination: demo_topic
-          content-type: text/plain  #消息发送的格式，这里使用 text。接收端不用指定格式，但是发送端要
+          destination: demo_topic #消息发往的目的地
+          content-type: text/plain #消息发送的格式，这里使用 text。发送字符串消息的时候需要配置，默认是 json格式
         input:
-          destination: demo_topic
-          group: demo_consumer_group
+          destination: demo_topic #目的地
+          group: demo_consumer_group #消费者分组
         # 自定义output - 生产
         face_output:
-          destination: face_topic #消息发往的目的地
-          content-type: application/json
+          destination: face_topic
+          content-type: text/plain
         human_output:
           destination: human_topic
-          content-type: application/json
+          content-type: application/json #默认是 application/json（可能会因版本而异）
         vehicle_output:
           destination: vehicle_topic
-          content-type: application/json
+        # 自定义input - 消费
+        face_input:
+          destination: face_topic
+          group: face_consumer_group
+        human_input:
+          destination: human_topic
+          group: human_consumer_group
+        vehicle_input:
+          destination: vehicle_topic
+          group: vehicle_consumer_group
