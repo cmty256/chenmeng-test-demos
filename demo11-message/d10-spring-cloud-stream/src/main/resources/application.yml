@@ -9,7 +9,8 @@ spring:
     name: demo11-message-spring-cloud-stream
   # 启动环境配置
   profiles:
-    active: dev
+#    active: dev
+    active: dlq
   # Servlet 配置
   servlet:
     # 文件上传相关配置项
