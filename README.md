@@ -4,14 +4,24 @@
 - demo1-base：基础测试模块
 - demo2-exception：异常处理模块
 - demo3-leetcode：力扣题解模块
-- demo4-excel：EasyExcel功能测试模块
+- demo4-excel：EasyExcel 功能测试模块
 - demo5-jiguang：极光推送测试模块
-- demo6-minio：MinIO文件存储测试模块
+- demo6-minio：MinIO 文件存储测试模块
 - demo7-design-patterns：设计模式测试模块
 - demo8-task：定时任务测试模块
+  - spring-task：Spring Scheduler 写法示例
+  - quartz-memory：基于内存的 quartz 单机示例
+  - quartz-jdbc：基于数据库的 quartz 集群示例
+  - xxl-job-admin：xxl-job 2.4.2 调度中心
+  - xxl-job：xxl-job 执行器
 - demo9-multithreading：多线程测试模块
 - demo10-third-api：第三方接口调用测试模块
 - demo11-message：消息队列测试工程
-- demo12-ffmpeg：ffmpeg测试模块
-- demo13-spring-security: SpringSecurity测试模块
-- demo14-spring-security-oauth: SpringSecurity+OAuth2测试模块
+  - event：基于内存 - 事件机制
+  - rocketmq（待编写）
+  - kafka：SpringBoot Kafka 写法示例
+  - spring-cloud-stream：spring cloud stream kafka 写法示例
+- demo12-ffmpeg：ffmpeg 测试模块
+- demo13-spring-security: SpringSecurity 测试模块
+- demo14-spring-security-oauth: Spring Security OAuth2 测试模块
+- demo15-pdf: pdf 测试模块
