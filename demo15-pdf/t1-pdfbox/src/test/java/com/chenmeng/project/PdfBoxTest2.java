@@ -1,4 +1,4 @@
-package com.chenmeng.project.pdf;
+package com.chenmeng.project;
 
 import lombok.SneakyThrows;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -8,8 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.InputStream;
-
-import static com.chenmeng.project.pdf.PdfBoxTest.getDefaultFont;
 
 /**
  * @author chenmeng

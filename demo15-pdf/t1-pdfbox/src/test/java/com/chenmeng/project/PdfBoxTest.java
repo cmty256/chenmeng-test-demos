@@ -1,4 +1,4 @@
-package com.chenmeng.project.pdf;
+package com.chenmeng.project;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentInformation;

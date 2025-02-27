@@ -50,6 +50,7 @@
         <module>demo12-ffmpeg</module>
         <module>demo13-spring-security</module>
         <module>demo14-spring-security-oauth</module>
+        <module>demo15-pdf</module>
     </modules>
 
 	<!-- 定义依赖管理 -->
