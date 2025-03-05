@@ -1,15 +1,18 @@
 package com.chenmeng.project.json;
 
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSON;
 import cn.hutool.json.JSONArray;
+import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author chenmeng
  */
-@SpringBootTest
 public class JsonTest {
 
     String s1 = "{\n" +
@@ -114,5 +117,35 @@ public class JsonTest {
         String label = String.valueOf(JSONUtil.getByPath(json, "$.place.[0].entity.[0].id"));
         // label = 52
         System.out.println("label = " + label);
+    }
+
+    String s3 = "[\n" +
+            "  {\n" +
+            "    \"status\":\"上报\",\n" +
+            "    \"url\":\"https://xxx.com/default/123.png\",\n" +
+            "    \"key\":123\n" +
+            "  },\n" +
+            "  {\n" +
+            "    \"status\":\"上报\",\n" +
+            "    \"url\":\"https://xxx.com/default/456.png\",\n" +
+            "    \"key\":456\n" +
+            "  }\n" +
+            "]";
+
+    /**
+     * 循环获取json数组中某个元素的值
+     */
+    @Test
+    void test3() {
+        JSONArray jsonArray = JSONUtil.parseArray(s3);
+        List<String> urls = new ArrayList<>();
+        for (Object obj : jsonArray) {
+            JSONObject jsonObj = (JSONObject) obj;
+            String url = jsonObj.getStr("url");
+            if (StrUtil.isNotBlank(url)) {
+                urls.add(url);
+            }
+        }
+        System.out.println("urls = " + urls);
     }
 }
