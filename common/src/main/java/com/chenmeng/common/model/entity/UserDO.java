@@ -6,6 +6,8 @@ import com.chenmeng.common.model.base.BaseDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import javax.validation.constraints.NotBlank;
+
 /**
  * 用户表实体类
  *
@@ -19,11 +21,13 @@ public class UserDO extends BaseDO {
     /**
      * 登录账号
      */
+    @NotBlank(message = "登录账号不能为空")
     private String userAccount;
 
     /**
      * 密码
      */
+    @NotBlank(message = "密码不能为空")
     private String userPassword;
 
     /**
@@ -59,6 +63,7 @@ public class UserDO extends BaseDO {
     /**
      * 用户角色：user - 普通用户；admin - 管理员
      */
+    @NotBlank(message = "用户角色不能为空")
     private String userRole;
 
     @TableField(exist = false)
