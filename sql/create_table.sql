@@ -30,7 +30,7 @@ create table if not exists chenmeng_test.user
     phone         varchar(128)                           null comment '手机号',
     email         varchar(256)                           null comment '邮箱',
     user_profile  varchar(512)                           null comment '用户简介',
-    user_role     varchar(256) default 'user'            not null comment '用户角色：user/admin',
+    user_role     varchar(5) default 'user'              not null comment '用户角色：user/admin',
 
     create_user   bigint                                 null comment '创建人标识',
     create_time   datetime     default CURRENT_TIMESTAMP not null comment '创建时间',
