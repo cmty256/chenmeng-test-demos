@@ -1,5 +1,13 @@
 package com.chenmeng.project.spring.bean;
 
+import lombok.Data;
+
+/**
+ * 原型模式示例 bean
+ *
+ * @author chenmeng
+ */
+@Data
 public class Monster {
 
     private Integer id = 10;
@@ -11,46 +19,9 @@ public class Monster {
     }
 
     public Monster(Integer id, String nickname, String skill) {
-        // System.out.println("Integer id, String nickname, String skill被调用");
+        System.out.println("Integer id, String nickname, String skill被调用");
         this.id = id;
         this.nickname = nickname;
         this.skill = skill;
-    }
-
-    public Monster(String nickname, String skill, Integer id) {
-
-        this.id = id;
-        this.nickname = nickname;
-        this.skill = skill;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public String getSkill() {
-        return skill;
-    }
-
-    public void setSkill(String skill) {
-        this.skill = skill;
-    }
-
-    @Override
-    public String toString() {
-        return "Monster [id=" + id + ", nickname=" + nickname + ", skill="
-                + skill + "]";
     }
 }
