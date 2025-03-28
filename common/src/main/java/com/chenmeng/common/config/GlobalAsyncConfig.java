@@ -27,9 +27,18 @@ public class GlobalAsyncConfig implements AsyncConfigurer {
     @Bean(name = "myExecutor")
     public ThreadPoolTaskExecutor myExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(10);
-        executor.setMaxPoolSize(50);
-        executor.setQueueCapacity(1000);
+
+        // 动态配置（根据可用的 JVM 处理器数）
+        int cores = Runtime.getRuntime().availableProcessors();
+        executor.setCorePoolSize(cores);
+        executor.setMaxPoolSize(cores * 2);
+        executor.setQueueCapacity(cores * 10);
+
+        // 固定配置（可根据配置文件动态传参）
+        // executor.setCorePoolSize(10);
+        // executor.setMaxPoolSize(20);
+        // executor.setQueueCapacity(200);
+
         executor.setThreadNamePrefix("myExecutor-");
         executor.setKeepAliveSeconds(60);
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
@@ -94,5 +103,11 @@ public class GlobalAsyncConfig implements AsyncConfigurer {
         public void handleUncaughtException(Throwable ex, Method method, @NotNull Object... params) {
             log.error("[handleUncaughtException][method({}) params({}) 发生异常]", method.getName(), Arrays.deepToString(params), ex);
         }
+    }
+
+    public static void main(String[] args) {
+        // 返回 Java 虚拟机可用的 CPU 核心数（逻辑核数）
+        int cores = Runtime.getRuntime().availableProcessors();
+        System.out.println("[逻辑核心数]Number of available processors (cores): " + cores);
     }
 }
