@@ -31,7 +31,7 @@
 		<springboot.version>2.7.17</springboot.version>
 		<okhttp.version>4.12.0</okhttp.version>
 
-		<es.version>7.8.0</es.version>
+		<es.version>7.12.1</es.version>
 
 	</properties>
 
