@@ -19,10 +19,7 @@
     </properties>
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>org.elasticsearch</groupId>-->
-<!--            <artifactId>elasticsearch</artifactId>-->
-<!--        </dependency>-->
+
         <!-- elasticsearch的客户端 -->
         <dependency>
             <groupId>org.elasticsearch.client</groupId>

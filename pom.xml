@@ -61,12 +61,6 @@
 		<!-- 定义共享的依赖项和版本 -->
 		<dependencies>
 
-			<!-- es -->
-			<dependency>
-				<groupId>org.elasticsearch</groupId>
-				<artifactId>elasticsearch</artifactId>
-				<version>${es.version}</version>
-			</dependency>
 			<!-- elasticsearch的客户端 -->
 			<dependency>
 				<groupId>org.elasticsearch.client</groupId>
