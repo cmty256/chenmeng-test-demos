@@ -147,6 +147,50 @@ public class IndexTest {
             "  }\n" +
             "}";
 
+    static final String ITEMS_MAPPING_TEMPLATE = "{\n" +
+            "  \"items\" : {\n" +
+            "    \"mappings\" : {\n" +
+            "      \"properties\" : {\n" +
+            "        \"brand\" : {\n" +
+            "          \"type\" : \"keyword\"\n" +
+            "        },\n" +
+            "        \"category\" : {\n" +
+            "          \"type\" : \"keyword\"\n" +
+            "        },\n" +
+            "        \"commentCount\" : {\n" +
+            "          \"type\" : \"integer\"\n" +
+            "        },\n" +
+            "        \"id\" : {\n" +
+            "          \"type\" : \"keyword\"\n" +
+            "        },\n" +
+            "        \"image\" : {\n" +
+            "          \"type\" : \"keyword\",\n" +
+            "          \"index\" : false\n" +
+            "        },\n" +
+            "        \"isAD\" : {\n" +
+            "          \"type\" : \"boolean\"\n" +
+            "        },\n" +
+            "        \"name\" : {\n" +
+            "          \"type\" : \"text\",\n" +
+            "          \"analyzer\" : \"ik_max_word\"\n" +
+            "        },\n" +
+            "        \"price\" : {\n" +
+            "          \"type\" : \"integer\"\n" +
+            "        },\n" +
+            "        \"sold\" : {\n" +
+            "          \"type\" : \"integer\"\n" +
+            "        },\n" +
+            "        \"stock\" : {\n" +
+            "          \"type\" : \"integer\"\n" +
+            "        },\n" +
+            "        \"updateTime\" : {\n" +
+            "          \"type\" : \"date\"\n" +
+            "        }\n" +
+            "      }\n" +
+            "    }\n" +
+            "  }\n" +
+            "}\n";
+
     @AfterEach
     void tearDown() throws IOException {
         this.client.close();

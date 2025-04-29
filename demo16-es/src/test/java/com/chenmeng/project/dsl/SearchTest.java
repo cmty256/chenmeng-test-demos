@@ -20,6 +20,8 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 
 /**
+ * Elasticsearch 搜索测试类，用于测试各种搜索查询
+ *
  * @author chenmeng
  */
 public class SearchTest {
@@ -28,6 +30,9 @@ public class SearchTest {
 
     private RestHighLevelClient client;
 
+    /**
+     * 在每个测试方法执行前初始化 Elasticsearch 客户端
+     */
     @BeforeEach
     void setUp() {
         this.client = new RestHighLevelClient(RestClient.builder(
@@ -36,6 +41,10 @@ public class SearchTest {
         System.out.println("setUp success");
     }
 
+    /**
+     * 测试匹配所有文档的查询
+     * @throws IOException 如果发生 I/O 错误
+     */
     @Test
     void testMatchAll() throws IOException {
         // 1.创建Request
@@ -48,6 +57,10 @@ public class SearchTest {
         handleResponse(response);
     }
 
+    /**
+     * 测试匹配指定字段的查询
+     * @throws IOException 如果发生 I/O 错误
+     */
     @Test
     void testMatch() throws IOException {
         // 1.创建Request
@@ -60,6 +73,10 @@ public class SearchTest {
         handleResponse(response);
     }
 
+    /**
+     * 测试多字段匹配查询
+     * @throws IOException 如果发生 I/O 错误
+     */
     @Test
     void testMultiMatch() throws IOException {
         // 1.创建Request
@@ -72,6 +89,10 @@ public class SearchTest {
         handleResponse(response);
     }
 
+    /**
+     * 测试范围查询
+     * @throws IOException 如果发生 I/O 错误
+     */
     @Test
     void testRange() throws IOException {
         // 1.创建Request
@@ -84,6 +105,10 @@ public class SearchTest {
         handleResponse(response);
     }
 
+    /**
+     * 测试精确匹配查询
+     * @throws IOException 如果发生 I/O 错误
+     */
     @Test
     void testTerm() throws IOException {
         // 1.创建Request
@@ -96,6 +121,10 @@ public class SearchTest {
         handleResponse(response);
     }
 
+    /**
+     * 测试布尔查询，结合多个条件进行搜索
+     * @throws IOException 如果发生 I/O 错误
+     */
     @Test
     void testBool() throws IOException {
         // 1.创建Request
@@ -116,6 +145,10 @@ public class SearchTest {
         handleResponse(response);
     }
 
+    /**
+     * 测试分页和排序查询
+     * @throws IOException 如果发生 I/O 错误
+     */
     @Test
     void testPageAndSort() throws IOException {
         int pageNo = 1, pageSize = 5;
@@ -135,6 +168,10 @@ public class SearchTest {
         handleResponse(response);
     }
 
+    /**
+     * 处理搜索响应，解析并打印结果
+     * @param response 搜索响应对象
+     */
     private void handleResponse(SearchResponse response) {
         SearchHits searchHits = response.getHits();
         // 1.获取总条数
@@ -151,6 +188,10 @@ public class SearchTest {
         }
     }
 
+    /**
+     * 在每个测试方法执行后关闭 Elasticsearch 客户端
+     * @throws IOException 如果发生 I/O 错误
+     */
     @AfterEach
     void tearDown() throws IOException {
         this.client.close();

@@ -22,6 +22,8 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
+ * 高亮查询
+ *
  * @author chenmeng
  */
 public class HighlightSearchTest {
