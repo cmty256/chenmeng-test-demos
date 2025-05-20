@@ -5,20 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.chenmeng</groupId>
-        <artifactId>chenmeng-test-demos</artifactId>
+        <artifactId>demo11-message</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>demo11-message</artifactId>
-    <packaging>pom</packaging>
-    <description>消息队列测试工程</description>
-    <modules>
-        <module>d1-event</module>
-        <module>d3-rocketmq</module>
-        <module>d4-kafka</module>
-        <module>d10-spring-cloud-stream</module>
-        <module>d5-spring-rocketmq</module>
-    </modules>
+    <artifactId>d5-spring-rocketmq</artifactId>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -28,8 +19,19 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.chenmeng</groupId>
-            <artifactId>common</artifactId>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-spring-boot-starter</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
     </dependencies>
+
 </project>

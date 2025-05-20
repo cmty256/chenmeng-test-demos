@@ -1,0 +1,28 @@
+server:
+  port: 9111
+  servlet:
+    # 将Servlet的上下文路径配置为“/api”，那么应用的根路径就变成了“http://localhost:[端口]/api”。
+    context-path: /api
+
+spring:
+  application:
+    name: demo11-message-spring-rocketmq
+  # 数据库配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/chenmeng_test
+    username: root
+    password: 123456
+  mvc:
+    pathmatch:
+      # 指定URL路径匹配的策略--Ant--风格，默认的URL路径匹配的策略是AntPathMatcher
+      # 是为了兼容swagger（springBoot 2.6版本以上需要设置）
+      matching-strategy: ANT_PATH_MATCHER
+
+
+rocketmq:
+  # nameserver地址
+  name-server: 192.168.207.129:9876
+  producer:
+    # 配置⽣产者组
+    group: producer-demo-group1

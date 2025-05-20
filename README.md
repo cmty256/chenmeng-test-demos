@@ -18,7 +18,7 @@
 - demo10-third-api：第三方接口调用测试模块
 - demo11-message：消息队列测试工程
   - event：基于内存 - 事件机制
-  - rocketmq（待编写）
+  - rocketmq：RocketMQ 客户端写法示例以及 SpringBoot RocketMQ 写法示例
   - kafka：SpringBoot Kafka 写法示例
   - spring-cloud-stream：spring cloud stream kafka 写法示例
 - demo12-ffmpeg：ffmpeg 测试模块
