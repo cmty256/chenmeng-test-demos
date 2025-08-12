@@ -32,6 +32,7 @@
 		<okhttp.version>4.12.0</okhttp.version>
 
 		<es.version>7.12.1</es.version>
+		<apollo.version>2.4.0</apollo.version>
 
 	</properties>
 
@@ -54,12 +55,19 @@
         <module>demo14-spring-security-oauth</module>
         <module>demo15-pdf</module>
         <module>demo16-es</module>
+        <module>demo17-apollo</module>
     </modules>
 
 	<!-- 定义依赖管理 -->
 	<dependencyManagement>
 		<!-- 定义共享的依赖项和版本 -->
 		<dependencies>
+
+			<dependency>
+				<groupId>com.ctrip.framework.apollo</groupId>
+				<artifactId>apollo-client-config-data</artifactId>
+				<version>${apollo.version}</version>
+			</dependency>
 
 			<!-- elasticsearch的客户端 -->
 			<dependency>

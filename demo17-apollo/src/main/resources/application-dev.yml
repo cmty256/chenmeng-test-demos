@@ -1,0 +1,20 @@
+server:
+  port: 9117
+  servlet:
+    context-path: /apollo
+
+app:
+  id: myApollo
+apollo:
+  # 配置 apollo 的元数据地址（和 Portal 控台不是同一个端口）
+  meta: http://localhost:8080
+  # 配置 apollo 的集群名称
+  cluster: dev
+  # 配置 apollo 的 bootstrap 模块
+  bootstrap:
+    enabled: true
+    eagerLoad:
+      enabled: true
+    # 配置需要加载的 namespace, 默认为 properties 格式，如果需要使用其他格式，则需要加上格式名后缀
+    # 多个 namespace，则用英文逗号隔开，前者配置的优先级高（官方文档原话：Spring的配置是有顺序的，如果多个property source都有同一个key，那么最终是顺序在前的配置生效。）
+    namespaces: application-dev.yml, application-test.yml, application
