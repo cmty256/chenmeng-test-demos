@@ -26,3 +26,5 @@
 - demo14-spring-security-oauth: Spring Security OAuth2 测试模块
 - demo15-pdf: pdf 测试模块
 - demo16-es: Elasticsearch 测试模块
+- demo17-apollo:  apollo 测试模块
+- demo18-websocket: websocket 测试模块

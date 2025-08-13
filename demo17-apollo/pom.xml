@@ -10,6 +10,7 @@
     </parent>
 
     <artifactId>demo17-apollo</artifactId>
+    <description>apollo 测试工程</description>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
