@@ -37,4 +37,13 @@ public class TestController {
         String age = config.getProperty("test.age", "18");
         return "hello " + name + " " + age;
     }
+
+    /**
+     * 获取 json 格式文件配置
+     */
+    @RequestMapping("/json")
+    public String json() {
+        Config config = ConfigService.getConfig("dev.json");
+        return config.getProperty("content", "{}");
+    }
 }
