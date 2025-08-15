@@ -1,0 +1,4 @@
+server:
+  port: 9118
+  servlet:
+    context-path: /websocket
