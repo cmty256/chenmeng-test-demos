@@ -60,7 +60,7 @@ public class EasyExcelUtil {
      */
     private static final int FAIL_CODE = -1;
 
-    public EasyExcelUtil() {
+    private EasyExcelUtil() {
     }
 
     /**
