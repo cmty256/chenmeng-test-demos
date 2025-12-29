@@ -1,0 +1,37 @@
+server:
+  port: 9119
+  servlet:
+    context-path: /resilience4j
+
+resilience4j:
+  # 熔断器
+  circuitbreaker:
+    instances:
+      default:
+        registerHealthIndicator: true # 是否注册健康检查
+        automaticTransitionFromOpenToHalfOpenEnabled: true # 熔断开启后，是否自动进入半开状态
+      userServiceCB:
+        failureRateThreshold: 50          # 失败率阈值（%）
+        minimumNumberOfCalls: 5          # 最小请求次数（才触发熔断判断）
+        waitDurationInOpenState: 10s    # 熔断开启后，等待多久进入半开状态
+        permittedNumberOfCallsInHalfOpenState: 3 # 半开状态下，试探请求次数
+        slidingWindowSize: 10             # 滑动窗口大小
+        slidingWindowType: COUNT_BASED    # 基于计数（也可选 TIME_BASED，单位：秒）
+  # 超时控制
+  timelimiter:
+    instances:
+      userServiceCB:
+        timeoutDuration: 5s # 超时时间
+  # 限流器
+  ratelimiter:
+    instances:
+      userServiceRL:
+        limitForPeriod: 10                 # 每周期允许10次请求
+        limitRefreshPeriod: 1s             # 周期为1秒
+        timeoutDuration: 0                 # 获取许可的等待超时（0表示立即失败）
+  # 重试机制
+  retry:
+    instances:
+      userServiceRetry:
+        maxAttempts: 3                     # 最多重试3次
+        waitDuration: 100ms                # 重试间隔

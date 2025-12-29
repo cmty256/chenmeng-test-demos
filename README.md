@@ -28,3 +28,4 @@
 - demo16-es: Elasticsearch 测试模块
 - demo17-apollo:  apollo 测试模块
 - demo18-websocket: websocket 测试模块
+- demo19-resilience4j: resilience4j 测试模块
