@@ -5,14 +5,12 @@ import com.chenmeng.common.model.entity.InterfaceInfoDO;
 import com.chenmeng.common.model.entity.UserDO;
 import com.chenmeng.project.service.InterfaceInfoService;
 import com.chenmeng.project.service.UserService;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -20,17 +18,22 @@ import java.util.List;
  **/
 @Slf4j
 @SpringBootTest
-@RequiredArgsConstructor
 class SaveDataTest {
 
-    private final UserService userService;
-    private final InterfaceInfoService interfaceInfoService;
+    @Resource
+    private UserService userService;
+
+    @Resource
+    private InterfaceInfoService interfaceInfoService;
 
     /**
      * 批量插入数据（user表）
      */
     @Test
     void saveUserData() {
+        long startTime = System.currentTimeMillis();
+        log.info("批量插入数据，开始");
+
         List<UserDO> list = new ArrayList<>();
         for (int i = 0; i < 999; i++) {
             UserDO userDO = new UserDO();
@@ -54,6 +57,7 @@ class SaveDataTest {
             userService.saveBatch(list);
         }
         System.out.println("userService.count() = " + userService.count());
+        log.info("批量插入数据，耗时：{}", System.currentTimeMillis() - startTime);
     }
 
     /**

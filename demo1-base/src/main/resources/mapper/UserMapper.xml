@@ -16,4 +16,15 @@
         SELECT * FROM user
     </select>
 
+    <update id="batchUpdate">
+        <foreach collection="userList" item="item" index="index" open="" separator=";" close="">
+            UPDATE user
+            <set>
+                <if test="item.userAccount != null">user_account = #{item.userAccount},</if>
+                <if test="item.userName != null">user_name = #{item.userName},</if>
+            </set>
+            WHERE id = #{item.id}
+        </foreach>
+    </update>
+
 </mapper>

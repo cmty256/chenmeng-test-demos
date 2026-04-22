@@ -17,6 +17,8 @@ public interface UserMapper extends BaseMapper<UserDO> {
     Page<UserDO> findAll(Page<UserDO> page);
 
     void batchInsert(@Param("userList") List<UserDO> userList);
+
+    void batchUpdate(@Param("userList") List<UserDO> userList);
 }
 
 
