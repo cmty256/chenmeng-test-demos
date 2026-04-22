@@ -44,6 +44,8 @@ class UpdateBatchTest {
             userDO.setEmail("邮箱");
             list.add(userDO);
         }
+        // 预热
+        userService.updateBatchById(list);
 
         // rewriteBatchedStatements=true 不生效
         long startTime = System.currentTimeMillis();
