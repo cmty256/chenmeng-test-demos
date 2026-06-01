@@ -26,6 +26,12 @@
             <artifactId>common</artifactId>
         </dependency>
 
+        <!-- fastjson2 -->
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+        </dependency>
+
         <!-- 用于获取服务器的信息 -->
         <dependency>
             <groupId>com.jcraft</groupId>

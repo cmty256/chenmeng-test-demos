@@ -70,4 +70,18 @@ public class WxChatTest {
         item.put("value", value);
         return item;
     }
+
+    @Test
+    void test() {
+        String fileStartTime = "20260526143830";
+        String endTime = "20260526143859";
+
+        String fileEndTime = "20260526143959";
+        String startTime = "20260526143800";
+
+        // return startTime.compareTo(req.getEndTime()) <= 0 && endTime.compareTo(req.getStartTime()) >= 0;
+
+        System.out.println(fileStartTime.compareTo(endTime));
+        System.out.println(fileEndTime.compareTo(startTime));
+    }
 }
