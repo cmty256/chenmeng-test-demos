@@ -1,5 +1,6 @@
 package com.chenmeng.project.json;
 
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.*;
 import org.junit.jupiter.api.Test;
 
@@ -218,5 +219,50 @@ public class FastjsonTest {
         System.out.println(combinedJson);
 
         System.out.println("----------------------------------------------------------------------------------" + "\n");
+    }
+
+    /**
+     * 测试 extInfo 合并逻辑：实现新字段对现有字段的局部覆盖
+     * 场景：上游传入新的 extInfo 时，将其合并到现有 extInfo 中，实现增量更新
+     */
+    @Test
+    void testExtInfo_MergeLogic() {
+        // 1. 准备新的 extInfo 数据（上游传入）
+        String newExtInfo = "{\"offlineTimeout\": 60}";
+        String mergedExtInfo;
+
+        // 2. 模拟现有 extInfo（当前为空，实际场景中可能已有值）
+        String extInfo = "";
+
+        // 3. 判断新 extInfo 是否有效
+        if (StrUtil.isNotBlank(newExtInfo)) {
+            JSONObject extInfoJson;
+
+            // 4. 解析现有的 extInfo，如果为空则创建新的 JSONObject
+            if (StrUtil.isNotBlank(extInfo)) {
+                // 解析现有的 extInfo
+                extInfoJson = JSONObject.parseObject(extInfo);
+            } else {
+                // 如果没有现有 extInfo，创建新的 JSONObject
+                extInfoJson = new JSONObject();
+            }
+
+            // 5. 解析新的 extInfo
+            JSONObject newExtInfoJson = JSONObject.parseObject(newExtInfo);
+
+            // 6. 遍历新 extInfo 的所有字段，逐个合并到现有 extInfo 中（实现局部覆盖）
+            for (String key : newExtInfoJson.keySet()) {
+                System.out.println("key = " + key);
+                extInfoJson.put(key, newExtInfoJson.get(key));
+            }
+
+            // 7. 将合并后的结果转换为字符串
+            mergedExtInfo = extInfoJson.toJSONString();
+        } else {
+            // 8. 如果上游没有传入 extInfo，保持原有值不变
+            mergedExtInfo = "else";
+        }
+
+        System.out.println(mergedExtInfo);
     }
 }
