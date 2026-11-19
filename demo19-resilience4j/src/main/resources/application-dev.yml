@@ -4,34 +4,34 @@ server:
     context-path: /resilience4j
 
 resilience4j:
-  # ÈÛ¶ÏÆ÷
+  # ç†”æ–­å™¨
   circuitbreaker:
     instances:
       default:
-        registerHealthIndicator: true # ÊÇ·ñ×¢²á½¡¿µ¼ì²é
-        automaticTransitionFromOpenToHalfOpenEnabled: true # ÈÛ¶Ï¿ªÆôºó£¬ÊÇ·ñ×Ô¶¯½øÈë°ë¿ª×´Ì¬
+        registerHealthIndicator: true # æ˜¯å¦æ³¨å†Œå¥åº·æ£€æŸ¥
+        automaticTransitionFromOpenToHalfOpenEnabled: true # ç†”æ–­å¼€å¯åï¼Œæ˜¯å¦è‡ªåŠ¨è¿›å…¥åŠå¼€çŠ¶æ€
       userServiceCB:
-        failureRateThreshold: 50          # Ê§°ÜÂÊãĞÖµ£¨%£©
-        minimumNumberOfCalls: 5          # ×îĞ¡ÇëÇó´ÎÊı£¨²Å´¥·¢ÈÛ¶ÏÅĞ¶Ï£©
-        waitDurationInOpenState: 10s    # ÈÛ¶Ï¿ªÆôºó£¬µÈ´ı¶à¾Ã½øÈë°ë¿ª×´Ì¬
-        permittedNumberOfCallsInHalfOpenState: 3 # °ë¿ª×´Ì¬ÏÂ£¬ÊÔÌ½ÇëÇó´ÎÊı
-        slidingWindowSize: 10             # »¬¶¯´°¿Ú´óĞ¡
-        slidingWindowType: COUNT_BASED    # »ùÓÚ¼ÆÊı£¨Ò²¿ÉÑ¡ TIME_BASED£¬µ¥Î»£ºÃë£©
-  # ³¬Ê±¿ØÖÆ
+        failureRateThreshold: 50          # å¤±è´¥ç‡é˜ˆå€¼ï¼ˆ%ï¼‰
+        minimumNumberOfCalls: 5          # æœ€å°è¯·æ±‚æ¬¡æ•°ï¼ˆæ‰è§¦å‘ç†”æ–­åˆ¤æ–­ï¼‰
+        waitDurationInOpenState: 10s    # ç†”æ–­å¼€å¯åï¼Œç­‰å¾…å¤šä¹…è¿›å…¥åŠå¼€çŠ¶æ€
+        permittedNumberOfCallsInHalfOpenState: 3 # åŠå¼€çŠ¶æ€ä¸‹ï¼Œè¯•æ¢è¯·æ±‚æ¬¡æ•°
+        slidingWindowSize: 10             # æ»‘åŠ¨çª—å£å¤§å°
+        slidingWindowType: COUNT_BASED    # åŸºäºè®¡æ•°ï¼ˆä¹Ÿå¯é€‰ TIME_BASEDï¼Œå•ä½ï¼šç§’ï¼‰
+  # è¶…æ—¶æ§åˆ¶
   timelimiter:
     instances:
       userServiceCB:
-        timeoutDuration: 5s # ³¬Ê±Ê±¼ä
-  # ÏŞÁ÷Æ÷
+        timeoutDuration: 5s # è¶…æ—¶æ—¶é—´
+  # é™æµå™¨
   ratelimiter:
     instances:
       userServiceRL:
-        limitForPeriod: 10                 # Ã¿ÖÜÆÚÔÊĞí10´ÎÇëÇó
-        limitRefreshPeriod: 1s             # ÖÜÆÚÎª1Ãë
-        timeoutDuration: 0                 # »ñÈ¡Ğí¿ÉµÄµÈ´ı³¬Ê±£¨0±íÊ¾Á¢¼´Ê§°Ü£©
-  # ÖØÊÔ»úÖÆ
+        limitForPeriod: 10                 # æ¯å‘¨æœŸå…è®¸10æ¬¡è¯·æ±‚
+        limitRefreshPeriod: 1s             # å‘¨æœŸä¸º1ç§’
+        timeoutDuration: 0                 # è·å–è®¸å¯çš„ç­‰å¾…è¶…æ—¶ï¼ˆ0è¡¨ç¤ºç«‹å³å¤±è´¥ï¼‰
+  # é‡è¯•æœºåˆ¶
   retry:
     instances:
       userServiceRetry:
-        maxAttempts: 3                     # ×î¶àÖØÊÔ3´Î
-        waitDuration: 100ms                # ÖØÊÔ¼ä¸ô
+        maxAttempts: 3                     # æœ€å¤šé‡è¯•3æ¬¡
+        waitDuration: 100ms                # é‡è¯•é—´éš”
