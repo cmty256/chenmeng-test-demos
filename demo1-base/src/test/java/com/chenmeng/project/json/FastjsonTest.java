@@ -265,4 +265,15 @@ public class FastjsonTest {
 
         System.out.println(mergedExtInfo);
     }
+
+    @Test
+    void test4() {
+        String extInfo = "{\n" +
+                "  \"panorama\": {\n" +
+                "    \"distortionParam\": \"sss\"\n" +
+                "  }\n" +
+                "}";
+        String distortionParam = (String) JSONPath.eval(extInfo, "$.panorama.distortionParam");
+        System.out.println("distortionParam = " + distortionParam);
+    }
 }

@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author chenmeng
@@ -147,5 +148,17 @@ public class JsonTest {
             }
         }
         System.out.println("urls = " + urls);
+    }
+
+    @Test
+    void test4() {
+        String extInfo = "{\n" +
+                "  \"panorama\": {\n" +
+                "    \"distortionParam\": \"sss\"\n" +
+                "  }\n" +
+                "}";
+        JSON json = JSONUtil.parse(extInfo);
+        String distortionParam = String.valueOf(JSONUtil.getByPath(json, "$.panorama.distortionParam"));
+        System.out.println("distortionParam = " + distortionParam);
     }
 }
