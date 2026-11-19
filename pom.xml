@@ -33,6 +33,7 @@
 
 		<es.version>7.12.1</es.version>
 		<apollo.version>2.4.0</apollo.version>
+		<flowable.version>6.8.0</flowable.version>
 
 	</properties>
 
@@ -56,14 +57,23 @@
         <module>demo15-pdf</module>
         <module>demo16-es</module>
         <module>demo17-apollo</module>
-        <module>demo18-websocket</module>
-        <module>demo19-resilience4j</module>
+		<module>demo18-websocket</module>
+		<module>demo19-resilience4j</module>
+		<module>demo20-workflow</module>
     </modules>
 
 	<!-- 定义依赖管理 -->
 	<dependencyManagement>
 		<!-- 定义共享的依赖项和版本 -->
 		<dependencies>
+
+			<!-- 集成flowable工作流引擎 -->
+			<!-- 注意：flowable 6.x 才支持 spring boot 2.x + java 11；flowable 7.x 要求 spring boot 3.x + java 17 -->
+			<dependency>
+				<groupId>org.flowable</groupId>
+				<artifactId>flowable-spring-boot-starter-process</artifactId>
+				<version>${flowable.version}</version>
+			</dependency>
 
 			<!-- 集成resilience4j -->
 			<dependency>
@@ -184,7 +194,7 @@
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-validation</artifactId>
-				<version>3.1.6</version>
+				<version>${springboot.version}</version>
 			</dependency>
 
 			<!-- 自定义公共模块 -->

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    ============================================================================
+    请假流程 leave.bpmn20.xml（Flowable 6.8.0 学习 demo 核心流程定义）
+    ============================================================================
+
+    【一、流程全景图】
+
+        开始(startLeave)
+           │
+           ▼
+     ┌─────────── 领导审批 leaderTask（assignee = ${leader}）───────────┐
+     │                                                                  │
+     ▼                                                                  │
+ 排他网关 gatewayLeader ──── ${!approved} 拒绝 ────► 结束 endLeave（业务状态=3 拒绝）
+     │
+     ├─ ${day > 3}（请假超过 3 天，多一级审批）
+     │       ▼
+     │   总监审批 directorTask（assignee = ${director}）
+     │       ▼
+     │   排他网关 gatewayDirector ── ${!approved} 拒绝 ──► 结束 endLeave
+     │       │
+     │       └─ ${approved} ──► HR 备案 hrTask（assignee = ${hr}）──► 结束 endLeave
+     │
+     └─ ${approved}（3 天及以内，直接备案）
+             ▼
+         HR 备案 hrTask（assignee = ${hr}）──► 结束 endLeave
+
+    【二、自动部署机制（"发布 = 部署"）】
+
+    本文件放在 classpath:processes/ 目录下。Spring Boot 集成 Flowable 后，
+    启动时自动执行"部署"动作（配置项 flowable.check-process-definitions=true，见 application.yml）：
+        1. 读取本文件 → 解析为 BPMN 模型 → 写入 ACT_RE_DEPLOYMENT（部署记录）；
+        2. 在 ACT_RE_PROCDEF 写入流程定义行：KEY_='leave'（即本文件的 process id），
+           VERSION_ 从 1 开始逐次 +1（每次修改本文件并重启，版本都会 +1，历史版本仍可查）；
+        3. startProcessInstanceByKey("leave") 时，引擎按 KEY_ 自动取"最新版本"的定义来创建实例。
+    结论：修改本文件 → 重启 → 新版本立即生效，这就是 yudao 里"流程定义管理 → 发布新版本"的底层机制，
+    只不过 yudao 的发布入口是 RepositoryService.createDeployment().addClasspathResource(...) 等 API。
+
+    【三、排他网关（exclusiveGateway）的条件评估规则】
+
+    1. 条件写在"出线"（sequenceFlow）的 <conditionExpression> 里，用 JUEL 表达式语法；
+    2. Flowable 按"出线在 XML 里的声明顺序"逐条评估，命中一条立即走那条（后面的不再评估）；
+    3. 所以 gatewayLeader 的三条出线顺序很重要：先判拒绝（${!approved}），再判长请假（${day > 3}），
+       最后 ${approved} 兜底——本流程没写"默认出线"（default flow），若所有条件都不命中会抛异常，
+       实际项目常见写法是给网关指定一条 default 出线，让流程图上有个"明确的兜底方向"；
+    4. 表达式里的 day / approved 都是流程变量：day 发起时传入（Integer），
+       approved 每次审批 complete 时传入并覆盖旧值（Boolean）。
+
+    【四、任务办理人 assignee 的解析时机】
+
+    flowable:assignee="${leader}" 不是在部署时解析，而是在"引擎执行到该节点、创建任务的那一刻"才解析，
+    所以必须保证创建任务前流程变量 leader 已存在（本 demo 在 startProcessInstanceByKey 的 variables 里传入）。
+    这就是"发起时传审批人"模式；真实项目更常见的做法是结合用户体系动态计算审批人
+    （如 yudao 的 BpmTaskCandidateInvoker，按部门负责人/岗位/角色解析）。
+
+    【五、流程结束监听器】
+
+    <process> 上的 <flowable:executionListener event="end" delegateExpression="${leaveProcessEndListener}">
+    在流程实例走到 endEvent、即将结束时被回调，监听器（Spring Bean）里把业务表状态回写为 2-通过/3-拒绝。
+    delegateExpression 写 ${beanName} 的形式能从 Spring 容器取 Bean（享受 @Resource 注入），
+    对应 yudao 的 BpmProcessInstanceStatusEventListener 模式（细节见监听器类的 JavaDoc）。
+    ============================================================================
+-->
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:flowable="http://flowable.org/bpmn"
+             targetNamespace="http://chenmeng.com/demo20/workflow">
+
+    <!-- process id = 流程定义 key：与代码里 startProcessInstanceByKey("leave") 对应 -->
+    <process id="leave" name="请假流程" isExecutable="true">
+
+        <!-- 流程实例级监听器：end 事件（实例结束）时回调 Spring Bean leaveProcessEndListener -->
+        <extensionElements>
+            <flowable:executionListener event="end" delegateExpression="${leaveProcessEndListener}"/>
+        </extensionElements>
+
+        <!-- ═══════════════ 开始节点 ═══════════════ -->
+        <startEvent id="startLeave" name="开始"/>
+
+        <!-- 开始 → 领导审批 -->
+        <sequenceFlow id="flowStart" name="发起请假" sourceRef="startLeave" targetRef="leaderTask"/>
+
+        <!-- ═══════════════ 用户任务：领导审批（一级审批，必经） ═══════════════ -->
+        <!-- assignee 表达式：任务创建那一刻用流程变量 leader 解析出办理人 -->
+        <userTask id="leaderTask" name="领导审批" flowable:assignee="${leader}"/>
+
+        <!-- 领导审批 → 排他网关 -->
+        <sequenceFlow id="flowLeaderToGateway" name="提交网关判断" sourceRef="leaderTask" targetRef="gatewayLeader"/>
+
+        <!-- ═══════════════ 排他网关：领导审批结果 + 请假天数 ═══════════════ -->
+        <exclusiveGateway id="gatewayLeader" name="领导审批网关（拒绝优先，再看天数）"/>
+
+        <!-- 出线 1（先评估）：拒绝 → 直达结束。
+             approved 是领导审批 complete 时传入的流程变量（false 表示拒绝） -->
+        <sequenceFlow id="flowLeaderReject" name="拒绝" sourceRef="gatewayLeader" targetRef="endLeave">
+            <conditionExpression xsi:type="tFormalExpression">${!approved}</conditionExpression>
+        </sequenceFlow>
+
+        <!-- 出线 2（次评估）：请假超过 3 天 → 加签总监审批。
+             走到这里说明 approved=true，只需再判断天数 -->
+        <sequenceFlow id="flowLeaderDayBig" name="大于3天" sourceRef="gatewayLeader" targetRef="directorTask">
+            <conditionExpression xsi:type="tFormalExpression">${day > 3}</conditionExpression>
+        </sequenceFlow>
+
+        <!-- 出线 3（兜底）：3 天及以内 → 跳过总监，直接 HR 备案 -->
+        <sequenceFlow id="flowLeaderDaySmall" name="3天及以内" sourceRef="gatewayLeader" targetRef="hrTask">
+            <conditionExpression xsi:type="tFormalExpression">${approved}</conditionExpression>
+        </sequenceFlow>
+
+        <!-- ═══════════════ 用户任务：总监审批（day > 3 时才走） ═══════════════ -->
+        <userTask id="directorTask" name="总监审批" flowable:assignee="${director}"/>
+
+        <!-- 总监审批 → 排他网关 -->
+        <sequenceFlow id="flowDirectorToGateway" name="提交网关判断" sourceRef="directorTask" targetRef="gatewayDirector"/>
+
+        <!-- ═══════════════ 排他网关：总监审批结果 ═══════════════ -->
+        <exclusiveGateway id="gatewayDirector" name="总监审批网关"/>
+
+        <!-- 出线 1：总监拒绝 → 直达结束 -->
+        <sequenceFlow id="flowDirectorReject" name="拒绝" sourceRef="gatewayDirector" targetRef="endLeave">
+            <conditionExpression xsi:type="tFormalExpression">${!approved}</conditionExpression>
+        </sequenceFlow>
+
+        <!-- 出线 2：总监通过 → HR 备案 -->
+        <sequenceFlow id="flowDirectorPass" name="通过" sourceRef="gatewayDirector" targetRef="hrTask">
+            <conditionExpression xsi:type="tFormalExpression">${approved}</conditionExpression>
+        </sequenceFlow>
+
+        <!-- ═══════════════ 用户任务：HR 备案（流程最后一步） ═══════════════ -->
+        <userTask id="hrTask" name="HR备案" flowable:assignee="${hr}"/>
+
+        <!-- HR 备案 → 结束 -->
+        <sequenceFlow id="flowHrToEnd" name="备案完成" sourceRef="hrTask" targetRef="endLeave"/>
+
+        <!-- ═══════════════ 结束节点 ═══════════════ -->
+        <!-- 到达这里 = 流程实例结束：引擎删除 ACT_RU_* 里本流程的运行时数据，
+             历史转入 ACT_HI_*，同时触发 process 级 end 监听器回写业务状态 -->
+        <endEvent id="endLeave" name="结束"/>
+
+    </process>
+
+</definitions>

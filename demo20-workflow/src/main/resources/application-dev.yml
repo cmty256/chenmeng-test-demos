@@ -1,0 +1,33 @@
+# ==============================================================
+# demo20-workflow 开发环境配置（端口、上下文、数据源）
+# 注意：数据库账号/密码按本地环境修改（库名 chenmeng_test 与其他 demo 模块共用，先执行 sql/demo20_workflow.sql 建业务表）
+# ==============================================================
+
+server:
+  # 服务端口：延续本工程端口约定 demoN -> 91NN（demo19=9119，本模块=9120）
+  port: 9120
+  servlet:
+    # 上下文路径：所有接口带 /workflow 前缀，接口文档地址 http://127.0.0.1:9120/workflow/doc.html
+    context-path: /workflow
+
+spring:
+  # 数据库连接：Flowable 引擎与业务表共用这一个数据源
+  # （与其他 demo 模块共用 chenmeng_test 库，靠表名区分：业务表 leave_apply、引擎表 ACT_* 均有独立前缀，互不冲突；
+  #  引擎首次启动会自动在该库创建 30+ 张 ACT_ 表；业务表 leave_apply 由 SQL 脚本预先创建）
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 【按需修改】账号/密码，serverTimezone 必须显式指定
+    url: jdbc:mysql://localhost:3306/chenmeng_test?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&autoReconnect=true&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true&allowMultiQueries=true
+    username: root
+    # 【按需修改】占位密码，请改成本地 MySQL 的实际密码
+    password: 123456
+  mvc:
+    pathmatch:
+      # Spring Boot 2.6+ 默认路径匹配策略改为 PathPatternParser，与 springfox（knife4j 底层）不兼容
+      # 必须切回 Ant 风格，否则启动时报 NPE（这是 springfox 3.0.0 + Spring Boot 2.6+ 的经典组合坑）
+      matching-strategy: ANT_PATH_MATCHER
+
+logging:
+  level:
+    # 打开业务包的 SQL 日志，观察引擎在 ACT_* 表上的数据变化（学习强烈建议打开）
+    com.chenmeng.project: debug

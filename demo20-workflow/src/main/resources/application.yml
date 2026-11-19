@@ -1,0 +1,46 @@
+# ==============================================================
+# demo20-workflow（Flowable 工作流学习 demo）通用配置
+# 环境相关配置（端口、数据源）在 application-dev.yml 中
+# ==============================================================
+
+spring:
+  application:
+    name: demo20-workflow
+  # 启动环境配置
+  profiles:
+    active: dev
+
+# ==============================================================
+# Flowable 引擎配置（flowable-spring-boot-starter-process 自动装配前缀）
+# 详见：https://www.flowable.com/open-source/docs/bpmn/ch04-Spring/ 文档里 flowable.* 的完整参数
+# ==============================================================
+flowable:
+  # 数据库表结构策略，true = 启动时对比并自动建表/升级（首次启动自动创建全部 ACT_* 表）。
+  # 对照 yudao：其 flowable 配置同样是 database-schema-update: true
+  database-schema-update: true
+  # 是否检查并自动部署 classpath:processes/ 目录下的 BPMN 文件，true（默认）= "发布 = 部署"。
+  # 含义：应用启动时，leave.bpmn20.xml 会被自动注册为一个新的流程定义版本（部署记录写 ACT_RE_DEPLOYMENT，
+  # 流程定义写 ACT_RE_PROCDEF，KEY_='leave' 的 VERSION_ 逐次 +1）——不需要手工调用 RepositoryService 部署
+  check-process-definitions: true
+  # 关闭异步执行器：demo 没有异步任务/定时边界事件，关掉可以减少后台线程与 ACT_RU_JOB 相关表的干扰
+  async-executor-activate: false
+
+# ==============================================================
+# MyBatis-Plus 配置（业务表 leave_apply 的 ORM；ACT_* 表由引擎内部 MyBatis 管理，与这里无关）
+# ==============================================================
+mybatis-plus:
+  global-config:
+    # 关闭 MP3.0 自带的 banner
+    banner: false
+    db-config:
+      # 主键类型：AUTO = 数据库自增（leave_apply.id 为 auto_increment）
+      id-type: AUTO
+      # 字段策略：更新时忽略 null 字段（只更新非 null 字段）
+      update-strategy: not_null
+      # 驼峰转下划线：userId <-> user_id
+      table-underline: true
+  configuration:
+    # 下划线转驼峰：查询结果列 user_id 自动映射到 userId 属性
+    map-underscore-to-camel-case: true
+    # 不启用二级缓存（教学 demo 保持行为简单直观）
+    cache-enabled: false
